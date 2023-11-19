@@ -1,0 +1,18 @@
+[
+  {
+    "id": 0,
+    "img": "take-money.png",
+    "backgroundColor": "white"
+  },
+  {
+    "id": 1,
+    "img": "TrollFace.png",
+    "backgroundColor": "#222222"
+  },
+  {
+    "id": 2,
+    "img": "image-icon.png",
+    "backgroundColor": "transparent"
+  }
+]
+
