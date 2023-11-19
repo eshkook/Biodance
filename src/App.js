@@ -3,10 +3,21 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Header from './components/Header';
 import PlaceToVisit from './components/PlaceToVisit';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+// const theme = createTheme({
+//   typography: {
+//     fontFamily: [
+//       'Nunito',
+//       'sans-serif',
+//     ].join(','),
+//   },
+// });
 
 export default function App() {
   return (
     <>
+    {/* <ThemeProvider theme={theme}> */}
       <CssBaseline />
       <Box
         sx={{
@@ -18,8 +29,10 @@ export default function App() {
           backgroundRepeat: 'no-repeat', // Do not repeat the image
         }}
       >
-        {/* Your content here */}
+        <Header />
       </Box>
+      {/* </ThemeProvider> */ }
     </>
+    
   );
 }
