@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8bf4bfc0.css",
+    "main.js": "/static/js/main.daaa76e1.js",
+    "static/media/take-money.png": "/static/media/take-money.545831f415458ecff20c.png",
+    "static/media/pig_2.jpg": "/static/media/pig_2.d29c303f0f5325ece505.jpg",
+    "static/media/image-icon.png": "/static/media/image-icon.c322f577cf7372c45a5f.png",
+    "index.html": "/index.html",
+    "main.8bf4bfc0.css.map": "/static/css/main.8bf4bfc0.css.map",
+    "main.daaa76e1.js.map": "/static/js/main.daaa76e1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8bf4bfc0.css",
+    "static/js/main.daaa76e1.js"
+  ]
+}
