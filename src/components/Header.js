@@ -25,7 +25,7 @@ export default function Header() {
                 {/* Toolbar to hold navigation content */}
                 <Toolbar sx={{ width: '80%', margin: '0 auto' }}>
                     {/* Typography for the title, with custom styles */}
-                    <Typography variant="h5" sx={{ flexGrow: 1, color: '#fff' }}>
+                    <Typography variant="h5" sx={{ flexGrow: 1, color: '#fff', fontFamily: "'Nunito', sans-serif" }}>
                         Biodanz<span style={{ color: '#14c484' }}>App</span>
                     </Typography>
                     {/* IconButton for an interactive icon */}
@@ -52,7 +52,7 @@ export default function Header() {
                     {/* Inner Box for text alignment and styling */}
                     <Box sx={{ textAlign: 'center' }}>
                         {/* Typography for the welcome message, with custom styles */}
-                        <Typography variant="h3" sx={{ color: '#fff', fontSize: '4.5rem', fontWeight: 600, fontFamily: "'Nunito', sans-serif" }}>
+                        <Typography variant="h3" sx={{ color: '#fff', fontSize: '4.5rem', fontWeight: 500, fontFamily: "'Nunito', sans-serif" }}>
                             Welcome to <br />
                             Biodanz<span style={{ color: '#14c484' }}>App</span>
                         </Typography>
