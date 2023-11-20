@@ -21,8 +21,14 @@ export default function Header() {
     return (
         <>
             <AppBar position="static" sx={{ background: 'none', boxShadow: 'none' }}>
-                {/* the Toolbar is flex by default */}
-                <Toolbar sx={{ alignItems: 'center', justifyContent: 'space-between', width: '80%', margin: '0 auto' }}> 
+                {/* The standard height of a Material-UI AppBar is 64 pixels for desktop screens. */}
+                <Toolbar sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    width: '80%',
+                    margin: '0 auto'
+                }}>
                     <Typography variant="h5" sx={{ color: '#fff', fontFamily: "'Nunito', sans-serif" }}>
                         Biodanz<span style={{ color: '#14c484' }}>App</span>
                     </Typography>
@@ -43,20 +49,16 @@ export default function Header() {
                 }}
                 id="header"
             >
-                {/* Collapse component for the animation effect */}
-                <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
+                <Collapse in={checked} {...(checked ? { timeout: 1500 } : {})} orientation="vertical">
                     {/* Inner Box for text alignment and styling */}
                     <Box sx={{ textAlign: 'center' }}>
-                        {/* Typography for the welcome message, with custom styles */}
-                        <Typography variant="h3" sx={{ color: '#fff', fontSize: '4.5rem', fontWeight: 500, fontFamily: "'Nunito', sans-serif" }}>
+                        <Typography variant="h3" sx={{ color: '#fff', fontSize: '4rem', fontWeight: 500, fontFamily: "'Nunito', sans-serif" }}>
                             Welcome to <br />
                             Biodanz<span style={{ color: '#14c484' }}>App</span>
                         </Typography>
-                        {/* Scroll component for smooth scrolling to another section */}
                         <Scroll to="place-to-visit" smooth={true}>
-                            {/* IconButton for an interactive icon */}
                             <IconButton>
-                                <ExpandMoreIcon sx={{ color: '#14c484', fontSize: '4rem', fontFamily: "'Nunito', sans-serif" }} />
+                                <ExpandMoreIcon sx={{ color: '#14c484', fontSize: '5rem' }} />
                             </IconButton>
                         </Scroll>
                     </Box>
