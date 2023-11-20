@@ -20,22 +20,18 @@ export default function Header() {
 
     return (
         <>
-            {/* AppBar is the navbar */}
             <AppBar position="static" sx={{ background: 'none', boxShadow: 'none' }}>
-                {/* Toolbar to hold navigation content */}
-                <Toolbar sx={{ width: '80%', margin: '0 auto' }}>
-                    {/* Typography for the title, with custom styles */}
-                    <Typography variant="h5" sx={{ flexGrow: 1, color: '#fff', fontFamily: "'Nunito', sans-serif" }}>
+                {/* the Toolbar is flex by default */}
+                <Toolbar sx={{ alignItems: 'center', justifyContent: 'space-between', width: '80%', margin: '0 auto' }}> 
+                    <Typography variant="h5" sx={{ color: '#fff', fontFamily: "'Nunito', sans-serif" }}>
                         Biodanz<span style={{ color: '#14c484' }}>App</span>
                     </Typography>
-                    {/* IconButton for an interactive icon */}
                     <IconButton>
                         <SortIcon sx={{ color: '#fff', fontSize: '2rem' }} />
                     </IconButton>
                 </Toolbar>
             </AppBar>
 
-            {/* Box component to hold the main content */}
             <Box
                 sx={{
                     display: 'flex',
