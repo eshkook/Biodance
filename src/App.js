@@ -21,6 +21,7 @@ export default function App() {
       <CssBaseline />
       <Box
         sx={{
+          pt: '64px', // because the navbar will be fixed and has 64px height. will not prevent the backgroundImage to cover all the page
           minHeight: '100vh', // Minimum height of the viewport
           width: '100vw', // Width of the viewport
           backgroundImage: `url(${process.env.PUBLIC_URL + '/images/img_6.jpg'})`,

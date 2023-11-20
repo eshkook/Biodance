@@ -20,7 +20,7 @@ export default function Header() {
 
     return (
         <>
-            <AppBar position="static" sx={{ background: 'none', boxShadow: 'none' }}>
+            <AppBar position="fixed" sx={{ background: 'none', boxShadow: 'none' }}>
                 {/* The standard height of a Material-UI AppBar is 64 pixels for desktop screens. */}
                 <Toolbar sx={{
                     display: 'flex',
