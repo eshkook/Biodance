@@ -16,8 +16,13 @@ const StyledCard = styled(Card)({
 
 // StyledCardMedia for custom styling of the CardMedia component
 const StyledCardMedia = styled(CardMedia)({
-  height: 440, // Sets a fixed height for the image area
-});
+    height: 440, // Sets a fixed height for the image area
+    transition: 'transform 0.3s ease-in-out', // Smooth transition for the transform
+    '&:hover': {
+      transform: 'scale(1.05)', // Slightly scale up the image on hover
+    },
+  });
+  
 
 // StyledCardContent for custom styling of the CardContent component
 const StyledCardContent = styled(CardContent)({
