@@ -13,7 +13,7 @@ export default function PlaceToVisit() {
         minHeight: '100vh',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'stretch', // Changed to 'stretch' to make the children (cards) of the same height
         flexDirection: { xs: 'column', md: 'row' }, // Responsive design: column layout for small screens, row layout for medium and larger screens
         p: 3, // Padding for the box
       }}
