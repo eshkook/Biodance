@@ -14,7 +14,7 @@ export default function useWindowPosition(id) {
       if (element) {
         // Calculate if the page has been scrolled past 70% of the element's height
         const offetSetHeight = element.offsetHeight;
-        if (window.pageYOffset > offetSetHeight * 0.7) {
+        if (window.scrollY > offetSetHeight * 0.7) {
           setAnimation(true); // Trigger the animation
         } else {
           setAnimation(false); // Reset the animation if scrolled back up

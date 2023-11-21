@@ -47,7 +47,7 @@ export default function Header() {
                     // Adjusting height to prevent overflow and extra scrolling
                     height: 'calc(100vh - 64px)', // Subtracting AppBar height
                 }}
-                id="header"
+                id="welcome_box"
             >
                 <Collapse in={checked} {...(checked ? { timeout: 1500 } : {})} orientation="vertical">
                     {/* Inner Box for text alignment and styling */}

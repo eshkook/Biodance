@@ -5,7 +5,7 @@ import places from '../static/places';
 import useWindowPosition from '../hook/useWindowPosition';
 
 export default function PlaceToVisit() {
-  const checked = useWindowPosition('header');
+  const checked = useWindowPosition('welcome_box');
 
   return (
     <Box

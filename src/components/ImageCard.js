@@ -24,7 +24,6 @@ const StyledCardMedia = styled(CardMedia)({
     },
 });
 
-
 // StyledCardContent for custom styling of the CardContent component
 const StyledCardContent = styled(CardContent)({
     flexGrow: 1, // Allows content to expand and fill available space
@@ -51,13 +50,12 @@ export default function ImageCard({ place, checked }) {
         // Collapse component for the animation effect
         <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
             <StyledCard>
-                <Tooltip title={place.imageTitle || 'Image description'}>
-                    <StyledCardMedia
-                        image={place.imageUrl}
-                        // The title attribute can still be kept for accessibility
-                        title={place.imageTitle || 'Image description'}
-                    />
-                </Tooltip>
+                {/* tooltip is to show image descrription when hovering */}
+                {/* <Tooltip title={place.imageTitle || 'Image description'}> */}
+                <StyledCardMedia
+                    image={place.imageUrl}
+                />
+                {/* </Tooltip> */}
                 <StyledCardContent>
                     <StyledTitle gutterBottom variant="h5" component="h1">
                         {place.title}
