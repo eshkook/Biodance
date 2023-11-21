@@ -9,10 +9,10 @@ import Tooltip from '@mui/material/Tooltip';
 
 // StyledCard applies custom styles to the Card component
 const StyledCard = styled(Card)({
-    maxWidth: 645,
+    maxWidth: 645,  // actually that is just "width" as all the specified width will be used
     background: 'rgba(0,0,0,0.5)',
     margin: '20px',
-    minHeight: '500px', // Ensures a consistent height for all cards
+    minHeight: '400px', // Ensures a consistent height for all cards
 });
 
 // StyledCardMedia for custom styling of the CardMedia component
