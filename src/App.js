@@ -25,7 +25,7 @@ export default function App() {
           minHeight: '100vh', // Minimum height of the viewport
           width: '100vw', // Width of the viewport
           backgroundImage: `url(${process.env.PUBLIC_URL + '/images/img_6.jpg'})`,
-          backgroundSize: 'cover', // Cover the entire area
+          backgroundSize: 'cover', // Cover the entire area, keeping original proportion by zooming in (some of the image is thrown out)
           backgroundPosition: 'center', // Center the image
           backgroundRepeat: 'no-repeat', // Do not repeat the image
         }}
