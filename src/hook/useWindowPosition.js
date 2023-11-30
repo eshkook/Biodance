@@ -29,6 +29,7 @@ export default function useWindowPosition(id) {
     updatePosition();
 
     // Cleanup function to remove the event listener
+    // This function will run before the component unmounts or before the next layout effect runs (if dependencies change)
     return () => window.removeEventListener('scroll', updatePosition);
   }, [id]); // Dependency array with 'id' to re-run the effect if 'id' changes
 

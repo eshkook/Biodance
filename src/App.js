@@ -17,7 +17,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 export default function App() {
   return (
     <>
-    {/* <ThemeProvider theme={theme}> */}
+      {/* <ThemeProvider theme={theme}> */}
       <CssBaseline />
       <Box
         sx={{
@@ -33,8 +33,8 @@ export default function App() {
         <Header />
         <PlaceToVisit />
       </Box>
-      {/* </ThemeProvider> */ }
+      {/* </ThemeProvider> */}
     </>
-    
+
   );
 }
