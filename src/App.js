@@ -16,7 +16,6 @@ export default function App() {
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/home" element={<Home />} />
       </Routes>
-      <LandingPage />
     </>
   );
 }
