@@ -1,41 +1,20 @@
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
 import * as React from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
+import LandingPage from './components/LandingPage';
 import Login from './components/Login';
-
-// const theme = createTheme({
-//   typography: {
-//     fontFamily: [
-//       'Nunito',
-//       'sans-serif',
-//     ].join(','),
-//   },
-// });
+import Signup from './components/Signup';
+import Confirmation from './components/Confirmation';
+import { Route, Routes } from "react-router-dom"
 
 export default function App() {
   return (
     <>
-      {/* <ThemeProvider theme={theme}> */}
-      <CssBaseline />
-      <Box
-        sx={{
-          pt: '64px', // because the navbar will be fixed and has 64px height. will not prevent the backgroundImage to cover all the page
-          minHeight: '100vh', // Minimum height of the viewport
-          width: '100vw', // Width of the viewport
-          backgroundImage: `url(${process.env.PUBLIC_URL + '/images/img_6.jpg'})`,
-          backgroundSize: 'cover', // Cover the entire area, keeping original proportion by zooming in (some of the image is thrown out)
-          backgroundPosition: 'center', // Center the image
-          backgroundRepeat: 'no-repeat', // Do not repeat the image
-        }}
-      >
-        <Header />
-        <Hero />
-        <Login />
-      </Box>
-      {/* </ThemeProvider> */}
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/confirmation" element={<Confirmation />} />
+      </Routes>
+      <LandingPage />
     </>
-
   );
 }
