@@ -1,9 +1,9 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
+import * as React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Login from './components/Login';
 
 // const theme = createTheme({
 //   typography: {
@@ -32,6 +32,7 @@ export default function App() {
       >
         <Header />
         <Hero />
+        <Login />
       </Box>
       {/* </ThemeProvider> */}
     </>

@@ -1,9 +1,8 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Header from './components/Header';
+import * as React from 'react';
+import Header_old from './components/Header_old';
 import PlaceToVisit from './components/PlaceToVisit';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // const theme = createTheme({
 //   typography: {
