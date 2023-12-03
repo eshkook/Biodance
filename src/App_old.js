@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Header from './components/Header';
-import Hero from './components/Hero';
+import PlaceToVisit from './components/PlaceToVisit';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // const theme = createTheme({
@@ -31,7 +31,7 @@ export default function App() {
         }}
       >
         <Header />
-        <Hero />
+        <PlaceToVisit />
       </Box>
       {/* </ThemeProvider> */}
     </>

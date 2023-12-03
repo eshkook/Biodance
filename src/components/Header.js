@@ -56,7 +56,7 @@ export default function Header() {
                             Welcome to <br />
                             Biodanz<span style={{ color: '#14c484' }}>App</span>
                         </Typography>
-                        <Scroll to="place-to-visit" smooth={true}>
+                        <Scroll to="hero" smooth={true}>
                             <IconButton>
                                 <ExpandMoreIcon sx={{ color: '#14c484', fontSize: '5rem' }} />
                             </IconButton>
