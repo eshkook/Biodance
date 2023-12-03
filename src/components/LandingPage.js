@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import * as React from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
+import Header from './Header';
+import Hero from './Hero';
 
 // const theme = createTheme({
 //   typography: {
