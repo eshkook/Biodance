@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Typography from '@mui/material/Typography'
-import { delete_cognito_post, logout_cognito_post } from "../api/posts.js";
+import { delete_post, logout_post } from "../api/posts.js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"
@@ -13,9 +13,9 @@ export default function Home() {
     const navigate = useNavigate()
 
     const logoutMutation = useMutation({
-        mutationFn: logout_cognito_post,
+        mutationFn: logout_post,
         onSuccess: data => {
-            navigate("/login_cognito") //, { state: { } });
+            navigate("/login") //, { state: { } });
             console.log("logout success")
         },
         onError: error => {
@@ -25,7 +25,7 @@ export default function Home() {
     });
 
     const deleteMutation = useMutation({
-        mutationFn: delete_cognito_post,
+        mutationFn: delete_post,
         onSuccess: data => {
             // navigate("/signup_cognito") //, { state: { } });
             console.log("delete success")

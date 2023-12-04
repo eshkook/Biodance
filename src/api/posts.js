@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-export function delete_cognito_post() {
+export function delete_post() {
   return fetch("https://efrq1qlgad.execute-api.eu-west-1.amazonaws.com/backend_function", {
     method: 'POST',
     credentials: 'include', // Include credentials in the request
@@ -25,7 +25,7 @@ export function delete_cognito_post() {
     });
 }
 
-export function logout_cognito_post() {
+export function logout_post() {
   return fetch("https://efrq1qlgad.execute-api.eu-west-1.amazonaws.com/backend_function", {
     method: 'POST',
     credentials: 'include', // Include credentials in the request
@@ -49,7 +49,7 @@ export function logout_cognito_post() {
     });
 }
 
-export function signup_cognito_post({ email, password }) {
+export function signup_post({ email, password }) {
   return fetch("https://efrq1qlgad.execute-api.eu-west-1.amazonaws.com/backend_function", {
     method: 'POST',
     body: JSON.stringify({
@@ -103,7 +103,7 @@ export function confirmation_post({ email, confirmation_code }) {
     });
 }
 
-export function login_cognito_post({ email, password }) {
+export function login_post({ email, password }) {
   return fetch("https://efrq1qlgad.execute-api.eu-west-1.amazonaws.com/backend_function", {
     method: 'POST',
     credentials: 'include',

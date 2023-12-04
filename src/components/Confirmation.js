@@ -20,7 +20,7 @@ export default function Confirmation() {
         mutationFn: confirmation_post,
         onSuccess: data => {
             console.log('Response data:', data);
-            navigate("/login_cognito", { state: { just_confirmed_email: true } });
+            navigate("/login", { state: { just_confirmed_email: true } });
         },
         onError: error => {
             setErrorMessage(error.message || "An error occurred");

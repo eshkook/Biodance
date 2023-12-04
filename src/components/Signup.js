@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button';
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react"
-import { signup_cognito_post } from "../api/posts.js";
+import { signup_post } from "../api/posts.js";
 import { useNavigate } from "react-router-dom"
 import { isValidPassword, isValidEmail } from "./Validations.js";
 import IconButton from '@mui/material/IconButton';
@@ -29,10 +29,10 @@ export default function SignUp() {
     const navigate = useNavigate()
 
     const signupCognitoMutation = useMutation({
-        mutationFn: signup_cognito_post,
+        mutationFn: signup_post,
         onSuccess: data => {
             console.log('Response data:', data);
-            navigate("/confirmation_cognito", {
+            navigate("/confirmation", {
                 state: {
                     email: formState.email
                 }

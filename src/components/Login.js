@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button';
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react"
-import { login_cognito_post } from "../api/posts.js";
+import { login_post } from "../api/posts.js";
 import { isValidPassword, isValidEmail } from "./Validations.js";
 import { useNavigate, useLocation } from "react-router-dom"
 import IconButton from '@mui/material/IconButton';
@@ -30,9 +30,9 @@ export default function Login() {
     const navigate = useNavigate()
 
     const loginMutation = useMutation({
-        mutationFn: login_cognito_post,
+        mutationFn: login_post,
         onSuccess: data => {
-            // navigate("/home_cognito") //, { state: { } });
+            // navigate("/home") //, { state: { } });
             console.log("success")
         },
         onError: error => {
