@@ -6,7 +6,7 @@ import { useState } from "react"
 import { confirmation_post } from "../api/posts.js";
 import { useNavigate, useLocation } from "react-router-dom"
 import CircularProgress from '@mui/material/CircularProgress';
-
+import Box from '@mui/material/Box';
 
 export default function Confirmation() {
 
@@ -29,7 +29,7 @@ export default function Confirmation() {
     });
 
     const [formState, setFormState] = useState({
-        email: location.state.email,
+        email: location.state ? location.state.email : '',
         confirmation_code: ''
     })
 
@@ -67,45 +67,54 @@ export default function Confirmation() {
 
     return (
         <>
-            <Typography variant="subtitle1" component="h1">
-                A confirmation code was sent to {formState.email}.
-            </Typography>
-            <br />
+            <Box sx={{
+                maxWidth: '400px',
+                margin: '0 auto',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center', // Center aligns all children horizontally 
+                justifyContent: 'center', // Center aligns all children vertically (if needed)
+            }}>
+                <Typography variant="subtitle1" component="h1">
+                    A confirmation code was sent to {formState.email}.
+                </Typography>
+                <br />
 
-            {errorMessage && (
-                <>
-                    <Typography variant="body2" color="error">
-                        {errorMessage}
-                    </Typography>
-                    <br />
-                </>
-            )}
+                {errorMessage && (
+                    <>
+                        <Typography variant="body2" color="error">
+                            {errorMessage}
+                        </Typography>
+                        <br />
+                    </>
+                )}
 
-            <form onSubmit={handleSubmit} noValidate autoComplete='off'>
-                {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves,
+                <form onSubmit={handleSubmit} noValidate autoComplete='off'>
+                    {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves,
           autoComplete off makes it not complete the user's text */}
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    <TextField
-                        onChange={updateFormState}
-                        id="outlined-basic"
-                        label="Confirmation code"
-                        variant="outlined"
-                        name="confirmation_code"
-                        value={formState.confirmation_code}
-                        error={fieldErrorState.confirmation_code}
-                        autoFocus
-                    // required  // make a '*' to indicate it is a mandatory field
-                    />
-                    <Button
-                        variant="contained"
-                        type='submit'
-                        disabled={confirmationMutation.isLoading}>
-                        {confirmationMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
-                        {/* {confirmationMutation.isLoading ? "Loading..." : "Submit"} */}
-                    </Button>
-                </div>
-            </form>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        <TextField
+                            onChange={updateFormState}
+                            id="outlined-basic"
+                            label="Confirmation code"
+                            variant="outlined"
+                            name="confirmation_code"
+                            value={formState.confirmation_code}
+                            error={fieldErrorState.confirmation_code}
+                            autoFocus
+                        // required  // make a '*' to indicate it is a mandatory field
+                        />
+                        <Button
+                            variant="contained"
+                            type='submit'
+                            disabled={confirmationMutation.isLoading}>
+                            {confirmationMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
+                            {/* {confirmationMutation.isLoading ? "Loading..." : "Submit"} */}
+                        </Button>
+                    </div>
+                </form>
+            </Box>
         </>
     )
 }

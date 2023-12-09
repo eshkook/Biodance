@@ -1,5 +1,8 @@
 import React from 'react';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import { Link } from "react-router-dom"
 
 export default function Hero() {
     return (
@@ -14,7 +17,17 @@ export default function Hero() {
             }}
             id="hero"
         >
-
+            <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                <Link to={'/login'} >
+                    <Button>Login</Button>
+                </Link>
+                <Link to={'/signup'} >
+                    <Button>Sign Up</Button>
+                </Link>
+                {/* <Link to={'/home'} >
+                    <Button>Temp Home</Button>
+                </Link>  */}
+            </ButtonGroup>
         </Box>
     );
 }
