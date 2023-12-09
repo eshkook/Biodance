@@ -33,8 +33,8 @@ export default function Login() {
     const loginMutation = useMutation({
         mutationFn: login_post,
         onSuccess: data => {
-            // navigate("/home") //, { state: { } });
-            console.log("success")
+            navigate("/home") //, { state: { } });
+            // console.log("success")
         },
         onError: error => {
             setErrorMessage(error.message || "An error occurred");

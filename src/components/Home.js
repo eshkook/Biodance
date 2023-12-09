@@ -5,6 +5,7 @@ import { delete_post, logout_post } from "../api/posts.js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"
+import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 
 export default function Home() {
@@ -15,8 +16,8 @@ export default function Home() {
     const logoutMutation = useMutation({
         mutationFn: logout_post,
         onSuccess: data => {
-            navigate("/login") //, { state: { } });
-            console.log("logout success")
+            navigate("/") //, { state: { } });
+            // console.log("logout success")
         },
         onError: error => {
             setErrorMessage(error.message || "An error occurred");
@@ -27,8 +28,8 @@ export default function Home() {
     const deleteMutation = useMutation({
         mutationFn: delete_post,
         onSuccess: data => {
-            // navigate("/signup_cognito") //, { state: { } });
-            console.log("delete success")
+            navigate("/") //, { state: { } });
+            // console.log("delete success")
         },
         onError: error => {
             setErrorMessage(error.message || "An error occurred");
@@ -38,37 +39,46 @@ export default function Home() {
 
     return (
         <>
-            <Typography variant="subtitle1" component="h1">
-                Welcome to Home page!
-            </Typography>
-            <br />
+            <Box sx={{
+                maxWidth: '400px',
+                margin: '0 auto',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center', // Center aligns all children horizontally 
+                justifyContent: 'center', // Center aligns all children vertically (if needed)
+            }}>
+                <Typography variant="subtitle1" component="h1">
+                    Welcome to Home page!
+                </Typography>
+                <br />
 
-            {errorMessage && (
-                <>
-                    <Typography variant="body2" color="error">
-                        {errorMessage}
-                    </Typography>
-                    <br />
-                </>
-            )}
+                {errorMessage && (
+                    <>
+                        <Typography variant="body2" color="error">
+                            {errorMessage}
+                        </Typography>
+                        <br />
+                    </>
+                )}
 
-            <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                <Button
-                    color="primary"
-                    onClick={() => logoutMutation.mutate()}
-                    style={{ marginRight: '10px' }}
-                    disabled={logoutMutation.isLoading}
-                >
-                    {deleteMutation.isLoading ? <CircularProgress size={24} /> : "Logout"}
-                </Button>
-                <Button
-                    color="secondary"
-                    onClick={() => deleteMutation.mutate()}
-                    disabled={deleteMutation.isLoading}
-                >
-                    {deleteMutation.isLoading ? <CircularProgress size={24} /> : "Delete Account"}
-                </Button>
-            </ButtonGroup>
+                <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                    <Button
+                        color="primary"
+                        onClick={() => logoutMutation.mutate()}
+                        style={{ marginRight: '10px' }}
+                        disabled={logoutMutation.isLoading}
+                    >
+                        {deleteMutation.isLoading ? <CircularProgress size={24} /> : "Logout"}
+                    </Button>
+                    <Button
+                        color="secondary"
+                        onClick={() => deleteMutation.mutate()}
+                        disabled={deleteMutation.isLoading}
+                    >
+                        {deleteMutation.isLoading ? <CircularProgress size={24} /> : "Delete Account"}
+                    </Button>
+                </ButtonGroup>
+            </Box>
         </>
     )
 }

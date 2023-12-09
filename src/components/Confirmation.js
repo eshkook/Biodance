@@ -102,7 +102,7 @@ export default function Confirmation() {
           autoComplete off makes it not complete the user's text */}
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                        {location.state && (
+                        {!location.state && (
                             <TextField
                                 onChange={updateFormState} 
                                 id="email-input"
