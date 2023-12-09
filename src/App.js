@@ -6,30 +6,43 @@ import Home from './components/Home';
 import Confirmation from './components/Confirmation';
 import { Route, Routes } from "react-router-dom"
 import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme,ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
   components: {
     MuiTextField: {
       styleOverrides: {
         root: {
-          backgroundColor: 'white', // Background color for all TextFields
-          '& label.Mui-focused': {
-            color: 'primary.main', // Label color when focused
-          },
-          '& label': {
-            color: 'secondary.main', // Default label color
-          },
+          // Input text color
+          color: 'white',
+          // Border color
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: 'rgba(0, 0, 0, 0.23)', // Border color
+              borderColor: 'white',
             },
             '&:hover fieldset': {
-              borderColor: 'black', // Border color on hover
+              borderColor: 'white',
             },
             '&.Mui-focused fieldset': {
-              borderColor: 'primary.main', // Border color when focused
+              borderColor: 'white',
             },
+          },
+          // Label color
+          '& label': {
+            color: 'white',
+          },
+          '& label.Mui-focused': {
+            color: 'white',
+          },
+          // Input text color
+          '& .MuiOutlinedInput-input': {
+            color: 'white',
+          },
+          '& .MuiInput-underline:before': {
+            borderBottomColor: 'white',
+          },
+          '& .MuiInput-underline:after': {
+            borderBottomColor: 'white',
           },
         },
       },
