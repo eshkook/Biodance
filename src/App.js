@@ -10,7 +10,7 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Signup />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/confirmation" element={<Confirmation />} />

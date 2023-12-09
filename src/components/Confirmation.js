@@ -7,6 +7,7 @@ import { confirmation_post } from "../api/posts.js";
 import { useNavigate, useLocation } from "react-router-dom"
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import { isValidEmail } from "./Validations.js";
 
 export default function Confirmation() {
 
@@ -34,6 +35,7 @@ export default function Confirmation() {
     })
 
     const [fieldErrorState, setFieldError] = useState({
+        email: false,
         confirmation_code: false,
     })
 
@@ -48,11 +50,12 @@ export default function Confirmation() {
     function handleSubmit(event) {
         event.preventDefault() // preventing re-rendering the page
         const temp_object = {
+            email: !isValidEmail(formState.email),
             confirmation_code: formState.confirmation_code == ''
         }
         setFieldError(temp_object)
 
-        if (!(temp_object.confirmation_code)) {
+        if (!(temp_object.email || temp_object.confirmation_code)) {
 
             console.log(formState)
 
@@ -99,9 +102,22 @@ export default function Confirmation() {
           autoComplete off makes it not complete the user's text */}
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        {location.state && (
+                            <TextField
+                                onChange={updateFormState} 
+                                id="email-input"
+                                label="Email"
+                                variant="outlined"
+                                name="email"
+                                value={formState.email}
+                                error={fieldErrorState.email}
+                                // required  // make a '*' to indicate it is a mandatory field
+                                autoFocus
+                            />)}
+
                         <TextField
                             onChange={updateFormState}
-                            id="outlined-basic"
+                            id="confirmation-code-input"
                             label="Confirmation code"
                             variant="outlined"
                             name="confirmation_code"
