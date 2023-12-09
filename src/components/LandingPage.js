@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
 import * as React from 'react';
-import Header from './Header';
+import Navbar from './Navbar';
+import Welcome from './Welcome';
 import Hero from './Hero';
 
 // const theme = createTheme({
@@ -17,7 +17,6 @@ export default function LandingPage() {
   return (
     <>
       {/* <ThemeProvider theme={theme}> */}
-      <CssBaseline />
       <Box
         sx={{
           pt: '64px', // because the navbar will be fixed and has 64px height. will not prevent the backgroundImage to cover all the page
@@ -29,7 +28,8 @@ export default function LandingPage() {
           backgroundRepeat: 'no-repeat', // Do not repeat the image
         }}
       >
-        <Header />
+        <Navbar />
+        <Welcome />
         <Hero />
       </Box>
       {/* </ThemeProvider> */}
