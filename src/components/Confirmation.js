@@ -75,9 +75,14 @@ export default function Confirmation() {
                 alignItems: 'center', // Center aligns all children horizontally 
                 justifyContent: 'center', // Center aligns all children vertically (if needed)
             }}>
-                <Typography variant="subtitle1" component="h1">
-                    A confirmation code was sent to {formState.email}.
-                </Typography>
+                {location.state ?
+                    (<Typography variant="subtitle1" component="h1">
+                        A confirmation code was sent to {formState.email}.
+                    </Typography>)
+                    :
+                    (<Typography variant="subtitle1" component="h1">
+                        Let's confirm your email:
+                    </Typography>)}
                 <br />
 
                 {errorMessage && (
