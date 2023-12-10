@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 
 export default function LandingPage() {
+  
   const location = useLocation()
   const [showMessage, setShowMessage] = useState((location.state && location.state.just_logged_out));
 
