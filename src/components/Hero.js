@@ -19,10 +19,10 @@ export default function Hero() {
         >
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
                 <Link to={'/login'} >
-                    <Button>Login</Button>
+                    <Button color="primary">Login</Button>
                 </Link>
                 <Link to={'/signup'} >
-                    <Button>Sign Up</Button>
+                    <Button color="secondary">Sign Up</Button>
                 </Link>
                 {/* <Link to={'/home'} >
                     <Button>Temp Home</Button>
