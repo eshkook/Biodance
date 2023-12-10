@@ -17,7 +17,7 @@ export default function Home() {
     const logoutMutation = useMutation({
         mutationFn: logout_post,
         onSuccess: data => {
-            navigate("/") //, { state: { } });
+            navigate("/", { state: { just_logged_out: true } });
             // console.log("logout success")
         },
         onError: error => {

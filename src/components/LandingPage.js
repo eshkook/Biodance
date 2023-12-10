@@ -1,22 +1,25 @@
 import Box from '@mui/material/Box';
-import * as React from 'react';
 import Navbar from './Navbar';
 import Welcome from './Welcome';
 import Hero from './Hero';
-
-// const theme = createTheme({
-//   typography: {
-//     fontFamily: [
-//       'Nunito',
-//       'sans-serif',
-//     ].join(','),
-//   },
-// });
+import { useLocation } from "react-router-dom"
+import React, { useState, useEffect } from 'react';
+import Typography from '@mui/material/Typography';
 
 export default function LandingPage() {
+  const location = useLocation()
+  const [showMessage, setShowMessage] = useState((location.state && location.state.just_logged_out));
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowMessage(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
-      {/* <ThemeProvider theme={theme}> */}
       <Box
         sx={{
           pt: '64px', // because the navbar will be fixed and has 64px height. will not prevent the backgroundImage to cover all the page
@@ -26,14 +29,27 @@ export default function LandingPage() {
           backgroundSize: 'cover', // Cover the entire area, keeping original proportion by zooming in (some of the image is thrown out)
           backgroundPosition: 'center', // Center the image
           backgroundRepeat: 'no-repeat', // Do not repeat the image
+          position: 'relative'
         }}
       >
         <Navbar />
+        {showMessage && (
+          <Typography
+            sx={{
+              position: 'absolute',
+              top: '64px', // Just below the navbar
+              left: '50%',
+              transform: 'translateX(-50%)', // Center horizontally
+              zIndex: 1000, // Ensure it's above other elements
+              color: 'white'
+            }}
+          >
+            Succuessfully logged out!
+          </Typography>
+        )}
         <Welcome />
         <Hero />
       </Box>
-      {/* </ThemeProvider> */}
     </>
-
   );
 }

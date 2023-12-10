@@ -31,7 +31,7 @@ export default function Confirmation() {
     });
 
     const [formState, setFormState] = useState({
-        email: location.state ? location.state.email : '',
+        email: (location.state && location.state.email) ? location.state.email : '',
         confirmation_code: ''
     })
 
@@ -91,7 +91,7 @@ export default function Confirmation() {
                     alignItems: 'center', // Center aligns all children horizontally 
                     justifyContent: 'center', // Center aligns all children vertically (if needed)
                 }}>
-                    {location.state ?
+                    {(location.state && location.state.email) ?
                         (<Typography variant="subtitle1" component="h1" color="white">
                             A confirmation code was sent to {formState.email}.
                         </Typography>)
@@ -115,7 +115,7 @@ export default function Confirmation() {
           autoComplete off makes it not complete the user's text */}
 
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                            {!location.state && (
+                            {!(location.state && location.state.email) && (
                                 <TextField
                                     onChange={updateFormState}
                                     id="email-input"
@@ -124,7 +124,7 @@ export default function Confirmation() {
                                     name="email"
                                     value={formState.email}
                                     error={fieldErrorState.email}
-                                    autoFocus={!location.state}
+                                    autoFocus={!(location.state && location.state.email)}
                                     // required  // make a '*' to indicate it is a mandatory field
                                 />)}
 
@@ -136,7 +136,7 @@ export default function Confirmation() {
                                 name="confirmation_code"
                                 value={formState.confirmation_code}
                                 error={fieldErrorState.confirmation_code}
-                                autoFocus={location.state}
+                                autoFocus={(location.state && location.state.email)}
                             // required  // make a '*' to indicate it is a mandatory field
                             />
                             <Button
