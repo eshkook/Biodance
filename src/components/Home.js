@@ -22,7 +22,7 @@ export default function Home() {
         },
         onError: error => {
             setErrorMessage(error.message || "An error occurred");
-            console.log(99999999999, error || "An error occurred")
+            console.log(error.message || "An error occurred")
         }
     });
 
