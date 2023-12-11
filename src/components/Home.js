@@ -17,7 +17,7 @@ export default function Home() {
     const logoutMutation = useMutation({
         mutationFn: logout_post,
         onSuccess: data => {
-            navigate("/", { state: { just_logged_out: true } });
+            navigate("/", { state: { quick_message: 'Succuessfully logged out!' } });
             // console.log("logout success")
         },
         onError: error => {
@@ -29,12 +29,16 @@ export default function Home() {
     const deleteMutation = useMutation({
         mutationFn: delete_post,
         onSuccess: data => {
-            navigate("/") //, { state: { } });
+            navigate("/", { state: { quick_message: 'Succuessfully deleted you account!' } });
             // console.log("delete success")
         },
         onError: error => {
-            setErrorMessage(error.message || "An error occurred");
-            console.log(error.message || "An error occurred")
+            if (error.message && error.message == 'Session expired, please log in again. Account was not deleted.') {
+                navigate("/", { state: { quick_message: 'Session expired, please log in again. Account was not deleted.' } });
+            } else {
+                setErrorMessage(error.message || "An error occurred");
+                console.log(error.message || "An error occurred")
+            }
         }
     });
 
