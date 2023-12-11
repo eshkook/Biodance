@@ -34,9 +34,14 @@ export function delete_post() {
     return response.data;
   })
   .catch(error => {
-    const message = error.response && error.response.data
-      ? error.response.data
-      : "Something went wrong.";
+    let message
+    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+      message = error.response.data.message
+    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+      message = error.response.data
+    } else {
+      message = "Something went wrong."
+    }
   
     throw new Error(message);
   });  
@@ -76,9 +81,14 @@ export function logout_post() {
     return response.data;
   })
   .catch(error => {
-    const message = error.response && error.response.data
-      ? error.response.data
-      : "Something went wrong.";
+    let message
+    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+      message = error.response.data.message
+    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+      message = error.response.data
+    } else {
+      message = "Something went wrong."
+    }
   
     throw new Error(message);
   });  
@@ -121,9 +131,14 @@ export function signup_post({ email, password }) {
     return response.data;
   })
   .catch(error => {
-    const message = error.response && error.response.data
-      ? error.response.data
-      : "Something went wrong.";
+    let message
+    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+      message = error.response.data.message
+    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+      message = error.response.data
+    } else {
+      message = "Something went wrong."
+    }
   
     throw new Error(message);
   });  
@@ -166,9 +181,14 @@ export function confirmation_post({ email, confirmation_code }) {
     return response.data;
   })
   .catch(error => {
-    const message = error.response && error.response.data
-      ? error.response.data
-      : "Something went wrong.";
+    let message
+    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+      message = error.response.data.message
+    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+      message = error.response.data
+    } else {
+      message = "Something went wrong."
+    }
   
     throw new Error(message);
   });  
@@ -214,9 +234,17 @@ export function login_post({ email, password }) {
     return response.data;
   })
   .catch(error => {
-    const message = error.response && error.response.data
-      ? error.response.data
-      : "Something went wrong.";
+    let message
+    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+      message = error.response.data.message
+    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+      message = error.response.data
+    } else {
+      message = "Something went wrong."
+    }
+    // const message = error.response && error.response.data
+    //   ? error.response.data
+    //   : "Something went wrong.";
   
     throw new Error(message);
   });  
