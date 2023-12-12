@@ -5,7 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link as Scroll } from 'react-scroll'; // For smooth scrolling
 import { Box, Typography } from '@mui/material';
 
-export default function Header() {
+export default function Welcome() {
     // State for controlling the animation (collapse effect)
     const [checked, setChecked] = useState(false);
 
