@@ -6,7 +6,7 @@ import SortIcon from '@mui/icons-material/Sort';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
-export default function Navbar() {
+export default function Navbar({ homeLink = "/" }) {
     return (
         <>
             <AppBar position="fixed" sx={{ background: 'none', boxShadow: 'none' }}>
@@ -18,7 +18,7 @@ export default function Navbar() {
                     width: '80%',
                     margin: '0 auto'
                 }}>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
+                    <Link to={homeLink} style={{ textDecoration: 'none' }}>
                         <Typography variant="h5" sx={{ color: '#fff', fontFamily: "'Nunito', sans-serif" }}>
                             Biodanz<span style={{ color: '#14c484' }}>App</span>
                         </Typography>
