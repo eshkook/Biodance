@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-import Navbar from './Navbar';
+import Navbar_Home from './Navbar_Home';
 
 export default function Home() {
 
@@ -55,7 +55,7 @@ export default function Home() {
                     backgroundRepeat: 'no-repeat', // Do not repeat the image
                 }}
             >
-                <Navbar />
+                <Navbar_Home />
                 <Box sx={{
                     maxWidth: '400px',
                     margin: '0 auto',
