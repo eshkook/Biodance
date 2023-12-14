@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom"
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Navigate } from 'react-router-dom';
+import { useMutation } from "@tanstack/react-query"
 
 const theme = createTheme({
   components: {
@@ -57,6 +58,17 @@ export default function App() {
     const isAuthenticated = true /* Logic to determine if the user is authenticated */;
     return isAuthenticated ? children : <Navigate to="/" />;
   };
+
+  const logoutMutation = useMutation({
+    mutationFn: authenticate_post,
+    onSuccess: data => {
+      
+    },
+    onError: error => {
+      setErrorMessage(error.message || "An error occurred");
+      console.log(error.message || "An error occurred")
+    }
+  });
 
   return (
     <>
