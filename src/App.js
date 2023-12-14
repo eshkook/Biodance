@@ -7,6 +7,7 @@ import Confirmation from './components/Confirmation';
 import { Route, Routes } from "react-router-dom"
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Navigate } from 'react-router-dom';
 
 const theme = createTheme({
   components: {
@@ -51,6 +52,12 @@ const theme = createTheme({
 });
 
 export default function App() {
+
+  const ProtectedRoute = ({ children }) => {
+    const isAuthenticated = true /* Logic to determine if the user is authenticated */;
+    return isAuthenticated ? children : <Navigate to="/" />;
+  };
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -60,7 +67,8 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/confirmation" element={<Confirmation />} />
-          <Route path="/home" element={<Home />} />
+          {/* <Route path="/home" element={<Home />} /> */}
+          <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         </Routes>
       </ThemeProvider>
     </>
