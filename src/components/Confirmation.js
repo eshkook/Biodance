@@ -22,7 +22,7 @@ export default function Confirmation() {
         mutationFn: confirmation_post,
         onSuccess: data => {
             console.log('Response data:', data);
-            navigate("/login", { state: { just_confirmed_email: true } });
+            navigate("/login", { state: { message: 'Confirmation was successful, now you can log in!' } }) 
         },
         onError: error => {
             setErrorMessage(error.message || "An error occurred");

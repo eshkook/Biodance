@@ -8,7 +8,9 @@ import { Route, Routes } from "react-router-dom"
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Navigate } from 'react-router-dom';
+import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"
+import { authenticate_post } from "../api/posts.js";
 
 const theme = createTheme({
   components: {
@@ -55,19 +57,31 @@ const theme = createTheme({
 export default function App() {
 
   const ProtectedRoute = ({ children }) => {
-    const isAuthenticated = true /* Logic to determine if the user is authenticated */;
-    return isAuthenticated ? children : <Navigate to="/" />;
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [authStatusChecked, setAuthStatusChecked] = useState(false);
+  
+    useEffect(() => {
+      authenticateMutation.mutate({
+        onSuccess: () => {
+          setIsAuthenticated(true);
+          setAuthStatusChecked(true);
+        },
+        onError: () => {
+          setIsAuthenticated(false);
+          setAuthStatusChecked(true);
+        }
+      });
+    }, []); 
+  
+    if (!authStatusChecked) {
+      return <div>Loading...</div>; //////////////////////////////////////////////////////
+    }
+  
+    return isAuthenticated ? children : <Navigate to="/login" state={{ message: 'Authentication failed, please try to log in again.' }} />;
   };
 
-  const logoutMutation = useMutation({
-    mutationFn: authenticate_post,
-    onSuccess: data => {
-      
-    },
-    onError: error => {
-      setErrorMessage(error.message || "An error occurred");
-      console.log(error.message || "An error occurred")
-    }
+  const authenticateMutation = useMutation({
+    mutationFn: authenticate_post
   });
 
   return (
@@ -79,7 +93,6 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/confirmation" element={<Confirmation />} />
-          {/* <Route path="/home" element={<Home />} /> */}
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         </Routes>
       </ThemeProvider>

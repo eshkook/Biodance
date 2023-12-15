@@ -95,7 +95,7 @@ export default function Login() {
                 }}
             >
                 <Navbar />
-                
+
                 <Box sx={{
                     maxWidth: '400px',
                     margin: '0 auto',
@@ -104,10 +104,10 @@ export default function Login() {
                     alignItems: 'center', // Center aligns all children horizontally 
                     justifyContent: 'center', // Center aligns all children vertically (if needed)
                 }}>
-                    {location.state?.just_confirmed_email && (
+                    {location.state?.message && (
                         <>
                             <Typography variant="body1" color="white">
-                                Confirmation was successful, now you can log in!
+                                {location.state.message}
                             </Typography>
                             <br />
                         </>
