@@ -1,4 +1,4 @@
-import Authentication_Loading from './components/Authentication_Loading';
+import Authentication_Loading from './Authentication_Loading';
 import { Navigate } from 'react-router-dom';
 import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"

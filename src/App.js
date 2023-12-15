@@ -5,6 +5,10 @@ import Signup from './components/Signup';
 import Home from './components/Home';
 import Confirmation from './components/Confirmation';
 import ProtectedRoute from './components/ProtectedRoute';
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Routes, Route } from "react-router-dom";
 
 const theme = createTheme({
   components: {
