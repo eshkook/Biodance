@@ -68,31 +68,3 @@ export default function App() {
 
 
 
-
-  // const ProtectedRoute = ({ children }) => {
-  //   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  //   const [authStatusChecked, setAuthStatusChecked] = useState(false);
-  
-  //   useEffect(() => {
-  //     authenticateMutation.mutate({
-  //       onSuccess: () => {
-  //         setIsAuthenticated(true);
-  //         setAuthStatusChecked(true);
-  //       },
-  //       onError: () => {
-  //         setIsAuthenticated(false);
-  //         setAuthStatusChecked(true);
-  //       }
-  //     });
-  //   }, []); 
-  
-  //   if (!authStatusChecked) {
-  //     return <Authentication_Loading /> 
-  //   }
-  
-  //   return isAuthenticated ? children : <Navigate to="/login" state={{ message: 'Authentication failed, please try to log in again.' }} />;
-  // };
-
-  // const authenticateMutation = useMutation({
-  //   mutationFn: authenticate_post
-  // });
