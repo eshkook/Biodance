@@ -31,15 +31,34 @@ export default function Login() {
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate()
 
+    // const loginMutation = useMutation({
+    //     mutationFn: login_post,
+    //     onSuccess: data => {
+    //         navigate("/home") //, { state: { } });
+    //         // console.log("success")
+    //     },
+    //     onError: error => {
+    //         setErrorMessage(error.message || "An error occurred");
+    //         console.log(error.message || "An error occurred")
+    //     }
+    // });
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleLoginSuccess = async () => {
+        setIsLoading(true); // Start loading for authentication check
+        await authenticate(); // Await authentication check
+        setIsLoading(false); // Stop loading after authentication check
+        navigate("/home");
+    };
+
     const loginMutation = useMutation({
         mutationFn: login_post,
-        onSuccess: data => {
-            navigate("/home") //, { state: { } });
-            // console.log("success")
-        },
+        onSuccess: handleLoginSuccess,
         onError: error => {
             setErrorMessage(error.message || "An error occurred");
-            console.log(error.message || "An error occurred")
+            console.log(error.message || "An error occurred");
+            setIsLoading(false); // Stop loading on error
         }
     });
 
@@ -63,6 +82,7 @@ export default function Login() {
 
     function handleSubmit(event) {
         event.preventDefault() // preventing re-rendering the page
+        setIsLoading(true); // Start loading for login request ///////////////////////////////////////
         const temp_object = {
             email: !isValidEmail(formState.email),
             password: !isValidPassword(formState.password),
@@ -174,9 +194,10 @@ export default function Login() {
                             <Button
                                 variant="contained"
                                 type='submit'
-                                disabled={loginMutation.isLoading}>
-                                {loginMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
-                                {/* {loginMutation.isLoading ? "Loading..." : "Submit"} */}
+                                // disabled={loginMutation.isLoading}>
+                                disabled={isLoading}>
+                                {isLoading ? <CircularProgress size={24} /> : "Submit"}
+                                {/* {loginMutation.isLoading ? <CircularProgress size={24} /> : "Submit"} */}
                             </Button>
                         </div>
                     </form>
