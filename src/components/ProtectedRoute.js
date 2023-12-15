@@ -6,6 +6,8 @@ import { authenticate_post } from "../api/posts.js";
 
 export default function ProtectedRoute({ children }) {
 
+    return children //////delete
+
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [authStatusChecked, setAuthStatusChecked] = useState(false);
 

@@ -64,6 +64,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+          {/* <Route path="/home" element={<Home />} /> */}
         </Routes>
       </ThemeProvider>
     </>
