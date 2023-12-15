@@ -4,13 +4,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home';
 import Confirmation from './components/Confirmation';
-import { Route, Routes } from "react-router-dom"
-import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Navigate } from 'react-router-dom';
-import { useState } from "react"
-import { useMutation } from "@tanstack/react-query"
-import { authenticate_post } from "../api/posts.js";
+import ProtectedRoute from './components/ProtectedRoute';
 
 const theme = createTheme({
   components: {
@@ -56,34 +50,6 @@ const theme = createTheme({
 
 export default function App() {
 
-  const ProtectedRoute = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [authStatusChecked, setAuthStatusChecked] = useState(false);
-  
-    useEffect(() => {
-      authenticateMutation.mutate({
-        onSuccess: () => {
-          setIsAuthenticated(true);
-          setAuthStatusChecked(true);
-        },
-        onError: () => {
-          setIsAuthenticated(false);
-          setAuthStatusChecked(true);
-        }
-      });
-    }, []); 
-  
-    if (!authStatusChecked) {
-      return <div>Loading...</div>; //////////////////////////////////////////////////////
-    }
-  
-    return isAuthenticated ? children : <Navigate to="/login" state={{ message: 'Authentication failed, please try to log in again.' }} />;
-  };
-
-  const authenticateMutation = useMutation({
-    mutationFn: authenticate_post
-  });
-
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -99,3 +65,34 @@ export default function App() {
     </>
   );
 }
+
+
+
+
+  // const ProtectedRoute = ({ children }) => {
+  //   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  //   const [authStatusChecked, setAuthStatusChecked] = useState(false);
+  
+  //   useEffect(() => {
+  //     authenticateMutation.mutate({
+  //       onSuccess: () => {
+  //         setIsAuthenticated(true);
+  //         setAuthStatusChecked(true);
+  //       },
+  //       onError: () => {
+  //         setIsAuthenticated(false);
+  //         setAuthStatusChecked(true);
+  //       }
+  //     });
+  //   }, []); 
+  
+  //   if (!authStatusChecked) {
+  //     return <Authentication_Loading /> 
+  //   }
+  
+  //   return isAuthenticated ? children : <Navigate to="/login" state={{ message: 'Authentication failed, please try to log in again.' }} />;
+  // };
+
+  // const authenticateMutation = useMutation({
+  //   mutationFn: authenticate_post
+  // });
