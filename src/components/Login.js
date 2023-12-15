@@ -104,7 +104,7 @@ export default function Login() {
                     alignItems: 'center', // Center aligns all children horizontally 
                     justifyContent: 'center', // Center aligns all children vertically (if needed)
                 }}>
-                    {(location.state && location.state.just_confirmed_email) && (
+                    {location.state?.just_confirmed_email && (
                         <>
                             <Typography variant="body1" color="white">
                                 Confirmation was successful, now you can log in!

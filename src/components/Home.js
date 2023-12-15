@@ -29,11 +29,11 @@ export default function Home() {
     const deleteMutation = useMutation({
         mutationFn: delete_post,
         onSuccess: data => {
-            navigate("/", { state: { quick_message: 'Succuessfully deleted you account!' } });
+            navigate("/", { state: { quick_message: 'Succuessfully deleted your account!' } });
             // console.log("delete success")
         },
         onError: error => {
-            if (error.message && error.message == 'Session expired, please log in again. Account was not deleted.') {
+            if (error.message == 'Session expired, please log in again. Account was not deleted.') {
                 navigate("/", { state: { quick_message: 'Session expired, please log in again. Account was not deleted.' } });
             } else {
                 setErrorMessage(error.message || "An error occurred");

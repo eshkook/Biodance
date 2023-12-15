@@ -7,9 +7,9 @@ import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 
 export default function LandingPage() {
-  
+
   const location = useLocation()
-  const [showMessage, setShowMessage] = useState((location.state && location.state.quick_message));
+  const [showMessage, setShowMessage] = useState(location.state?.quick_message);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -45,7 +45,7 @@ export default function LandingPage() {
               color: 'white'
             }}
           >
-            Succuessfully logged out!
+            {location.state.quick_message}
           </Typography>
         )}
         <Welcome />
