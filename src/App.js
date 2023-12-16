@@ -71,12 +71,6 @@ export default function App() {
             <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} /> {/* any sub-route that is not one of the above will fall here */}
           </Route>
-          {/* <Route path="/" element={<LandingPage />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/confirmation" element={<Confirmation />} />
-          <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-          <Route path="*" element={<NotFound />} /> any sub-route that is not one of the above will fall here */}
         </Routes>
       </ThemeProvider>
     </>
