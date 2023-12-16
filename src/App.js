@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home';
 import Confirmation from './components/Confirmation';
+import NotFound from './components/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material/styles';
@@ -64,6 +65,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+          <Route path="*" element={<NotFound />} /> {/* any sub-route that is not one of the above will fall here */}
         </Routes>
       </ThemeProvider>
     </>
