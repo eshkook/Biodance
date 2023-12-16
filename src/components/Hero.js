@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 export default function Hero() {
     return (
@@ -18,12 +18,15 @@ export default function Hero() {
             id="hero"
         >
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                <Link to={{
+                <NavLink to="/home" state={{ no_failure_message: true }}>
+                    <Button color="primary">Login</Button>
+                </NavLink>
+                {/* <Link to={{
                     pathname: '/home',
                     state: { failure_message: 'again.' }
                 }}>
                     <Button color="primary">Login</Button>
-                </Link>
+                </Link> */}
                 <Link to={'/signup'} >
                     <Button color="secondary">Sign Up</Button>
                 </Link>
