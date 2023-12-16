@@ -18,7 +18,10 @@ export default function Hero() {
             id="hero"
         >
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                <Link to={'/login'} >
+                <Link to={{
+                    pathname: '/home',
+                    state: { failure_message: 'again.' }
+                }}>
                     <Button color="primary">Login</Button>
                 </Link>
                 <Link to={'/signup'} >

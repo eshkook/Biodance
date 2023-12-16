@@ -17,6 +17,7 @@ import Navbar from './Navbar';
 export default function Login() {
 
     const location = useLocation()
+    console.log(9, location.state)
 
     const [showPassword, setShowPassword] = useState(false);
 
