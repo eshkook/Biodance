@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import SortIcon from '@mui/icons-material/Sort';
 import { Typography } from '@mui/material';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom'; 
 
 export default function Navbar({ homeLink = "/" }) {
     return (

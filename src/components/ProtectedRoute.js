@@ -9,8 +9,8 @@ export default function ProtectedRoute({ children }) {
     
     const location = useLocation()
     //////////////////////////////////////////////////////////////////////////// delete
-    // return <Navigate to="/authentication_loading" />
-    return <Navigate to="/login" state={{ message: location.state?.no_failure_message ? false : (location.state?.custom_failure_message ? location.state.custom_failure_message : 'Authentication failed, please try to log in.') }} />
+    return children
+    return <Navigate to="/login" state={{ message: location.state?.no_failure_message ? false : (location.state?.custom_failure_message ? location.state.custom_failure_message : 'Authentication failed, please log in.') }} />
     ////////////////////////////////////////////////////////////////////////////
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -36,7 +36,7 @@ export default function ProtectedRoute({ children }) {
     if (!authStatusChecked) {
         return <Navigate to="/authentication_loading" />
     }
-    return isAuthenticated ? children : <Navigate to="/login" state={{ message: location.state?.no_failure_message ? false : (location.state?.custom_failure_message ? location.state.custom_failure_message : 'Authentication failed, please try to log in.') }} />;
+    return isAuthenticated ? children : <Navigate to="/login" state={{ message: location.state?.no_failure_message ? false : (location.state?.custom_failure_message ? location.state.custom_failure_message : 'Authentication failed, please log in.') }} />;
 };
 
 

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Navbar from './Navbar';
 import { Outlet } from 'react-router-dom';
 
-export default function Layout() {
+export default function Layout({ homeLink = "/" }) {
   return (
     <Box
       sx={{
@@ -17,7 +17,7 @@ export default function Layout() {
         position: 'relative'
       }}
     >
-      <Navbar />
+      <Navbar homeLink={homeLink} />
       <Outlet />
     </Box>
   );

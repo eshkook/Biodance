@@ -30,7 +30,7 @@ export default function LandingPage() {
             color: 'white'
           }}
         >
-          {location.state.quick_message}
+          {location.state?.quick_message}
         </Typography>
       )}
       <Welcome />

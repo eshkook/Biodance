@@ -18,7 +18,10 @@ export default function Hero() {
             id="hero"
         >
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                <NavLink to="/home" state={{ no_failure_message: true }}>
+                {/* uncomment: */}
+                {/* <NavLink to="/home" state={{ no_failure_message: true }}> */}
+                {/* delete: */}
+                <NavLink to="/login" state={{ no_failure_message: true }}>
                     <Button color="primary">Login</Button>
                 </NavLink>
                 <Link to={'/signup'} >

@@ -62,14 +62,19 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Layout homeLink='/' />}>
             <Route index element={<LandingPage />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/confirmation" element={<Confirmation />} />
             <Route path="/login" element={<Login />} />
             <Route path="/authentication_loading" element={<Authentication_Loading />} />
-            <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} /> {/* any sub-route that is not one of the above will fall here */}
+          </Route>
+          <Route path="/" element={<Layout homeLink='/home' />}>
+            {/* delete: */}
+            <Route path="/home" element={<Home />} />
+            {/* uncomment: */}
+            {/* <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} /> */}
           </Route>
         </Routes>
       </ThemeProvider>

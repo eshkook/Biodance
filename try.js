@@ -1,2 +1,2 @@
-a={a:1}
-console.log(a.b==1)
+a={b:{c:1}}
+console.log(a.j?.c)
