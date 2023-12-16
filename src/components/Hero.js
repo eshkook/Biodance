@@ -21,18 +21,9 @@ export default function Hero() {
                 <NavLink to="/home" state={{ no_failure_message: true }}>
                     <Button color="primary">Login</Button>
                 </NavLink>
-                {/* <Link to={{
-                    pathname: '/home',
-                    state: { failure_message: 'again.' }
-                }}>
-                    <Button color="primary">Login</Button>
-                </Link> */}
                 <Link to={'/signup'} >
                     <Button color="secondary">Sign Up</Button>
                 </Link>
-                {/* <Link to={'/home'} >
-                    <Button>Temp Home</Button>
-                </Link>  */}
             </ButtonGroup>
         </Box>
     );
