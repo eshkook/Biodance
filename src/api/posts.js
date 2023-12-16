@@ -27,7 +27,11 @@ export function delete_post() {
   return axios.post("https://efrq1qlgad.execute-api.eu-west-1.amazonaws.com/backend_function", {
     action: 'delete',
   }, {
-    withCredentials: true, 
+    withCredentials: true,
+    // headers: {
+    //   "Content-Type": "application/json",
+    //   "Access-Control-Allow-Credentials": true,
+    // }, 
   })
   .then(response => {
     return response.data;
