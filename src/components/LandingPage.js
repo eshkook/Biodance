@@ -1,5 +1,3 @@
-import Box from '@mui/material/Box';
-import Navbar from './Navbar';
 import Welcome from './Welcome';
 import Hero from './Hero';
 import { useLocation } from "react-router-dom"
@@ -21,36 +19,22 @@ export default function LandingPage() {
 
   return (
     <>
-      <Box
-        sx={{
-          pt: '64px', // because the navbar will be fixed and has 64px height. will not prevent the backgroundImage to cover all the page
-          minHeight: '100vh', // Minimum height of the viewport
-          width: '100vw', // Width of the viewport
-          backgroundImage: `url(${process.env.PUBLIC_URL + '/images/img_6.jpg'})`,
-          backgroundSize: 'cover', // Cover the entire area, keeping original proportion by zooming in (some of the image is thrown out)
-          backgroundPosition: 'center', // Center the image
-          backgroundRepeat: 'no-repeat', // Do not repeat the image
-          position: 'relative'
-        }}
-      >
-        <Navbar />
-        {showMessage && (
-          <Typography
-            sx={{
-              position: 'absolute',
-              top: '64px', // Just below the navbar
-              left: '50%',
-              transform: 'translateX(-50%)', // Center horizontally
-              zIndex: 1000, // Ensure it's above other elements
-              color: 'white'
-            }}
-          >
-            {location.state.quick_message}
-          </Typography>
-        )}
-        <Welcome />
-        <Hero />
-      </Box>
+      {showMessage && (
+        <Typography
+          sx={{
+            position: 'absolute',
+            top: '64px', // Just below the navbar
+            left: '50%',
+            transform: 'translateX(-50%)', // Center horizontally
+            zIndex: 1000, // Ensure it's above other elements
+            color: 'white'
+          }}
+        >
+          {location.state.quick_message}
+        </Typography>
+      )}
+      <Welcome />
+      <Hero />
     </>
   );
 }

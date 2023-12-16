@@ -13,7 +13,6 @@ import InputAdornment from '@mui/material/InputAdornment';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { Link } from "react-router-dom"
-import Navbar from './Navbar';
 
 export default function SignUp() {
 
@@ -92,18 +91,6 @@ export default function SignUp() {
 
     return (
         <>
-            <Box
-                sx={{
-                    pt: '64px', // because the navbar will be fixed and has 64px height. will not prevent the backgroundImage to cover all the page
-                    minHeight: '100vh', // Minimum height of the viewport
-                    width: '100vw', // Width of the viewport
-                    backgroundImage: `url(${process.env.PUBLIC_URL + '/images/img_6.jpg'})`,
-                    backgroundSize: 'cover', // Cover the entire area, keeping original proportion by zooming in (some of the image is thrown out)
-                    backgroundPosition: 'center', // Center the image
-                    backgroundRepeat: 'no-repeat', // Do not repeat the image
-                }}
-            >
-                <Navbar />
                 <Box sx={{
                     maxWidth: '400px',
                     margin: '0 auto',
@@ -241,7 +228,6 @@ export default function SignUp() {
                         </Button>
                     </Link>
                 </Box>
-            </Box>
         </>
     )
 }

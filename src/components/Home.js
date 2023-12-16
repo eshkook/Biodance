@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-import Navbar from './Navbar';
 
 export default function Home() {
 
@@ -44,58 +43,45 @@ export default function Home() {
 
     return (
         <>
-            <Box
-                sx={{
-                    pt: '64px', // because the navbar will be fixed and has 64px height. will not prevent the backgroundImage to cover all the page
-                    minHeight: '100vh', // Minimum height of the viewport
-                    width: '100vw', // Width of the viewport
-                    backgroundImage: `url(${process.env.PUBLIC_URL + '/images/img_6.jpg'})`,
-                    backgroundSize: 'cover', // Cover the entire area, keeping original proportion by zooming in (some of the image is thrown out)
-                    backgroundPosition: 'center', // Center the image
-                    backgroundRepeat: 'no-repeat', // Do not repeat the image
-                }}
-            >
-                <Navbar homeLink = "/home" />
-                <Box sx={{
-                    maxWidth: '400px',
-                    margin: '0 auto',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center', // Center aligns all children horizontally 
-                    justifyContent: 'center', // Center aligns all children vertically (if needed)
-                }}>
-                    <Typography variant="subtitle1" component="h1" color="white">
-                        Welcome to Home page!
-                    </Typography>
-                    <br />
+            <Box sx={{
+                maxWidth: '400px',
+                margin: '0 auto',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center', // Center aligns all children horizontally 
+                justifyContent: 'center', // Center aligns all children vertically (if needed)
+            }}>
+                <Typography variant="subtitle1" component="h1" color="white">
+                    Welcome to Home page!
+                </Typography>
+                <br />
 
-                    {errorMessage && (
-                        <>
-                            <Typography variant="body2" color="error">
-                                {errorMessage}
-                            </Typography>
-                            <br />
-                        </>
-                    )}
+                {errorMessage && (
+                    <>
+                        <Typography variant="body2" color="error">
+                            {errorMessage}
+                        </Typography>
+                        <br />
+                    </>
+                )}
 
-                    <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                        <Button
-                            color="primary"
-                            onClick={() => logoutMutation.mutate()}
-                            // style={{ marginRight: '10px' }}
-                            disabled={logoutMutation.isLoading}
-                        >
-                            {deleteMutation.isLoading ? <CircularProgress size={24} /> : "Logout"}
-                        </Button>
-                        <Button
-                            color="secondary"
-                            onClick={() => deleteMutation.mutate()}
-                            disabled={deleteMutation.isLoading}
-                        >
-                            {deleteMutation.isLoading ? <CircularProgress size={24} /> : "Delete Account"}
-                        </Button>
-                    </ButtonGroup>
-                </Box>
+                <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                    <Button
+                        color="primary"
+                        onClick={() => logoutMutation.mutate()}
+                        // style={{ marginRight: '10px' }}
+                        disabled={logoutMutation.isLoading}
+                    >
+                        {deleteMutation.isLoading ? <CircularProgress size={24} /> : "Logout"}
+                    </Button>
+                    <Button
+                        color="secondary"
+                        onClick={() => deleteMutation.mutate()}
+                        disabled={deleteMutation.isLoading}
+                    >
+                        {deleteMutation.isLoading ? <CircularProgress size={24} /> : "Delete Account"}
+                    </Button>
+                </ButtonGroup>
             </Box>
         </>
     )

@@ -8,7 +8,6 @@ import { useNavigate, useLocation } from "react-router-dom"
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { isValidEmail } from "./Validations.js";
-import Navbar from './Navbar';
 
 export default function Confirmation() {
 
@@ -22,7 +21,7 @@ export default function Confirmation() {
         mutationFn: confirmation_post,
         onSuccess: data => {
             console.log('Response data:', data);
-            navigate("/login", { state: { message: 'Confirmation was successful, now you can log in!' } }) 
+            navigate("/login", { state: { message: 'Confirmation was successful, now you can log in!' } })
         },
         onError: error => {
             setErrorMessage(error.message || "An error occurred");
@@ -71,84 +70,71 @@ export default function Confirmation() {
 
     return (
         <>
-            <Box
-                sx={{
-                    pt: '64px', // because the navbar will be fixed and has 64px height. will not prevent the backgroundImage to cover all the page
-                    minHeight: '100vh', // Minimum height of the viewport
-                    width: '100vw', // Width of the viewport
-                    backgroundImage: `url(${process.env.PUBLIC_URL + '/images/img_6.jpg'})`,
-                    backgroundSize: 'cover', // Cover the entire area, keeping original proportion by zooming in (some of the image is thrown out)
-                    backgroundPosition: 'center', // Center the image
-                    backgroundRepeat: 'no-repeat', // Do not repeat the image
-                }}
-            >
-                <Navbar />
-                <Box sx={{
-                    maxWidth: '400px',
-                    margin: '0 auto',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center', // Center aligns all children horizontally 
-                    justifyContent: 'center', // Center aligns all children vertically (if needed)
-                }}>
-                    {(location.state?.email) ?
-                        (<Typography variant="subtitle1" component="h1" color="white">
-                            A confirmation code was sent to {formState.email}.
-                        </Typography>)
-                        :
-                        (<Typography variant="subtitle1" component="h1" color="white">
-                            Let's confirm your email:
-                        </Typography>)}
-                    <br />
+            <Box sx={{
+                maxWidth: '400px',
+                margin: '0 auto',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center', // Center aligns all children horizontally 
+                justifyContent: 'center', // Center aligns all children vertically (if needed)
+            }}>
+                {(location.state?.email) ?
+                    (<Typography variant="subtitle1" component="h1" color="white">
+                        A confirmation code was sent to {formState.email}.
+                    </Typography>)
+                    :
+                    (<Typography variant="subtitle1" component="h1" color="white">
+                        Let's confirm your email:
+                    </Typography>)}
+                <br />
 
-                    {errorMessage && (
-                        <>
-                            <Typography variant="body2" color="error">
-                                {errorMessage}
-                            </Typography>
-                            <br />
-                        </>
-                    )}
+                {errorMessage && (
+                    <>
+                        <Typography variant="body2" color="error">
+                            {errorMessage}
+                        </Typography>
+                        <br />
+                    </>
+                )}
 
-                    <form onSubmit={handleSubmit} noValidate autoComplete='off'>
-                        {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves,
+                <form onSubmit={handleSubmit} noValidate autoComplete='off'>
+                    {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves,
           autoComplete off makes it not complete the user's text */}
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                            {!location.state?.email && (
-                                <TextField
-                                    onChange={updateFormState}
-                                    id="email-input"
-                                    label="Email"
-                                    variant="outlined"
-                                    name="email"
-                                    value={formState.email}
-                                    error={fieldErrorState.email}
-                                    autoFocus={!location.state?.email}
-                                    // required  // make a '*' to indicate it is a mandatory field
-                                />)}
-
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        {!location.state?.email && (
                             <TextField
                                 onChange={updateFormState}
-                                id="confirmation-code-input"
-                                label="Confirmation code"
+                                id="email-input"
+                                label="Email"
                                 variant="outlined"
-                                name="confirmation_code"
-                                value={formState.confirmation_code}
-                                error={fieldErrorState.confirmation_code}
-                                autoFocus={location.state?.email}
+                                name="email"
+                                value={formState.email}
+                                error={fieldErrorState.email}
+                                autoFocus={!location.state?.email}
                             // required  // make a '*' to indicate it is a mandatory field
-                            />
-                            <Button
-                                variant="contained"
-                                type='submit'
-                                disabled={confirmationMutation.isLoading}>
-                                {confirmationMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
-                                {/* {confirmationMutation.isLoading ? "Loading..." : "Submit"} */}
-                            </Button>
-                        </div>
-                    </form>
-                </Box>
+                            />)}
+
+                        <TextField
+                            onChange={updateFormState}
+                            id="confirmation-code-input"
+                            label="Confirmation code"
+                            variant="outlined"
+                            name="confirmation_code"
+                            value={formState.confirmation_code}
+                            error={fieldErrorState.confirmation_code}
+                            autoFocus={location.state?.email}
+                        // required  // make a '*' to indicate it is a mandatory field
+                        />
+                        <Button
+                            variant="contained"
+                            type='submit'
+                            disabled={confirmationMutation.isLoading}>
+                            {confirmationMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
+                            {/* {confirmationMutation.isLoading ? "Loading..." : "Submit"} */}
+                        </Button>
+                    </div>
+                </form>
             </Box>
         </>
     )

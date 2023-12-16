@@ -31,7 +31,7 @@ export default function ProtectedRoute({ children }) {
     }, []);
 
     if (!authStatusChecked) {
-        return <Authentication_Loading />
+        return <Navigate to="/authentication_loading" />
     }
     return isAuthenticated ? children : <Navigate to="/login" state={{ message: location.state?.no_failure_message ? false : (location.state?.custom_failure_message ? location.state.custom_failure_message : 'Authentication failed, please try to log in again.') }} />;
 };

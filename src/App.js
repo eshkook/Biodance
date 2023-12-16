@@ -3,9 +3,11 @@ import LandingPage from './components/LandingPage';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home';
+import Layout from './components/Layout';
 import Confirmation from './components/Confirmation';
 import NotFound from './components/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
+import Authentication_Loading from './components/Authentication_Loading';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -60,12 +62,21 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<LandingPage />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/confirmation" element={<Confirmation />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/authentication_loading" element={<Authentication_Loading />} />
+            <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="*" element={<NotFound />} /> {/* any sub-route that is not one of the above will fall here */}
+          </Route>
+          {/* <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-          <Route path="*" element={<NotFound />} /> {/* any sub-route that is not one of the above will fall here */}
+          <Route path="*" element={<NotFound />} /> any sub-route that is not one of the above will fall here */}
         </Routes>
       </ThemeProvider>
     </>
