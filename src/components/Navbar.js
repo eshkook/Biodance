@@ -4,15 +4,18 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import SortIcon from '@mui/icons-material/Sort';
 import { Typography } from '@mui/material';
-// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Navbar({ homeLink = "/" }) {
+
+    const navigate = useNavigate();
 
     const handleHomeClick = () => {
         if (window.location.pathname === homeLink) {
             window.location.reload();
         } else {
-            window.location.href = homeLink;
+            navigate(homeLink);
         }
     };
 
@@ -36,7 +39,7 @@ export default function Navbar({ homeLink = "/" }) {
             </AppBar>
         </>
     );
-
+}
     // return (
     //     <>
     //         <AppBar position="fixed" sx={{ background: 'none', boxShadow: 'none' }}>
@@ -60,4 +63,4 @@ export default function Navbar({ homeLink = "/" }) {
     //         </AppBar>
     //     </>
     // );
-}
+
