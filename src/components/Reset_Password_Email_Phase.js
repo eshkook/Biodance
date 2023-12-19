@@ -15,16 +15,16 @@ import Box from '@mui/material/Box';
 import { Link } from "react-router-dom"
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-export default function Reset_Password() {
+export default function Reset_Password_Email_Phase() {
 
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate()
 
     const loginMutation = useMutation({
-        mutationFn: login_post,
+        mutationFn: reset_password_email_phase_post,
         onSuccess: data => {
             console.log('Response data:', data);
-            navigate("/confirmation", {
+            navigate("/reset_password_code_phase", {
                 state: {
                     email: formState.email
                 }
