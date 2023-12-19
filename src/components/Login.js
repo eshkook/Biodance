@@ -170,11 +170,11 @@ export default function Login() {
                 <Typography variant="body1" color="white" marginTop={5}>
                     Forgot your password:
                 </Typography>
-                <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{ marginTop: 1.5 }}>
-                    <Link to={'/reset_password'} >
-                        <Button color="primary">Reset Password</Button>
-                    </Link>
-                </ButtonGroup>
+                <Link to={'/reset_password'} >
+                    <Button variant="contained" aria-label="outlined primary button group" sx={{ marginTop: 1.5 }}>
+                        Reset Password
+                    </Button>
+                </Link>
             </Box>
         </>
     )
