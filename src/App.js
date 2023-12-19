@@ -5,6 +5,7 @@ import Signup from './components/Signup';
 import Home from './components/Home';
 import Layout from './components/Layout';
 import Confirmation from './components/Confirmation';
+import Reset_Password from './components/Reset_Password';
 import NotFound from './components/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import Authentication_Loading from './components/Authentication_Loading';
@@ -67,6 +68,7 @@ export default function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/confirmation" element={<Confirmation />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/reset_password" element={<Reset_Password />} />
             <Route path="/authentication_loading" element={<Authentication_Loading />} />
             <Route path="*" element={<NotFound />} /> {/* any sub-route that is not one of the above will fall here */}
           </Route>

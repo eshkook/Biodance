@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react"
 import { login_post } from "../api/posts.js";
-import { isValidPassword, isValidEmail } from "./Validations.js";
-import { useNavigate, useLocation } from "react-router-dom"
+import { isValidEmail } from "./Validations.js";
+import { useNavigate } from "react-router-dom"
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -16,18 +16,6 @@ import { Link } from "react-router-dom"
 import ButtonGroup from '@mui/material/ButtonGroup';
 
 export default function Login() {
-
-    const location = useLocation()
-
-    const [showPassword, setShowPassword] = useState(false);
-
-    const handleClickShowPassword = () => {
-        setShowPassword(showPassword => (!showPassword));
-    };
-
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
 
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate()
@@ -46,12 +34,10 @@ export default function Login() {
 
     const [formState, setFormState] = useState({
         email: '',
-        password: '',
     })
 
     const [fieldErrorState, setFieldError] = useState({
         email: false,
-        password: false,
     })
 
     function updateFormState(event) {
@@ -66,16 +52,14 @@ export default function Login() {
         event.preventDefault() // preventing re-rendering the page
         const temp_object = {
             email: !isValidEmail(formState.email),
-            password: !isValidPassword(formState.password),
         }
         setFieldError(temp_object)
 
-        if (!(temp_object.email || temp_object.password)) {
+        if (!temp_object.email) {
             console.log(formState)
 
             loginMutation.mutate({
                 email: formState.email,
-                password: formState.password,
             });
         } else {
             setErrorMessage("Fields in red are invalid")
@@ -92,17 +76,8 @@ export default function Login() {
                 alignItems: 'center', // Center aligns all children horizontally 
                 justifyContent: 'center', // Center aligns all children vertically (if needed)
             }}>
-                {location.state?.message && (
-                    <>
-                        <Typography variant="body1" color="white">
-                            {location.state.message}
-                        </Typography>
-                        <br />
-                    </>
-                )}
-
                 <Typography variant="subtitle1" component="h1" color="white">
-                    Log in:
+                    Let's reset your account's password. type your Email:
                 </Typography>
                 <br />
 
@@ -129,35 +104,6 @@ export default function Login() {
                             value={formState.email}
                             error={fieldErrorState.email}
                             autoFocus
-                        // required  // make a '*' to indicate it is a mandatory field
-                        />
-                        <TextField
-                            onChange={updateFormState}
-                            // onPaste={(event) => {
-                            //     event.preventDefault();
-                            //     setErrorMessage("Password requires manual typing")
-                            // }}
-                            id="password-input"
-                            label="Password"
-                            type={showPassword ? 'text' : 'password'}
-                            variant="outlined"
-                            name="password"
-                            value={formState.password}
-                            error={fieldErrorState.password}
-                            InputProps={{ // <-- This is the part that adds the toggle button
-                                endAdornment: (
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                            onClick={handleClickShowPassword}
-                                            onMouseDown={handleMouseDownPassword}
-                                            edge="end"
-                                            sx={{ color: 'white' }}
-                                        >
-                                            {showPassword ? <Visibility /> : <VisibilityOff />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                ),
-                            }}
                         />
                         <Button
                             variant="contained"
@@ -167,14 +113,6 @@ export default function Login() {
                         </Button>
                     </div>
                 </form>
-                <Typography variant="body1" color="white" marginTop={5}>
-                    Forgot your password:
-                </Typography>
-                <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{ marginTop: 1.5 }}>
-                    <Link to={'/reset_password'} >
-                        <Button color="primary">Reset Password</Button>
-                    </Link>
-                </ButtonGroup>
             </Box>
         </>
     )
