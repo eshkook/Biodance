@@ -15,7 +15,7 @@ import Box from '@mui/material/Box';
 import { Link } from "react-router-dom"
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-export default function Login() {
+export default function Reset_Password() {
 
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate()
@@ -23,8 +23,12 @@ export default function Login() {
     const loginMutation = useMutation({
         mutationFn: login_post,
         onSuccess: data => {
-            navigate("/home") //, { state: { } });
-            // console.log("success")
+            console.log('Response data:', data);
+            navigate("/confirmation", {
+                state: {
+                    email: formState.email
+                }
+            });
         },
         onError: error => {
             setErrorMessage(error.message || "An error occurred");
@@ -77,7 +81,11 @@ export default function Login() {
                 justifyContent: 'center', // Center aligns all children vertically (if needed)
             }}>
                 <Typography variant="subtitle1" component="h1" color="white">
-                    Let's reset your account's password. type your Email:
+                    Let's reset your account's password.
+                </Typography>
+                
+                <Typography variant="subtitle1" component="h1" color="white">
+                    Type in your Email:
                 </Typography>
                 <br />
 
