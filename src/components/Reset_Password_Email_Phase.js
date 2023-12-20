@@ -20,7 +20,7 @@ export default function Reset_Password_Email_Phase() {
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate()
 
-    const loginMutation = useMutation({
+    const Mutation = useMutation({
         mutationFn: reset_password_email_phase_post,
         onSuccess: data => {
             console.log('Response data:', data);
@@ -62,7 +62,7 @@ export default function Reset_Password_Email_Phase() {
         if (!temp_object.email) {
             console.log(formState)
 
-            loginMutation.mutate({
+            Mutation.mutate({
                 email: formState.email,
             });
         } else {
@@ -116,8 +116,8 @@ export default function Reset_Password_Email_Phase() {
                         <Button
                             variant="contained"
                             type='submit'
-                            disabled={loginMutation.isLoading}>
-                            {loginMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
+                            disabled={Mutation.isLoading}>
+                            {Mutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
                         </Button>
                     </div>
                 </form>

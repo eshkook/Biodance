@@ -76,7 +76,7 @@ export default function SignUp() {
         }
         setFieldError(temp_object)
 
-        if (!(temp_object.email || temp_object.password)) {
+        if (!(temp_object.email || temp_object.password || temp_object.password_confirmation)) {
 
             console.log(formState)
 
