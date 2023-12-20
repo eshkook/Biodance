@@ -96,7 +96,6 @@ export default function Login() {
                         <Typography variant="body1" color="white">
                             {location.state.message}
                         </Typography>
-                        <br />
                     </>
                 )}
 

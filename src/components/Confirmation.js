@@ -111,7 +111,7 @@ export default function Confirmation() {
                                 name="email"
                                 value={formState.email}
                                 error={fieldErrorState.email}
-                                autoFocus={!location.state?.email}
+                                autoFocus={location.state?.email ? false : true}
                             // required  // make a '*' to indicate it is a mandatory field
                             />)}
 
@@ -123,7 +123,7 @@ export default function Confirmation() {
                             name="confirmation_code"
                             value={formState.confirmation_code}
                             error={fieldErrorState.confirmation_code}
-                            autoFocus={location.state?.email}
+                            autoFocus={location.state?.email ? true : false}
                         // required  // make a '*' to indicate it is a mandatory field
                         />
                         <Button

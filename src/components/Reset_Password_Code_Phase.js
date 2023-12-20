@@ -107,7 +107,7 @@ export default function SignUp() {
                     (<Typography variant="subtitle1" component="h1" color="white">
                         A confirmation code was sent to your Email.
                     </Typography>)}
-                <br />
+
                 <Typography variant="subtitle1" component="h1" color="white">
                     Reset your password:
                 </Typography>
@@ -133,7 +133,7 @@ export default function SignUp() {
                                 name="email"
                                 value={formState.email}
                                 error={fieldErrorState.email}
-                                autoFocus={!location.state?.email}
+                                autoFocus={location.state?.email ? false : true}
                             // required  // make a '*' to indicate it is a mandatory field
                             />)}
                         <TextField
@@ -144,7 +144,7 @@ export default function SignUp() {
                             name="confirmation_code"
                             value={formState.confirmation_code}
                             error={fieldErrorState.confirmation_code}
-                            autoFocus={location.state?.email}
+                            autoFocus={location.state?.email ? true : false}
                         // required  // make a '*' to indicate it is a mandatory field
                         />
                         <TextField
@@ -154,7 +154,7 @@ export default function SignUp() {
                                 setErrorMessage("Password requires manual typing")
                             }}
                             id="password-input"
-                            label="Password"
+                            label="New Password"
                             variant="outlined"
                             name="password"
                             type={showPassword ? 'text' : 'password'}
@@ -183,7 +183,7 @@ export default function SignUp() {
                                 setErrorMessage("Password requires manual typing")
                             }}
                             id="password-confirmation-input"
-                            label="Password Confirmation"
+                            label="New Password Confirmation"
                             variant="outlined"
                             name="password_confirmation"
                             type={showPassword ? 'text' : 'password'}
