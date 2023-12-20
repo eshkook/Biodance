@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button';
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react"
-import { login_post } from "../api/posts.js";
+import { reset_password_email_phase_post } from "../api/posts.js";
 import { isValidEmail } from "./Validations.js";
 import { useNavigate } from "react-router-dom"
 import IconButton from '@mui/material/IconButton';
@@ -85,7 +85,7 @@ export default function Reset_Password_Email_Phase() {
                 </Typography>
                 
                 <Typography variant="subtitle1" component="h1" color="white">
-                    Type in your Email:
+                    Type in your user Email:
                 </Typography>
                 <br />
 

@@ -6,6 +6,16 @@ import { Link, NavLink } from "react-router-dom"
 
 export default function Hero() {
     return (
+
+        // <Box sx={{
+        //     maxWidth: '400px',
+        //     margin: '0 auto',
+        //     display: 'flex',
+        //     flexDirection: 'column',
+        //     alignItems: 'center', // Center aligns all children horizontally 
+        //     justifyContent: 'center', // Center aligns all children vertically (if needed)
+        // }}>
+
         <Box
             sx={{
                 minHeight: '100vh',
@@ -13,7 +23,7 @@ export default function Hero() {
                 justifyContent: 'center',
                 alignItems: 'center', // Changed to 'stretch' to make the children (cards) of the same height
                 flexDirection: { xs: 'column', md: 'row' }, // Responsive design: column layout for small screens, row layout for medium and larger screens
-                p: 3, // Padding for the box
+                // p: 300, // Padding for the box
             }}
             id="hero"
         >
