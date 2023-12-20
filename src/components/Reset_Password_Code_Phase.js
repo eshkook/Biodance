@@ -45,14 +45,14 @@ export default function SignUp() {
 
     const [formState, setFormState] = useState({
         email: (location.state?.email) ? location.state.email : '',
-        code: '',
+        confirmation_code: '',
         password: '',
         password_confirmation: '',
     })
 
     const [fieldErrorState, setFieldError] = useState({
         email: false,
-        code: false,
+        confirmation_code: false,
         password: false,
         password_confirmation: false,
     })
@@ -69,19 +69,19 @@ export default function SignUp() {
         event.preventDefault() // preventing re-rendering the page
         const temp_object = {
             email: !isValidEmail(formState.email),
-            code: formState.code == '',
+            confirmation_code: formState.confirmation_code == '',
             password: !isValidPassword(formState.password),
             password_confirmation: (formState.password_confirmation != formState.password || !isValidPassword(formState.password_confirmation)),
         }
         setFieldError(temp_object)
 
-        if (!(temp_object.email || temp_object.code || temp_object.password || temp_object.password_confirmation)) {
+        if (!(temp_object.email || temp_object.confirmation_code || temp_object.password || temp_object.password_confirmation)) {
 
             console.log(formState)
 
             Mutation.mutate({
                 email: formState.email,
-                code: formState.code,
+                confirmation_code: formState.confirmation_code,
                 password: formState.password,
             });
         } else {
@@ -101,11 +101,11 @@ export default function SignUp() {
             }}>
                 {(location.state?.email) ?
                     (<Typography variant="subtitle1" component="h1" color="white">
-                        A code was sent to {formState.email}.
+                        A confirmation code was sent to {formState.email}.
                     </Typography>)
                     :
                     (<Typography variant="subtitle1" component="h1" color="white">
-                        A code was sent to your Email.
+                        A confirmation code was sent to your Email.
                     </Typography>)}
                 <br />
                 <Typography variant="subtitle1" component="h1" color="white">

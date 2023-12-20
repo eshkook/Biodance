@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export function reset_password_email_phase_post({ email, code, password }) {
+export function reset_password_code_phase_post({ email, confirmation_code, password }) {
   return axios.post("https://efrq1qlgad.execute-api.eu-west-1.amazonaws.com/backend_function", {
     action: 'reset_password_code_phase',
     email: email,
-    code: code,
+    confirmation_code: confirmation_code,
     password: password
   })
   .then(response => {
