@@ -90,6 +90,7 @@ export default function Home() {
                         color="secondary"
                         onClick={() => setOpenDialog(true)}
                         disabled={deleteMutation.isLoading}
+                        sx={{ width: '180px' }}
                     >
                         {deleteMutation.isLoading ? <CircularProgress size={24} /> : "Delete Account"}
                     </Button>
