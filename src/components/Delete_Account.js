@@ -169,8 +169,8 @@ export default function Delete_Account() {
                             Are you sure you want to delete your account?
                         </DialogContentText>
                     </DialogContent>
-                    <DialogActions style={{ justifyContent: 'center' }}>
-                        <Button onClick={handleDelete} autoFocus style={{ marginRight: '50px' }}>Yes</Button>
+                    <DialogActions style={{ justifyContent: 'center', marginTop: '-17px' }}>
+                        <Button onClick={handleDelete} style={{ marginRight: '50px' }}>Yes</Button>
                         <Button onClick={() => setOpenDialog(false)}>No</Button>
                     </DialogActions>
                 </Dialog>
