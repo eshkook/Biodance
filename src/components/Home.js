@@ -7,8 +7,20 @@ import { useNavigate } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 export default function Home() {
+
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const handleDelete = () => {
+        setOpenDialog(false)
+        deleteMutation.mutate();
+    };
 
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate()
@@ -72,16 +84,35 @@ export default function Home() {
                         // style={{ marginRight: '10px' }}
                         disabled={logoutMutation.isLoading}
                     >
-                        {deleteMutation.isLoading ? <CircularProgress size={24} /> : "Logout"}
+                        {logoutMutation.isLoading ? <CircularProgress size={24} /> : "Logout"}
                     </Button>
                     <Button
                         color="secondary"
-                        onClick={() => deleteMutation.mutate()}
+                        onClick={() => setOpenDialog(true)}
                         disabled={deleteMutation.isLoading}
                     >
                         {deleteMutation.isLoading ? <CircularProgress size={24} /> : "Delete Account"}
                     </Button>
                 </ButtonGroup>
+                <Dialog
+                    open={openDialog}
+                    onClose={() => setOpenDialog(false)}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">
+                        {"Delete Account"}
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Are you sure you want to delete your account?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions style={{ justifyContent: 'center' }}>
+                        <Button onClick={handleDelete} autoFocus style={{ marginRight: '50px' }}>Yes</Button>
+                        <Button onClick={() => setOpenDialog(false)}>No</Button>
+                    </DialogActions>
+                </Dialog>
             </Box>
         </>
     )
