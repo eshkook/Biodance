@@ -6,14 +6,8 @@ import { useState } from "react"
 import { reset_password_email_phase_post } from "../api/posts.js";
 import { isValidEmail } from "./Validations.js";
 import { useNavigate } from "react-router-dom"
-import IconButton from '@mui/material/IconButton';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import InputAdornment from '@mui/material/InputAdornment';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import { Link } from "react-router-dom"
-import ButtonGroup from '@mui/material/ButtonGroup';
 
 export default function Reset_Password_Email_Phase() {
 

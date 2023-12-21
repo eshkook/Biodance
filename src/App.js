@@ -7,6 +7,7 @@ import Layout from './components/Layout';
 import Confirmation from './components/Confirmation';
 import Reset_Password_Email_Phase from './components/Reset_Password_Email_Phase';
 import Reset_Password_Code_Phase from './components/Reset_Password_Code_Phase';
+import Delete_Account from './components/Delete_Account';
 import NotFound from './components/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import Authentication_Loading from './components/Authentication_Loading';
@@ -77,8 +78,10 @@ export default function App() {
           <Route path="/" element={<Layout homeLink='/home' />}>
             {/* delete: */}
             <Route path="/home" element={<Home />} />
+            <Route path="/delete_account" element={<Delete_Account />} />
             {/* uncomment: */}
             {/* <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} /> */}
+            {/* <Route path="/delete_account" element={<ProtectedRoute><Delete_Account /></ProtectedRoute>}} /> */}
           </Route>
         </Routes>
       </ThemeProvider>
