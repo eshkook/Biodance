@@ -74,10 +74,6 @@ export function delete_post() {
     action: 'delete',
   }, {
     withCredentials: true,
-    // headers: {
-    //   "Content-Type": "application/json",
-    //   "Access-Control-Allow-Credentials": true,
-    // }, 
   })
   .then(response => {
     return response.data;
