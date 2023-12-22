@@ -77,7 +77,7 @@ export default function Reset_Password_Email_Phase() {
                 <Typography variant="subtitle1" component="h1" color="white">
                     Let's reset your account's password.
                 </Typography>
-                
+
                 <Typography variant="subtitle1" component="h1" color="white">
                     Type in your user Email:
                 </Typography>
@@ -96,7 +96,13 @@ export default function Reset_Password_Email_Phase() {
                     {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves, 
           autoComplete off makes it not complete the user's text */}
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '10px'
+                        }}
+                    >
                         <TextField
                             onChange={updateFormState} // same as writing onChange={()=>updateFormState(event)}
                             id="email-input"
@@ -113,7 +119,7 @@ export default function Reset_Password_Email_Phase() {
                             disabled={Mutation.isLoading}>
                             {Mutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
                         </Button>
-                    </div>
+                    </Box>
                 </form>
             </Box>
         </>

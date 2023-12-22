@@ -117,7 +117,13 @@ export default function Login() {
                     {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves, 
           autoComplete off makes it not complete the user's text */}
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '10px'
+                        }}
+                    >
                         <TextField
                             onChange={updateFormState} // same as writing onChange={()=>updateFormState(event)}
                             id="email-input"
@@ -163,7 +169,7 @@ export default function Login() {
                             disabled={loginMutation.isLoading}>
                             {loginMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
                         </Button>
-                    </div>
+                    </Box>
                 </form>
                 <Typography variant="body1" color="white" marginTop={5}>
                     Forgot your password:

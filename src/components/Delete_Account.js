@@ -116,7 +116,13 @@ export default function Delete_Account() {
                     {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves, 
           autoComplete off makes it not complete the user's text */}
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '10px'
+                        }}
+                    >
                         <TextField
                             onChange={updateFormState}
                             onPaste={(event) => {
@@ -153,7 +159,7 @@ export default function Delete_Account() {
                             disabled={deleteMutation.isLoading}>
                             {deleteMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
                         </Button>
-                    </div>
+                    </Box>
                 </form>
                 <Dialog
                     open={openDialog}

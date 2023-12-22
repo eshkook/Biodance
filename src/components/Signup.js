@@ -91,143 +91,126 @@ export default function SignUp() {
 
     return (
         <>
-                <Box sx={{
-                    maxWidth: '400px',
-                    margin: '0 auto',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center', // Center aligns all children horizontally 
-                    justifyContent: 'center', // Center aligns all children vertically (if needed)
-                }}>
-                    <Typography variant="subtitle1" component="h1" color="white">
-                        Sign-Up:
-                    </Typography>
-                    <br />
+            <Box sx={{
+                maxWidth: '400px',
+                margin: '0 auto',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center', // Center aligns all children horizontally 
+                justifyContent: 'center', // Center aligns all children vertically (if needed)
+            }}>
+                <Typography variant="subtitle1" component="h1" color="white">
+                    Sign-Up:
+                </Typography>
+                <br />
 
-                    {errorMessage && (
-                        <>
-                            <Typography variant="body2" color="error">
-                                {errorMessage}
-                            </Typography>
-                            <br />
-                        </>
-                    )}
+                {errorMessage && (
+                    <>
+                        <Typography variant="body2" color="error">
+                            {errorMessage}
+                        </Typography>
+                        <br />
+                    </>
+                )}
 
-                    <form onSubmit={handleSubmit} noValidate autoComplete='off'>
-                        {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves,
+                <form onSubmit={handleSubmit} noValidate autoComplete='off'>
+                    {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves,
           autoComplete off makes it not complete the user's text */}
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                            <TextField
-                                onChange={updateFormState} // same as writing onChange={()=>updateFormState(event)}
-                                id="email-input"
-                                label="Email"
-                                variant="outlined"
-                                name="email"
-                                value={formState.email}
-                                error={fieldErrorState.email}
-                                required  // make a '*' to indicate it is a mandatory field
-                                autoFocus
-                            />
-                            <TextField
-                                onChange={updateFormState}
-                                onPaste={(event) => {
-                                    event.preventDefault();
-                                    setErrorMessage("Password requires manual typing")
-                                }}
-                                id="password-input"
-                                label="Password"
-                                variant="outlined"
-                                name="password"
-                                type={showPassword ? 'text' : 'password'}
-                                value={formState.password}
-                                error={fieldErrorState.password}
-                                required  // adds a '*' to indicate it is a mandatory field
-                                InputProps={{ // <-- This is the part that adds the toggle button
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                onClick={handleClickShowPassword}
-                                                onMouseDown={handleMouseDownPassword}
-                                                edge="end"
-                                                sx={{ color: 'white' }}
-                                            >
-                                                {showPassword ? <Visibility /> : <VisibilityOff />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
-                            <TextField
-                                onChange={updateFormState}
-                                onPaste={(event) => {
-                                    event.preventDefault();
-                                    setErrorMessage("Password requires manual typing")
-                                }}
-                                id="password-confirmation-input"
-                                label="Password Confirmation"
-                                variant="outlined"
-                                name="password_confirmation"
-                                type={showPassword ? 'text' : 'password'}
-                                value={formState.password_confirmation}
-                                error={fieldErrorState.password_confirmation}
-                                required  // adds a '*' to indicate it is a mandatory field
-                                InputProps={{ // <-- This is the part that adds the toggle button
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                onClick={handleClickShowPassword}
-                                                onMouseDown={handleMouseDownPassword}
-                                                edge="end"
-                                                sx={{ color: 'white' }}
-                                            >
-                                                {showPassword ? <Visibility /> : <VisibilityOff />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
-                            {/* <TextField
-                        onChange={updateFormState}
-                        id="hobbies-input"
-                        label="Hobbies"
-                        variant="outlined"
-                        name="hobbies"
-                        value={formState.hobbies}
-                    />
-                    <TextField
-                        onChange={updateFormState}
-                        id="age-input"
-                        label="Age"
-                        type="number"
-                        InputProps={{ inputProps: { min: 0, max: 120 } }}
-                        variant="outlined"
-                        name="age"
-                        value={formState.age}
-                        error={fieldErrorState.age}
-                    /> */}
-                            <Button
-                                variant="contained"
-                                type='submit'
-                                disabled={signupCognitoMutation.isLoading}>
-                                {signupCognitoMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
-                                {/* {signupCognitoMutation.isLoading ? "Loading..." : "Submit"} */}
-                            </Button>
-                        </div>
-                    </form>
-                    <br />
-                    <br />
-                    <br />
-                    <Typography variant="subtitle1" component="h1" color="white">
-                        Already signed up and didn't confirm your email:
-                    </Typography>
-                    <br />
-                    <Link to={'/confirmation'} >
-                        <Button variant="contained" aria-label="outlined primary button group">
-                            Email Confirmation
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '10px'
+                        }}
+                    >
+                        <TextField
+                            onChange={updateFormState} // same as writing onChange={()=>updateFormState(event)}
+                            id="email-input"
+                            label="Email"
+                            variant="outlined"
+                            name="email"
+                            value={formState.email}
+                            error={fieldErrorState.email}
+                            required  // make a '*' to indicate it is a mandatory field
+                            autoFocus
+                        />
+                        <TextField
+                            onChange={updateFormState}
+                            onPaste={(event) => {
+                                event.preventDefault();
+                                setErrorMessage("Password requires manual typing")
+                            }}
+                            id="password-input"
+                            label="Password"
+                            variant="outlined"
+                            name="password"
+                            type={showPassword ? 'text' : 'password'}
+                            value={formState.password}
+                            error={fieldErrorState.password}
+                            required  // adds a '*' to indicate it is a mandatory field
+                            InputProps={{ // <-- This is the part that adds the toggle button
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            edge="end"
+                                            sx={{ color: 'white' }}
+                                        >
+                                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                        <TextField
+                            onChange={updateFormState}
+                            onPaste={(event) => {
+                                event.preventDefault();
+                                setErrorMessage("Password requires manual typing")
+                            }}
+                            id="password-confirmation-input"
+                            label="Password Confirmation"
+                            variant="outlined"
+                            name="password_confirmation"
+                            type={showPassword ? 'text' : 'password'}
+                            value={formState.password_confirmation}
+                            error={fieldErrorState.password_confirmation}
+                            required  // adds a '*' to indicate it is a mandatory field
+                            InputProps={{ // <-- This is the part that adds the toggle button
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            edge="end"
+                                            sx={{ color: 'white' }}
+                                        >
+                                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                        <Button
+                            variant="contained"
+                            type='submit'
+                            disabled={signupCognitoMutation.isLoading}>
+                            {signupCognitoMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
                         </Button>
-                    </Link>
-                </Box>
+                    </Box>
+                </form>
+                
+                <Typography variant="subtitle1" component="h1" color="white" marginTop={5}>
+                    Already signed up and didn't confirm your email:
+                </Typography>
+                <Link to={'/confirmation'} >
+                    <Button variant="contained" aria-label="outlined primary button group" sx={{ marginTop: 2 }}>
+                        Email Confirmation
+                    </Button>
+                </Link>
+            </Box>
         </>
     )
 }

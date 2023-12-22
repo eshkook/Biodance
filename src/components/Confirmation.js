@@ -101,7 +101,13 @@ export default function Confirmation() {
                     {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves,
           autoComplete off makes it not complete the user's text */}
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '10px'
+                        }}
+                    >
                         {!location.state?.email && (
                             <TextField
                                 onChange={updateFormState}
@@ -133,7 +139,7 @@ export default function Confirmation() {
                             {confirmationMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
                             {/* {confirmationMutation.isLoading ? "Loading..." : "Submit"} */}
                         </Button>
-                    </div>
+                    </Box>
                 </form>
             </Box>
         </>
