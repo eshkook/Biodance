@@ -22,6 +22,7 @@ const theme = createTheme({
       styleOverrides: `
         html, body {
           overflow-x: hidden; // Hide horizontal scrollbar
+          box-sizing: border-box;
         }
       `,
     },
