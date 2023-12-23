@@ -4,11 +4,11 @@ import { useLocation } from "react-router-dom"
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { Hidden } from '@mui/material';
 
 export default function LandingPage() {
 
   const location = useLocation()
+  console.log(location.state.quick_message)
   const [showMessage, setShowMessage] = useState(location.state?.quick_message);
 
   useEffect(() => {
