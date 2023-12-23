@@ -166,7 +166,6 @@ export default function SignUp() {
                             type={showPassword ? 'text' : 'password'}
                             value={formState.password}
                             error={fieldErrorState.password}
-                            required  // adds a '*' to indicate it is a mandatory field
                             InputProps={{ // <-- This is the part that adds the toggle button
                                 endAdornment: (
                                     <InputAdornment position="end">
@@ -195,7 +194,6 @@ export default function SignUp() {
                             type={showPassword ? 'text' : 'password'}
                             value={formState.password_confirmation}
                             error={fieldErrorState.password_confirmation}
-                            required  // adds a '*' to indicate it is a mandatory field
                             InputProps={{ // <-- This is the part that adds the toggle button
                                 endAdornment: (
                                     <InputAdornment position="end">

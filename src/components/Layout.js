@@ -1,9 +1,15 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Navbar from './Navbar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
-export default function Layout({ homeLink = "/" }) {
+export default function Layout() {
+
+  const location = useLocation();
+  
+  // Determine the home link based on the current path
+  const homeLink = location.pathname.startsWith('/home') ? '/home' : '/';
+
   return (
     <Box
       sx={{
@@ -14,7 +20,7 @@ export default function Layout({ homeLink = "/" }) {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        position: 'relative'
+        position: 'relative',
       }}
     >
       <Navbar homeLink={homeLink} />
