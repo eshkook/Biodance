@@ -67,20 +67,20 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<LandingPage />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/confirmation" element={<Confirmation />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/reset_password_email_phase" element={<Reset_Password_Email_Phase />} />
-            <Route path="/reset_password_code_phase" element={<Reset_Password_Code_Phase />} />
-            <Route path="/authentication_loading" element={<Authentication_Loading />} />
-            <Route path="*" element={<NotFound />} /> {/* any sub-route that is not one of the above will fall here */}
+            <Route path="signup" element={<Signup />} />
+            <Route path="confirmation" element={<Confirmation />} />
+            <Route path="login" element={<Login />} />
+            <Route path="reset_password_email_phase" element={<Reset_Password_Email_Phase />} />
+            <Route path="reset_password_code_phase" element={<Reset_Password_Code_Phase />} />
+            <Route path="authentication_loading" element={<Authentication_Loading />} />
+            <Route path="*" element={<NotFound />} /> 
             {/* delete: */}
-            <Route path="/home" element={<Home />}>
-              <Route path="/delete_account" element={<Delete_Account />} />
+            <Route path="home" element={<Home />}>
+              <Route path="delete_account" element={<Delete_Account />} />
             </Route>
             {/* uncomment: */}
-            {/* <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>}>
-              <Route path="/delete_account" element={<Delete_Account />} />
+            {/* <Route path="home" element={<ProtectedRoute><Home /></ProtectedRoute>}>
+              <Route path="delete_account" element={<Delete_Account />} />
             </Route> */}
           </Route>
         </Routes>
