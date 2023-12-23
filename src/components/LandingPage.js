@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom"
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { Hidden } from '@mui/material';
 
 export default function LandingPage() {
 

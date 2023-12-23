@@ -18,6 +18,13 @@ import { Routes, Route } from "react-router-dom";
 
 const theme = createTheme({
   components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        html, body {
+          overflow-x: hidden; // Hide horizontal scrollbar
+        }
+      `,
+    },
     MuiTextField: {
       styleOverrides: {
         root: {
