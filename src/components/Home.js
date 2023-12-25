@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Link } from "react-router-dom"
 import TextField from '@mui/material/TextField';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 export default function Home() {
 
@@ -68,13 +69,13 @@ export default function Home() {
                 alignItems: 'center', // Center aligns all children horizontally 
                 justifyContent: 'center', // Center aligns all children vertically (if needed)
             }}>
-                <Typography variant="subtitle1" component="h1" color="white">
+                <Typography variant="subtitle1" component="h1" color="white" >
                     Welcome to Home page!
                 </Typography>
 
                 {errorMessage && (
                     <>
-                        <Typography variant="body2" color="error">
+                        <Typography variant="body2" color="error" marginTop={3} fontSize={18}>
                             {errorMessage}
                         </Typography>
                     </>
@@ -83,35 +84,51 @@ export default function Home() {
                 <Typography variant="subtitle1" component="h1" color="white" marginTop={3}>
                     Ask ChatGPT a question:
                 </Typography>
-                
-                <form onSubmit={handleSubmit} noValidate autoComplete='off' marginTop={33}>
-                    {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves, 
+
+                <Box sx={{ marginTop: 3 }}>
+                    <form onSubmit={handleSubmit} noValidate autoComplete='off' >
+                        {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves, 
           autoComplete off makes it not complete the user's text */}
 
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '10px'
-                        }}
-                    >
-                        <TextField
-                            onChange={updateFormState} // same as writing onChange={()=>updateFormState(event)}
-                            id="prompt-input"
-                            label="Question for ChatGPT"
-                            variant="outlined"
-                            name="prompt"
-                            value={formState.prompt}
-                            autoFocus
-                        />
-                        <Button
-                            variant="contained"
-                            type='submit'
-                            disabled={gptMutation.isLoading}>
-                            {gptMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
-                        </Button>
-                    </Box>
-                </form>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '10px'
+                            }}
+                        >
+                            {/* <TextField
+                                onChange={updateFormState} // same as writing onChange={()=>updateFormState(event)}
+                                id="prompt-input"
+                                label="Question for ChatGPT"
+                                variant="outlined"
+                                name="prompt"
+                                value={formState.prompt}
+                                autoFocus
+                            /> */}
+
+                            <TextareaAutosize
+                                aria-label="minimum height"
+                                style={{ width: 300, fontSize: '20px' }}    
+                                minRows={10} // Set minimum rows
+                                placeholder="Enter your question here"
+                                onChange={updateFormState} // same as writing onChange={()=>updateFormState(event)}
+                                id="prompt-input"
+                                label="Question for ChatGPT"
+                                variant="outlined"
+                                name="prompt"
+                                value={formState.prompt}
+                                autoFocus
+                            />
+                            <Button
+                                variant="contained"
+                                type='submit'
+                                disabled={gptMutation.isLoading}>
+                                {gptMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
+                            </Button>
+                        </Box>
+                    </form>
+                </Box>
                 {gptResponse && (
                     <>
                         <Typography variant="body2" color="error">
@@ -124,7 +141,7 @@ export default function Home() {
                     </>
                 )}
 
-                <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{ marginTop: 8 }}>
                     <Button
                         color="primary"
                         onClick={() => logoutMutation.mutate()}
