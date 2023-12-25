@@ -50,6 +50,8 @@ export default function SignUp() {
         email: '',
         password: '',
         password_confirmation: '',
+        first_name: '',
+        last_name: ''
     })
 
     const [fieldErrorState, setFieldError] = useState({
@@ -83,6 +85,8 @@ export default function SignUp() {
             signupCognitoMutation.mutate({
                 email: formState.email,
                 password: formState.password,
+                first_name: formState.first_name,
+                last_name: formState.last_name,
             });
         } else {
             setErrorMessage("Fields in red are invalid")
@@ -134,6 +138,24 @@ export default function SignUp() {
                             error={fieldErrorState.email}
                             required  // make a '*' to indicate it is a mandatory field
                             autoFocus
+                        />
+                        <TextField
+                            onChange={updateFormState} // same as writing onChange={()=>updateFormState(event)}
+                            id="first-name-input"
+                            label="First Name"
+                            variant="outlined"
+                            name="first_name"
+                            value={formState.first_name}
+                            error={fieldErrorState.first_name}
+                        />
+                        <TextField
+                            onChange={updateFormState} // same as writing onChange={()=>updateFormState(event)}
+                            id="last-name-input"
+                            label="Last Name"
+                            variant="outlined"
+                            name="last_name"
+                            value={formState.last_name}
+                            error={fieldErrorState.last_name}
                         />
                         <TextField
                             onChange={updateFormState}

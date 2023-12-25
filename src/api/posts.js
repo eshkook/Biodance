@@ -138,11 +138,13 @@ export function logout_post() {
   });  
 }
 
-export function signup_post({ email, password }) {
+export function signup_post({ email, password, first_name, last_name }) {
   return axios.post("https://efrq1qlgad.execute-api.eu-west-1.amazonaws.com/backend_function", {
     action: 'signup',
     email: email,
     password: password,
+    first_name: first_name,
+    last_name: last_name,
   })
   .then(response => {
     return response.data;
