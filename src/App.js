@@ -81,9 +81,10 @@ export default function App() {
             <Route path="reset_password_email_phase" element={<Reset_Password_Email_Phase />} />
             <Route path="reset_password_code_phase" element={<Reset_Password_Code_Phase />} />
             <Route path="authentication_loading" element={<Authentication_Loading />} />
-            <Route path="*" element={<NotFound />} /> 
+            <Route path="*" element={<NotFound />} />
             {/* delete: */}
-            <Route path="home" element={<Home />}>
+            <Route path="home" >
+              <Route index element={<Home />} />
               <Route path="delete_account" element={<Delete_Account />} />
             </Route>
             {/* uncomment: */}
