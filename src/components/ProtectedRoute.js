@@ -9,8 +9,8 @@ export default function ProtectedRoute({ children }) {
     
     const location = useLocation()
     //////////////////////////////////////////////////////////////////////////// delete
-    return children
-    return <Navigate to="/login" state={{ message: location.state?.no_failure_message ? false : (location.state?.custom_failure_message ? location.state.custom_failure_message : 'Authentication failed, please log in.') }} />
+    // return children
+    // return <Navigate to="/login" state={{ message: location.state?.no_failure_message ? false : (location.state?.custom_failure_message ? location.state.custom_failure_message : 'Authentication failed, please log in.') }} />
     ////////////////////////////////////////////////////////////////////////////
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,9 +22,10 @@ export default function ProtectedRoute({ children }) {
 
     useEffect(() => {
         authenticateMutation.mutate({
-            onSuccess: () => {
+            onSuccess: data => {
                 setIsAuthenticated(true);
                 setAuthStatusChecked(true);
+                // setting data.first_name to global state
             },
             onError: () => {
                 setIsAuthenticated(false);
