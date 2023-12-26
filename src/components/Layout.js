@@ -3,15 +3,16 @@ import Box from '@mui/material/Box';
 import Navbar from './Navbar';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Typography from '@mui/material/Typography'
 
 export default function Layout() {
 
-  const firstName = useSelector(state => state.user.firstName); ////////////////////////
   const location = useLocation();
-  
+
+  const firstName = location.pathname.startsWith('/home') ? useSelector(state => state.user.firstName) : null;
   const homeLink = location.pathname.startsWith('/home') ? '/home' : '/';
-  const backgroundImage = (location.pathname == '/') ? `url(${process.env.PUBLIC_URL + '/images/img_6.jpg'})` : 
-                                                       `url(${process.env.PUBLIC_URL + '/images/img_6.jpg'})`;
+  const backgroundImage = (location.pathname == '/') ? `url(${process.env.PUBLIC_URL + '/images/img_6.jpg'})` :
+    `url(${process.env.PUBLIC_URL + '/images/img_6.jpg'})`;
 
   return (
     <Box
@@ -27,6 +28,14 @@ export default function Layout() {
       }}
     >
       <Navbar homeLink={homeLink} />
+      {firstName && (
+        <>
+          <Typography variant="body2" color="error">
+            Hi {firstName}!
+          </Typography>
+          <br />
+        </>
+      )}
       <Outlet />
     </Box>
   );
