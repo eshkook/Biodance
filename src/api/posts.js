@@ -10,9 +10,9 @@ export function gpt_post({ prompt }) {
   })
   .catch(error => {
     let message
-    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+    if (error.response?.data?.message && typeof error.response.data.message === 'string') {
       message = error.response.data.message
-    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+    } else if (error.response?.data && typeof error.response.data === 'string') {
       message = error.response.data
     } else {
       message = "Something went wrong."
@@ -34,9 +34,9 @@ export function reset_password_code_phase_post({ email, confirmation_code, passw
   })
   .catch(error => {
     let message
-    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+    if (error.response?.data?.message && typeof error.response.data.message === 'string') {
       message = error.response.data.message
-    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+    } else if (error.response?.data && typeof error.response.data === 'string') {
       message = error.response.data
     } else {
       message = "Something went wrong."
@@ -56,9 +56,9 @@ export function reset_password_email_phase_post({ email }) {
   })
   .catch(error => {
     let message
-    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+    if (error.response?.data?.message && typeof error.response.data.message === 'string') {
       message = error.response.data.message
-    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+    } else if (error.response?.data && typeof error.response.data === 'string') {
       message = error.response.data
     } else {
       message = "Something went wrong."
@@ -79,9 +79,9 @@ export function authenticate_post() {
   })
   .catch(error => {
     let message
-    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+    if (error.response?.data?.message && typeof error.response.data.message === 'string') {
       message = error.response.data.message
-    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+    } else if (error.response?.data && typeof error.response.data === 'string') {
       message = error.response.data
     } else {
       message = "Something went wrong."
@@ -103,9 +103,9 @@ export function delete_post({ password }) {
   })
   .catch(error => {
     let message
-    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+    if (error.response?.data?.message && typeof error.response.data.message === 'string') {
       message = error.response.data.message
-    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+    } else if (error.response?.data && typeof error.response.data === 'string') {
       message = error.response.data
     } else {
       message = "Something went wrong."
@@ -126,9 +126,9 @@ export function logout_post() {
   })
   .catch(error => {
     let message
-    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+    if (error.response?.data?.message && typeof error.response.data.message === 'string') {
       message = error.response.data.message
-    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+    } else if (error.response?.data && typeof error.response.data === 'string') {
       message = error.response.data
     } else {
       message = "Something went wrong."
@@ -151,9 +151,9 @@ export function signup_post({ email, password, first_name, last_name }) {
   })
   .catch(error => {
     let message
-    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+    if (error.response?.data?.message && typeof error.response.data.message === 'string') {
       message = error.response.data.message
-    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+    } else if (error.response?.data && typeof error.response.data === 'string') {
       message = error.response.data
     } else {
       message = "Something went wrong."
@@ -174,9 +174,9 @@ export function confirmation_post({ email, confirmation_code }) {
   })
   .catch(error => {
     let message
-    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+    if (error.response?.data?.message && typeof error.response.data.message === 'string') {
       message = error.response.data.message
-    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+    } else if (error.response?.data && typeof error.response.data === 'string') {
       message = error.response.data
     } else {
       message = "Something went wrong."
@@ -199,9 +199,9 @@ export function login_post({ email, password }) {
   })
   .catch(error => {
     let message
-    if (error.response && error.response.data && error.response.data.message && typeof error.response.data.message === 'string') {
+    if (error.response?.data?.message && typeof error.response.data.message === 'string') {
       message = error.response.data.message
-    } else if (error.response && error.response.data && typeof error.response.data === 'string') {
+    } else if (error.response?.data && typeof error.response.data === 'string') {
       message = error.response.data
     } else {
       message = "Something went wrong."

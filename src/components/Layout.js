@@ -2,9 +2,11 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Navbar from './Navbar';
 import { Outlet, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Layout() {
 
+  const firstName = useSelector(state => state.user.firstName); ////////////////////////
   const location = useLocation();
   
   const homeLink = location.pathname.startsWith('/home') ? '/home' : '/';

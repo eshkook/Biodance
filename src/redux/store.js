@@ -14,9 +14,11 @@ const userSlice = createSlice({
 
 export const { setFirstName } = userSlice.actions;
 
-export const store = configureStore({
+const store = configureStore({
     reducer: {
         user: userSlice.reducer,
     },
 });
+
+export default store;
 
