@@ -25,12 +25,17 @@ export default function Layout() {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         position: 'relative',
+
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center', // Center aligns all children horizontally 
+        // justifyContent: 'center', // Center aligns all children vertically (if needed)
       }}
     >
       <Navbar homeLink={homeLink} />
       {firstName && (
         <>
-          <Typography variant="body2" color="error">
+          <Typography variant="body2" color="white">
             Hi {firstName}!
           </Typography>
           <br />
