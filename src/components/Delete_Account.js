@@ -17,8 +17,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import { useDispatch } from 'react-redux';
 
 export default function Delete_Account() {
+
+    const dispatch = useDispatch();
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -35,6 +38,7 @@ export default function Delete_Account() {
     const deleteMutation = useMutation({
         mutationFn: delete_post,
         onSuccess: data => {
+            dispatch(setFirstName(''));
             navigate("/", { state: { quick_message: 'Succuessfully deleted your account!' } });
         },
         onError: error => {

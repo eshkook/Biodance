@@ -10,8 +10,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { Link } from "react-router-dom"
 import TextField from '@mui/material/TextField';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { useDispatch } from 'react-redux';
 
 export default function Home() {
+
+    const dispatch = useDispatch();
 
     const [errorMessage, setErrorMessage] = useState(null);
     const [gptResponse, setGptResponse] = useState(null);
@@ -24,6 +27,7 @@ export default function Home() {
     const logoutMutation = useMutation({
         mutationFn: logout_post,
         onSuccess: data => {
+            dispatch(setFirstName(''));
             navigate("/", { state: { quick_message: 'Succuessfully logged out!' } });
             // console.log("logout success")
         },
