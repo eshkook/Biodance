@@ -54,9 +54,7 @@ export default function Home() {
             gptMutation.mutate({
                 prompt: formState.prompt,
             })
-        } else {
-            setErrorMessage("Can't submit an empty text")
-        }
+        } 
     }
 
     function updateFormState(event) {
@@ -117,8 +115,15 @@ export default function Home() {
 
                             <TextareaAutosize
                                 aria-label="minimum height"
-                                style={{ width: 300, fontSize: '20px' }}
-                                minRows={10} // Set minimum rows
+                                style={{ 
+                                    width: 300, 
+                                    fontSize: '20px',
+                                    resize: 'vertical', // Allows only vertical resizing
+                                    minHeight: '200px',
+                                    maxHeight: '350px'
+
+                                }}
+                                // minRows={10} // Set minimum rows
                                 placeholder="Enter your question here"
                                 onChange={updateFormState} // same as writing onChange={()=>updateFormState(event)}
                                 id="prompt-input"
