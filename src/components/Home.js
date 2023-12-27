@@ -11,6 +11,7 @@ import { Link } from "react-router-dom"
 import TextField from '@mui/material/TextField';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { useDispatch } from 'react-redux';
+import { setFirstName } from '../redux/store';
 
 export default function Home() {
 
