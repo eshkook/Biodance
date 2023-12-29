@@ -103,6 +103,7 @@ export default function Delete_Account() {
                 alignItems: 'center', // Center aligns all children horizontally 
                 justifyContent: 'center', // Center aligns all children vertically (if needed)
             }}>
+
                 <Typography variant="subtitle1" component="h1" color="white">
                     To delete your account type in your password:
                 </Typography>

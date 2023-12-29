@@ -8,7 +8,6 @@ import { useMutation } from "@tanstack/react-query"
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Link } from "react-router-dom"
-import TextField from '@mui/material/TextField';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { useDispatch } from 'react-redux';
 import { setFirstName } from '../redux/store';
@@ -55,7 +54,7 @@ export default function Home() {
             gptMutation.mutate({
                 prompt: formState.prompt,
             })
-        } 
+        }
     }
 
     function updateFormState(event) {
@@ -76,6 +75,7 @@ export default function Home() {
                 alignItems: 'center', // Center aligns all children horizontally 
                 justifyContent: 'center', // Center aligns all children vertically (if needed)
             }}>
+                
                 <Typography variant="subtitle1" component="h1" color="white" >
                     Welcome to Home page!
                 </Typography>
@@ -116,8 +116,8 @@ export default function Home() {
 
                             <TextareaAutosize
                                 aria-label="minimum height"
-                                style={{ 
-                                    width: 300, 
+                                style={{
+                                    width: 300,
                                     fontSize: '20px',
                                     resize: 'vertical', // Allows only vertical resizing
                                     minHeight: '200px',
