@@ -81,7 +81,6 @@ export default function App() {
             <Route path="reset_password_email_phase" element={<Reset_Password_Email_Phase />} />
             <Route path="reset_password_code_phase" element={<Reset_Password_Code_Phase />} />
             <Route path="authentication_loading" element={<Authentication_Loading />} />
-            <Route path="*" element={<NotFound />} />
             {/* delete: */}
             <Route path="home" >
               <Route index element={<Home />} />
@@ -91,6 +90,7 @@ export default function App() {
             {/* <Route path="home" element={<ProtectedRoute><Home /></ProtectedRoute>}>
               <Route path="delete_account" element={<Delete_Account />} />
             </Route> */}
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </ThemeProvider>
