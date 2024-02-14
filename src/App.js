@@ -5,6 +5,7 @@ import Signup from './components/Signup';
 import Home from './components/Home';
 import Layout from './components/Layout';
 import Confirmation from './components/Confirmation';
+import Chat from './components/Chat';
 import Reset_Password_Email_Phase from './components/Reset_Password_Email_Phase';
 import Reset_Password_Code_Phase from './components/Reset_Password_Code_Phase';
 import Delete_Account from './components/Delete_Account';
@@ -73,6 +74,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
+          <Route path="chat" element={<Chat />} />
           <Route path="/" element={<Layout />}>
             <Route index element={<LandingPage />} />
             <Route path="signup" element={<Signup />} />
