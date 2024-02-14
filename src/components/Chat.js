@@ -26,7 +26,7 @@ export default function Chat() {
         <>
             <Box
                 sx={{
-                    minHeight: '100vh',
+                    // minHeight: '100vh',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center', // Changed to 'stretch' to make the children (cards) of the same height
