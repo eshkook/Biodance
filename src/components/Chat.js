@@ -8,8 +8,8 @@ import { chat_post } from "./posts";
 export default function Chat({ chosen_language = 'Hebrew' }) {
 
     const [messages, setMessages] = useState([
-        // { id: 1, text: "Hi there!", sender: "bot" },
-        // { id: 2, text: "Get to work maggot", sender: "user" }
+        { id: 1, text: "Hi there!", sender: "bot" },
+        { id: 2, text: "Get to work maggot", sender: "user" }
     ]);
 
     const [errorMessage, setErrorMessage] = useState(null);
@@ -26,7 +26,7 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
     });
 
     const [formState, setFormState] = useState({
-        message: ''
+        user_message: ''
     })
 
     function updateFormState(event) {
@@ -39,10 +39,10 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
 
     function handleSubmit(event) {
         event.preventDefault() // preventing re-rendering the page
-        if (formState.message) {
-            setMessages(messages => [...messages, { id: messages.length + 1, text: formState.message, sender: "user" }]);
+        if (formState.user_message) {
+            setMessages(messages => [...messages, { id: messages.length + 1, text: formState.user_message, sender: "user" }]);
             chatMutation.mutate({
-                message: formState.message,
+                user_message: formState.user_message,
             });
         }
     }
@@ -89,11 +89,11 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
                         >
                             <TextField
                                 onChange={updateFormState}
-                                id="message-input"
+                                id="user_message-input"
                                 label="Type your message here..."
                                 variant="outlined"
-                                name="message"
-                                value={formState.message}
+                                name="user_message"
+                                value={formState.user_message}
                                 fullWidth // makes the TextField full width
                                 sx={{ mt: 1 }} // adds margin-top for spacing
                                 autoFocus={true}
