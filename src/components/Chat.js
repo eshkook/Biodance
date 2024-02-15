@@ -8,8 +8,8 @@ import { chat_post } from "./posts";
 export default function Chat({ chosen_language = 'Hebrew' }) {
 
     const [messages, setMessages] = useState([
-        { id: 1, text: "Hi there!", sender: "bot" },
-        { id: 2, text: "Get to work maggot", sender: "user" }
+        // { id: 1, text: "Hi there!", sender: "bot" },
+        // { id: 2, text: "Get to work maggot", sender: "user" }
     ]);
 
     const [errorMessage, setErrorMessage] = useState(null);

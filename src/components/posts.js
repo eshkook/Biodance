@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export function chat_post({ message }) {
   return axios.post("https://efrq1qlgad.execute-api.eu-west-1.amazonaws.com/botox_function", {
-    action: 'message',
+    // action: 'message',
     prompt: message
   })
   .then(response => {
