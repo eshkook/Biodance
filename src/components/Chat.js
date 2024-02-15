@@ -108,22 +108,6 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
                             >
                                 {chatMutation.isLoading ? <CircularProgress size={24} /> : "Send"}
                             </Button>
-
-                            {/* <TextField
-                                onChange={updateFormState}
-                                id="message-input"
-                                label="Your message"
-                                variant="outlined"
-                                name="message"
-                                value={formState.message}
-                                autoFocus={true}
-                            />
-                            <Button
-                                variant="contained"
-                                type='submit'
-                                disabled={chatMutation.isLoading}>
-                                {chatMutation.isLoading ? <CircularProgress size={24} /> : "Submit"}
-                            </Button> */}
                         </Box>
                     </form>
                 </Box>
