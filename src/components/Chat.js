@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Grid, TextField, Button, Typography, Paper } from '@mui/material';
+import { Box, Grid, TextField, Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import Message from './Message';
 
-export default function Chat() {
+export default function Chat({ chosen_language='Hebrew' }) {
     const [messages, setMessages] = useState([
         { id: 1, text: "Hi there!", sender: "bot" },
-        // Add more messages here
+        { id: 2, text: "Get to work maggot", sender: "user" }
     ]);
     const [input, setInput] = useState('');
 
@@ -37,7 +37,7 @@ export default function Chat() {
                 <Box sx={{ height: "100vh", display: "flex", flexDirection: "column", bgcolor: "grey.200" }}>
                     <Box sx={{ flexGrow: 1, overflow: "auto", p: 2 }}>
                         {messages.map((message) => (
-                            <Message key={message.id} message={message} />
+                            <Message key={message.id} message={message} chosen_language={chosen_language} />
                         ))}
                     </Box>
                     <Box sx={{ p: 2, backgroundColor: "background.default" }}>

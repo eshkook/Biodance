@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 
-export default function Message({ message }) {
+export default function Message({ message, chosen_language }) {
 
     const isBot = message.sender === "bot";
   
@@ -9,7 +9,7 @@ export default function Message({ message }) {
       <Box
         sx={{
           display: "flex",
-          justifyContent: isBot ? "flex-start" : "flex-end",
+          justifyContent: (isBot && chosen_language == "Hebrew" || !isBot && !(chosen_language == "Hebrew")) ? "flex-end" : "flex-start",
           mb: 2,
         }}
       >
@@ -18,7 +18,7 @@ export default function Message({ message }) {
           sx={{
             p: 2,
             backgroundColor: isBot ? "primary.light" : "secondary.light",
-            borderRadius: isBot ? "20px 20px 20px 5px" : "20px 20px 5px 20px",
+            borderRadius: (isBot && chosen_language == "Hebrew" || !isBot && !(chosen_language == "Hebrew")) ? "20px 5px 20px 20px" : "5px 20px 20px 20px",
           }}
         >
           <Typography variant="body1">{message.text}</Typography>
