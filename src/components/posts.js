@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export function chat_post({ user_message }) {
+export function chat_post({ user_message, action }) {
   return axios.post("https://xk8r88ywm0.execute-api.eu-west-1.amazonaws.com/botox_function", {
-    // action: 'user_message',
+    action: action,
     prompt: user_message
   })
   .then(response => {

@@ -17,6 +17,7 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
     const chatMutation = useMutation({
         mutationFn: chat_post,
         onSuccess: data => {
+            print(data)
             setMessages(messages => [...messages, { id: messages.length + 1, text: data, sender: "bot" }]);
         },
         onError: error => {
@@ -41,8 +42,10 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
         event.preventDefault() // preventing re-rendering the page
         if (formState.user_message) {
             setMessages(messages => [...messages, { id: messages.length + 1, text: formState.user_message, sender: "user" }]);
+            const actionSource = event.target.getAttribute('data-action') || "default-action";
             chatMutation.mutate({
                 user_message: formState.user_message,
+                action: actionSource
             });
         }
     }
@@ -87,7 +90,8 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
                                 gap: '10px'
                             }}
                         >
-                            <TextField
+                            {/* <TextField
+                                color='black'
                                 onChange={updateFormState}
                                 id="user_message-input"
                                 label="Type your message here..."
@@ -97,11 +101,39 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
                                 fullWidth // makes the TextField full width
                                 sx={{ mt: 1 }} // adds margin-top for spacing
                                 autoFocus={true}
+                            /> */}
+                            <TextField
+                                onChange={updateFormState}
+                                id="user_message-input"
+                                label="Type your message here..."
+                                variant="outlined"
+                                name="user_message"
+                                value={formState.user_message}
+                                fullWidth // makes the TextField full width
+                                sx={{
+                                    mt: 1, // adds margin-top for spacing
+                                    '& .MuiInputBase-input': {
+                                        color: 'black', // sets text color
+                                    },
+                                    '& .MuiOutlinedInput-root': {
+                                        '& fieldset': {
+                                            borderColor: 'black', // sets border color
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: 'black', // sets border color on hover
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: 'black', // sets border color on focus
+                                        },
+                                    }
+                                }}
+                                autoFocus={true}
                             />
                             <Button
                                 variant="contained"
                                 color="primary" // use a theme color that indicates primary action
                                 type='submit'
+                                data-action="text-message"
                                 disabled={chatMutation.isLoading}
                                 endIcon={!chatMutation.isLoading && <SendIcon />}
                                 sx={{ mt: 1 }} // adds margin-top for spacing
