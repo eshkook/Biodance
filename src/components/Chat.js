@@ -17,8 +17,15 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
     const chatMutation = useMutation({
         mutationFn: chat_post,
         onSuccess: data => {
-            print(data)
-            setMessages(messages => [...messages, { id: messages.length + 1, text: data, sender: "bot" }]);
+            setMessages(messages => [...messages, { id: messages.length + 1, text: data.message, sender: "bot" }]);
+            // handle keyboard
+            if (data.keyboard) {
+
+            }
+            // handle photos
+            if (data.image_url) {
+
+            }
         },
         onError: error => {
             setErrorMessage(error.message || "An error occurred");
@@ -38,12 +45,10 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
         }))
     }
 
-    function handleSubmit(event) {
+    function handleSubmit(event, actionSource) {
         event.preventDefault() // preventing re-rendering the page
         if (formState.user_message) {
             setMessages(messages => [...messages, { id: messages.length + 1, text: formState.user_message, sender: "user" }]);
-            console.log(event)
-            const actionSource = event.target.getAttribute('data-action');
             chatMutation.mutate({
                 user_message: formState.user_message,
                 action: actionSource
@@ -134,7 +139,7 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
                                 variant="contained"
                                 color="primary" // use a theme color that indicates primary action
                                 type='submit'
-                                data-action="text-message"
+                                onClick={(e) => handleSubmit(e, 'text-message')}
                                 disabled={chatMutation.isLoading}
                                 endIcon={!chatMutation.isLoading && <SendIcon />}
                                 sx={{ mt: 1 }} // adds margin-top for spacing
