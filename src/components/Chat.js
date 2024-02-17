@@ -42,6 +42,7 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
         event.preventDefault() // preventing re-rendering the page
         if (formState.user_message) {
             setMessages(messages => [...messages, { id: messages.length + 1, text: formState.user_message, sender: "user" }]);
+            console.log(event)
             const actionSource = event.target.getAttribute('data-action');
             chatMutation.mutate({
                 user_message: formState.user_message,
