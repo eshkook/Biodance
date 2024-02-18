@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
 import { useMutation } from "@tanstack/react-query";
-import { Box, Grid, TextField, Button, Typography, CircularProgress } from '@mui/material';
+import { Box, TextField, Button, Typography, CircularProgress } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import Message from './Message';
 import { chat_post } from "./posts";
 
-export default function Chat({ chosen_language = 'Hebrew' }) {
+export default function Chat() {
+
+    const [chosenLanguage, setChosenLanguage] = useState('Hebrew');
+
+    const keyboard = [
+        [{"text": 'עברית', "callback_data": 'Hebrew'}], 
+        [{"text": 'English', "callback_data": 'English'}]
+                ]
 
     const [messages, setMessages] = useState([
-        { id: 1, text: "Hi there!", sender: "bot" },
-        { id: 2, text: "Get to work maggot", sender: "user" }
+        // { id: 1, text: "Hi there!", sender: "bot" },
+        // { id: 2, text: "Get to work maggot", sender: "user" },
+        // { id: 3, text: "Hi thhhhhhhhhhhhhhhhhhhere!", sender: "bot", keyboard: keyboard }
     ]);
 
     const [errorMessage, setErrorMessage] = useState(null);
@@ -18,15 +26,7 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
         mutationFn: chat_post,
         onSuccess: data => {
             // console.log(data)
-            setMessages(messages => [...messages, { id: messages.length + 1, text: data.message, sender: "bot" }]);
-            // handle keyboard
-            if (data.keyboard) {
-                // console.log(data.keyboard)
-            }
-            // handle photos
-            if (data.image_url) {
-                // console.log(data.image_url)
-            }
+            setMessages(messages => [...messages, { id: messages.length + 1, text: data.message, keyboard: data.keyboard, image_urls:data.image_urls, sender: "bot" }]);
         },
         onError: error => {
             setErrorMessage(error.message || "An error occurred");
@@ -46,13 +46,13 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
         }))
     }
 
-    function handleSubmit(event, actionSource) {
+    function handleSubmit(event) {
         event.preventDefault() // preventing re-rendering the page
         if (formState.user_message) {
             setMessages(messages => [...messages, { id: messages.length + 1, text: formState.user_message, sender: "user" }]);
             chatMutation.mutate({
                 user_message: formState.user_message,
-                action: actionSource
+                action: 'text-message'
             });
         }
     }
@@ -83,7 +83,13 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
                 <Box sx={{ height: "100vh", display: "flex", flexDirection: "column", bgcolor: "grey.200" }}>
                     <Box sx={{ flexGrow: 1, overflow: "auto", p: 2 }}>
                         {messages.map((message) => (
-                            <Message key={message.id} message={message} chosen_language={chosen_language} />
+                            <Message 
+                            key={message.id} 
+                            message={message} 
+                            chosenLanguage={chosenLanguage} 
+                            setMessages={setMessages}
+                            setErrorMessage={setErrorMessage}
+                            setChosenLanguage={setChosenLanguage} />
                         ))}
                     </Box>
                     <form onSubmit={handleSubmit} noValidate autoComplete='off'>
@@ -140,7 +146,7 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
                                 variant="contained"
                                 color="primary" // use a theme color that indicates primary action
                                 type='submit'
-                                onClick={(e) => handleSubmit(e, 'text-message')}
+                                onClick={handleSubmit}
                                 disabled={chatMutation.isLoading}
                                 endIcon={!chatMutation.isLoading && <SendIcon />}
                                 sx={{ mt: 1 }} // adds margin-top for spacing
