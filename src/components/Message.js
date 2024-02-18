@@ -54,13 +54,25 @@ export default function Message({ message, chosenLanguage, setMessages, setError
                     borderRadius: (isBot && chosenLanguage === "Hebrew") || (!isBot && chosenLanguage !== "Hebrew") ? "20px 5px 20px 20px" : "5px 20px 20px 20px",
                 }}
             >
-                <Typography
-                    variant="body1"
-                    align={chosenLanguage === "Hebrew" ? "right" : "left"}
-                    dir={chosenLanguage === "Hebrew" ? "rtl" : "ltr"}
-                >
-                    {formatMessageText(message.text)}
-                </Typography>
+                {message.text === "בחר שפה:\n\nChoose language:" ? (
+                    <>
+                        <Typography variant="body1" align={"right"} dir={"rtl"}>
+                            בחר שפה:
+                        </Typography>
+                        <br />
+                        <Typography variant="body1" align={"left"}>
+                            Choose language:
+                        </Typography>
+                    </>
+                ) :
+                    <Typography
+                        variant="body1"
+                        align={chosenLanguage === "Hebrew" ? "right" : "left"}
+                        dir={chosenLanguage === "Hebrew" ? "rtl" : "ltr"}
+                    >
+                        {formatMessageText(message.text)}
+                    </Typography>
+                }
             </Paper>
             {message.image_urls && message.image_urls.map((url, index) => (
                 <Box
@@ -97,53 +109,3 @@ export default function Message({ message, chosenLanguage, setMessages, setError
         </Box>
     );
 };
-
-//     return (
-//         <Box
-//             sx={{
-//                 display: "flex",
-//                 flexDirection: "column", // Changed to column to stack children vertically
-//                 alignItems: (isBot && chosenLanguage === "Hebrew") || (!isBot && chosenLanguage !== "Hebrew") ? "flex-end" : "flex-start",
-//                 mb: 2,
-//             }}
-//         >
-//             <Paper
-//                 variant="outlined"
-//                 sx={{
-//                     p: 2,
-//                     backgroundColor: isBot ? "primary.light" : "secondary.light",
-//                     borderRadius: (isBot && chosenLanguage === "Hebrew") || (!isBot && chosenLanguage !== "Hebrew") ? "20px 5px 20px 20px" : "5px 20px 20px 20px",
-//                 }}
-//             >
-//                 <Typography
-//                     variant="body1"
-//                     align={chosenLanguage === "Hebrew" ? "right" : "left"}
-//                     dir={chosenLanguage === "Hebrew" ? "rtl" : "ltr"}
-//                 >
-//                     {formatMessageText(message.text)}
-//                 </Typography>
-//             </Paper>
-//             <Box
-//                 sx={{
-//                     display: "flex",
-//                     flexDirection: "column", // Ensure buttons are stacked vertically
-//                     alignItems: "center", // Center buttons (adjust as needed)
-//                     mt: 1, // Add some margin above the first button
-//                 }}
-//             >
-//                 {message.keyboard && message.keyboard.map((button, index) => (
-//                     <Button
-//                         key={index}
-//                         variant="contained"
-//                         sx={{ mt: 1 }} // Add margin between buttons
-//                         onClick={() => handleClick(button[0].callback_data)}
-//                     >
-//                         {button[0].text}
-//                     </Button>
-//                 ))}
-//             </Box>
-//         </Box>
-//     );
-// };
-
-
