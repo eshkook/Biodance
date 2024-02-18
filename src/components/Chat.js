@@ -26,7 +26,7 @@ export default function Chat() {
         mutationFn: chat_post,
         onSuccess: data => {
             // console.log(data)
-            setMessages(messages => [...messages, { id: messages.length + 1, text: data.message, keyboard: data.keyboard, image_urls:data.image_urls, sender: "bot" }]);
+            setMessages(messages => [...messages, { id: messages.length + 1, text: data.message, keyboard: data.keyboard, image_urls: data.image_urls, sender: "bot" }]);
         },
         onError: error => {
             setErrorMessage(error.message || "An error occurred");
