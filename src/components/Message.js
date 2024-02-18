@@ -5,9 +5,6 @@ export default function Message({ message, chosen_language }) {
 
     const isBot = message.sender === "bot";
 
-    // Determine text alignment based on the chosen language
-    const textAlign = chosen_language === "Hebrew" ? "right" : "left";
-
     // Function to split the message text into lines and intersperse <br /> elements
     const formatMessageText = (text) => {
         return text.split('\n').map((line, index, array) => (
@@ -34,9 +31,25 @@ export default function Message({ message, chosen_language }) {
                     borderRadius: (isBot && chosen_language === "Hebrew") || (!isBot && chosen_language !== "Hebrew") ? "20px 5px 20px 20px" : "5px 20px 20px 20px",
                 }}
             >
-                <Typography variant="body1" align={textAlign}>
-                    {formatMessageText(message.text)}
-                </Typography>
+                {message.text === "בחר שפה:\n\nChoose language:" ? (
+                    <>
+                        <Typography variant="body1" align={"right"} dir={"rtl"}>
+                            בחר שפה:
+                        </Typography>
+                        <br />
+                        <Typography variant="body1" align={"left"}>
+                            Choose language:
+                        </Typography>
+                    </>
+                ) :
+                    <Typography
+                        variant="body1"
+                        align={chosen_language === "Hebrew" ? "right" : "left"}
+                        dir={chosen_language === "Hebrew" ? "rtl" : "ltr"}
+                    >
+                        {formatMessageText(message.text)}
+                    </Typography>
+                }
             </Paper>
         </Box>
     );

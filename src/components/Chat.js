@@ -17,15 +17,15 @@ export default function Chat({ chosen_language = 'Hebrew' }) {
     const chatMutation = useMutation({
         mutationFn: chat_post,
         onSuccess: data => {
-            console.log(data)
+            // console.log(data)
             setMessages(messages => [...messages, { id: messages.length + 1, text: data.message, sender: "bot" }]);
             // handle keyboard
             if (data.keyboard) {
-                console.log(data.keyboard)
+                // console.log(data.keyboard)
             }
             // handle photos
             if (data.image_url) {
-                console.log(data.image_url)
+                // console.log(data.image_url)
             }
         },
         onError: error => {
