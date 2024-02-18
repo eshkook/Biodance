@@ -10,17 +10,15 @@ export default function Chat() {
     const [chosenLanguage, setChosenLanguage] = useState('Hebrew');
 
     const keyboard = [
-        [{"text": 'עברית', "callback_data": 'Hebrew'}], 
-        [{"text": 'English', "callback_data": 'English'}]
-                ]
+        [{ "text": 'עברית', "callback_data": 'Hebrew' }],
+        [{ "text": 'English', "callback_data": 'English' }]
+    ]
 
     const [messages, setMessages] = useState([
         // { id: 1, text: "Hi there!", sender: "bot" },
         // { id: 2, text: "Get to work maggot", sender: "user" },
         // { id: 3, text: "Hi thhhhhhhhhhhhhhhhhhhere!", sender: "bot", keyboard: keyboard }
     ]);
-
-    const [errorMessage, setErrorMessage] = useState(null);
 
     const chatMutation = useMutation({
         mutationFn: chat_post,
@@ -29,7 +27,6 @@ export default function Chat() {
             setMessages(messages => [...messages, { id: messages.length + 1, text: data.message, keyboard: data.keyboard, image_urls: data.image_urls, sender: "bot" }]);
         },
         onError: error => {
-            setErrorMessage(error.message || "An error occurred");
             console.log(error.message || "An error occurred")
         }
     });
@@ -57,6 +54,14 @@ export default function Chat() {
         }
     }
 
+    function handleClearChat() {
+        setMessages([]);
+        chatMutation.mutate({
+            user_message: '/start',
+            action: 'text-message'
+        });
+    }
+
     return (
         <>
             <Box
@@ -72,30 +77,20 @@ export default function Chat() {
                     // p: 300, // Padding for the box
                 }}
             >
-                {errorMessage && (
-                    <>
-                        <Typography variant="body2" color="error">
-                            {errorMessage}
-                        </Typography>
-                        <br />
-                    </>
-                )}
                 <Box sx={{ height: "100vh", display: "flex", flexDirection: "column", bgcolor: "grey.200" }}>
                     <Box sx={{ flexGrow: 1, overflow: "auto", p: 2 }}>
                         {messages.map((message) => (
-                            <Message 
-                            key={message.id} 
-                            message={message} 
-                            chosenLanguage={chosenLanguage} 
-                            setMessages={setMessages}
-                            setErrorMessage={setErrorMessage}
-                            setChosenLanguage={setChosenLanguage} />
+                            <Message
+                                key={message.id}
+                                message={message}
+                                chosenLanguage={chosenLanguage}
+                                setMessages={setMessages}
+                                setChosenLanguage={setChosenLanguage} />
                         ))}
                     </Box>
                     <form onSubmit={handleSubmit} noValidate autoComplete='off'>
                         {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves,
           autoComplete off makes it not complete the user's text */}
-
                         <Box
                             sx={{
                                 display: 'flex',
@@ -148,13 +143,24 @@ export default function Chat() {
                                 type='submit'
                                 onClick={handleSubmit}
                                 disabled={chatMutation.isLoading}
-                                endIcon={!chatMutation.isLoading && <SendIcon />}
+                                endIcon={<SendIcon />}
                                 sx={{ mt: 1 }} // adds margin-top for spacing
                             >
-                                {chatMutation.isLoading ? <CircularProgress size={24} /> : "Send"}
+                                {/* {chatMutation.isLoading ? <CircularProgress size={24} /> : "Send"} */}
+                                {"Send"}
                             </Button>
                         </Box>
                     </form>
+                    <Button
+                        variant="contained"
+                        color="primary" // use a theme color that indicates primary action
+                        disabled={chatMutation.isLoading}
+                        onClick={handleClearChat}
+                        sx={{ mt: 1 }} // adds margin-top for spacing
+                    >
+                        {/* {chatMutation.isLoading ? <CircularProgress size={24} /> : (chosenLanguage == "hebrew" ? "נקה צ'אט" : "Clear chat")} */}
+                        {chosenLanguage == "hebrew" ? "נקה צ'אט" : "Clear chat"}
+                    </Button>
                 </Box>
             </Box>
         </>

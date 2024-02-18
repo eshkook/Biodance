@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Paper, Button } from '@mui/material';
+import { Box, Typography, Paper, CircularProgress, Button } from '@mui/material';
 import { chat_post } from "./posts";
 import { useMutation } from "@tanstack/react-query";
 
-export default function Message({ message, chosenLanguage, setMessages, setErrorMessage, setChosenLanguage }) {
+export default function Message({ message, chosenLanguage, setMessages, setChosenLanguage }) {
 
     const [buttonWidth, setButtonWidth] = useState('auto');
 
@@ -25,7 +25,6 @@ export default function Message({ message, chosenLanguage, setMessages, setError
             setMessages(messages => [...messages, { id: messages.length + 1, text: data.message, keyboard: data.keyboard, image_urls: data.image_urls, sender: "bot" }]);
         },
         onError: error => {
-            setErrorMessage(error.message || "An error occurred");
             console.log(error.message || "An error occurred")
         }
     });
@@ -122,12 +121,14 @@ export default function Message({ message, chosenLanguage, setMessages, setError
                     <Button
                         key={index}
                         variant="contained"
+                        disabled={chatMutation.isLoading}
                         sx={{
                             mt: 1, // Add margin between buttons
                             width: `calc(${buttonWidth} + 25px)`, // Apply the calculated width
                         }}
                         onClick={() => handleClick(button[0].callback_data)}
                     >
+                        {/* {chatMutation.isLoading ? <CircularProgress size={24} /> : button[0].text} */}
                         {button[0].text}
                     </Button>
                 ))}
