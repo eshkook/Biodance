@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Paper, Button } from '@mui/material';
 import { chat_post } from "./posts";
 import { useMutation } from "@tanstack/react-query";
 
 export default function Message({ message, chosenLanguage, setMessages, setErrorMessage, setChosenLanguage }) {
+
+    const [buttonWidth, setButtonWidth] = useState('auto');
+
+    useEffect(() => {
+        // Calculate the width of the longest button text after the component mounts
+        // This is a simplified example. In a real application, you might need to actually measure text width in the DOM
+        if (message.keyboard && message.keyboard.length > 0) {
+            const longestText = message.keyboard.reduce((longest, button) => button[0].text.length > longest.length ? button[0].text : longest, "");
+            // Set a fixed width based on the longest text
+            // This could be replaced with a more sophisticated calculation if necessary
+            setButtonWidth(`${longestText.length}ch`); // Example: sets width based on character count, `ch` is a CSS unit based on the width of the "0" character
+        }
+    }, [message.keyboard]); // Recalculate if the keyboard buttons change
 
     const chatMutation = useMutation({
         mutationFn: chat_post,
@@ -95,11 +108,24 @@ export default function Message({ message, chosenLanguage, setMessages, setError
                     mt: 1,
                 }}
             >
-                {message.keyboard && message.keyboard.map((button, index) => (
+                {/* {message.keyboard && message.keyboard.map((button, index) => (
                     <Button
                         key={index}
                         variant="contained"
                         sx={{ mt: 1 }} // Add margin between buttons
+                        onClick={() => handleClick(button[0].callback_data)}
+                    >
+                        {button[0].text}
+                    </Button>
+                ))} */}
+                {message.keyboard && message.keyboard.map((button, index) => (
+                    <Button
+                        key={index}
+                        variant="contained"
+                        sx={{
+                            mt: 1, // Add margin between buttons
+                            width: `calc(${buttonWidth} + 25px)`, // Apply the calculated width
+                        }}
                         onClick={() => handleClick(button[0].callback_data)}
                     >
                         {button[0].text}
