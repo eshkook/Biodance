@@ -5,8 +5,11 @@ import Message from './Message';
 import { chat_post } from "./posts";
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import React, { useState, useEffect, useRef } from 'react';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
 export default function Chat() {
+
+    const [chatStarted, setChatStarted] = useState(false)
 
     const [messages, setMessages] = useState([
         // { id: 1, text: "Hi there!", sender: "bot" },
@@ -72,6 +75,14 @@ export default function Chat() {
         });
     }
 
+    function handleStartChat() {
+        setChatStarted(true)
+        chatMutation.mutate({
+            user_message: '/start',
+            action: 'text-message'
+        });
+    }
+
     return (
         <>
             <Box
@@ -87,30 +98,31 @@ export default function Chat() {
                     // p: 300, // Padding for the box
                 }}
             >
-                <Box sx={{ height: "100vh", display: "flex", flexDirection: "column", bgcolor: "grey.200" }}>
-                    <Box sx={{ flexGrow: 1, overflow: "auto", p: 2 }}>
-                        {messages.map((message) => (
-                            <Message
-                                key={message.id}
-                                message={message}
-                                chosenLanguage={chosenLanguage}
-                                setMessages={setMessages}
-                                setChosenLanguage={setChosenLanguage}
-                                onImageLoad={handleImageLoad} />
-                        ))}
-                        <div ref={messagesEndRef} />
-                    </Box>
-                    <form onSubmit={handleSubmit} noValidate autoComplete='off'>
-                        {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves,
+                {chatStarted ? (
+                    <Box sx={{ height: "100vh", display: "flex", flexDirection: "column", bgcolor: "grey.200" }}>
+                        <Box sx={{ flexGrow: 1, overflow: "auto", p: 2 }}>
+                            {messages.map((message) => (
+                                <Message
+                                    key={message.id}
+                                    message={message}
+                                    chosenLanguage={chosenLanguage}
+                                    setMessages={setMessages}
+                                    setChosenLanguage={setChosenLanguage}
+                                    onImageLoad={handleImageLoad} />
+                            ))}
+                            <div ref={messagesEndRef} />
+                        </Box>
+                        <form onSubmit={handleSubmit} noValidate autoComplete='off'>
+                            {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves,
           autoComplete off makes it not complete the user's text */}
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                gap: '10px'
-                            }}
-                        >
-                            {/* <TextField
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '10px'
+                                }}
+                            >
+                                {/* <TextField
                                 color='black'
                                 onChange={updateFormState}
                                 id="user_message-input"
@@ -122,65 +134,84 @@ export default function Chat() {
                                 sx={{ mt: 1 }} // adds margin-top for spacing
                                 autoFocus={true}
                             /> */}
-                            <TextField
-                                onChange={updateFormState}
-                                id="user_message-input"
-                                label="Type your message here..."
-                                variant="outlined"
-                                name="user_message"
-                                value={formState.user_message}
-                                fullWidth // makes the TextField full width
-                                sx={{
-                                    mt: 1, // adds margin-top for spacing
-                                    '& .MuiInputBase-input': {
-                                        color: 'black', // sets text color
-                                    },
-                                    '& .MuiOutlinedInput-root': {
-                                        '& fieldset': {
-                                            borderColor: 'black', // sets border color
+                                <TextField
+                                    onChange={updateFormState}
+                                    id="user_message-input"
+                                    label="Type your message here..."
+                                    variant="outlined"
+                                    name="user_message"
+                                    value={formState.user_message}
+                                    fullWidth // makes the TextField full width
+                                    sx={{
+                                        mt: 1, // adds margin-top for spacing
+                                        '& .MuiInputBase-input': {
+                                            color: 'black', // sets text color
                                         },
-                                        '&:hover fieldset': {
-                                            borderColor: 'black', // sets border color on hover
-                                        },
-                                        '&.Mui-focused fieldset': {
-                                            borderColor: 'black', // sets border color on focus
-                                        },
-                                    }
-                                }}
-                                autoFocus={true}
-                            />
-                            <Button
-                                variant="contained"
-                                color="primary" // use a theme color that indicates primary action
-                                type='submit'
-                                onClick={handleSubmit}
-                                disabled={chatMutation.isLoading}
-                                {...(chosenLanguage == "Hebrew" ? { startIcon: <SendIcon sx={{ transform: 'rotate(180deg)' }} /> } : { endIcon: <SendIcon /> })}
-                                sx={{
-                                    dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
-                                    mt: 1
-                                }}
-                            >
-                                {/* {chatMutation.isLoading ? <CircularProgress size={24} /> : "Send"} */}
-                                {chosenLanguage == "Hebrew" ? "שלח" : "Send"}
-                            </Button>
-                        </Box>
-                    </form>
-                    <Button
-                        variant="contained"
-                        color="primary" // use a theme color that indicates primary action
-                        disabled={chatMutation.isLoading}
-                        onClick={handleClearChat}
-                        {...(chosenLanguage == "Hebrew" ? { startIcon: <CleaningServicesIcon sx={{ transform: 'rotate(90deg)' }} /> } : { endIcon: <CleaningServicesIcon sx={{ transform: 'rotate(270deg)' }} /> })}
-                        sx={{
-                            dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
-                            mt: 1
-                        }}
-                    >
-                        {/* {chatMutation.isLoading ? <CircularProgress size={24} /> : (chosenLanguage == "hebrew" ? "נקה צ'אט" : "Clear chat")} */}
-                        {chosenLanguage == "Hebrew" ? "נקה צ'אט" : "Clear chat"}
-                    </Button>
-                </Box>
+                                        '& .MuiOutlinedInput-root': {
+                                            '& fieldset': {
+                                                borderColor: 'black', // sets border color
+                                            },
+                                            '&:hover fieldset': {
+                                                borderColor: 'black', // sets border color on hover
+                                            },
+                                            '&.Mui-focused fieldset': {
+                                                borderColor: 'black', // sets border color on focus
+                                            },
+                                        }
+                                    }}
+                                    autoFocus={true}
+                                />
+                                <Button
+                                    variant="contained"
+                                    color="primary" // use a theme color that indicates primary action
+                                    type='submit'
+                                    onClick={handleSubmit}
+                                    disabled={chatMutation.isLoading}
+                                    {...(chosenLanguage == "Hebrew" ? { startIcon: <SendIcon sx={{ transform: 'rotate(180deg)' }} /> } : { endIcon: <SendIcon /> })}
+                                    sx={{
+                                        dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
+                                        mt: 1
+                                    }}
+                                >
+                                    {/* {chatMutation.isLoading ? <CircularProgress size={24} /> : "Send"} */}
+                                    {chosenLanguage == "Hebrew" ? "שלח" : "Send"}
+                                </Button>
+                            </Box>
+                        </form>
+                        <Button
+                            variant="contained"
+                            color="primary" // use a theme color that indicates primary action
+                            disabled={chatMutation.isLoading}
+                            onClick={handleClearChat}
+                            {...(chosenLanguage == "Hebrew" ? { startIcon: <CleaningServicesIcon sx={{ transform: 'rotate(90deg)' }} /> } : { endIcon: <CleaningServicesIcon sx={{ transform: 'rotate(270deg)' }} /> })}
+                            sx={{
+                                dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
+                                mt: 1
+                            }}
+                        >
+                            {/* {chatMutation.isLoading ? <CircularProgress size={24} /> : (chosenLanguage == "hebrew" ? "נקה צ'אט" : "Clear chat")} */}
+                            {chosenLanguage == "Hebrew" ? "נקה צ'אט" : "Clear chat"}
+                        </Button>
+                    </Box>
+                ) : (
+                    <>
+                        <Button
+                            variant="contained"
+                            color="primary" // use a theme color that indicates primary action
+                            disabled={chatMutation.isLoading}
+                            onClick={handleStartChat}
+                            startIcon={<PlayCircleOutlineIcon sx={{ transform: 'rotate(180deg)' }} />}
+                            sx={{
+                                dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
+                                mt: 1
+                            }}
+                        >
+                            <>
+                                התחל צ'אט
+                            </>
+                        </Button>
+                    </>
+                )}
             </Box>
         </>
     );
