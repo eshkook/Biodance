@@ -17,6 +17,8 @@ export default function Chat() {
         // { id: 3, text: "Hi thhhhhhhhhhhhhhhhhhhere!", sender: "bot", keyboard: keyboard }
     ]);
 
+    console.log(messages)
+
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -40,6 +42,7 @@ export default function Chat() {
             setMessages(messages => [...messages, { id: messages.length + 1, text: data.message, keyboard: data.keyboard, image_urls: data.image_urls, sender: "bot" }]);
         },
         onError: error => {
+            setMessages(messages => [...messages, { id: messages.length + 1, text: "error", sender: "bot" }]);
             console.log(error.message || "An error occurred")
         }
     });

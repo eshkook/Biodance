@@ -25,6 +25,7 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
             setMessages(messages => [...messages, { id: messages.length + 1, text: data.message, keyboard: data.keyboard, image_urls: data.image_urls, sender: "bot" }]);
         },
         onError: error => {
+            setMessages(messages => [...messages, { id: messages.length + 1, text: "error", sender: "bot" }]);
             console.log(error.message || "An error occurred")
         }
     });
@@ -88,7 +89,9 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                             overflowWrap: 'break-word', // Additional property to handle overflow
                         }}
                     >
-                        {formatMessageText(message.text)}
+                        {(message.text == 'error' && message.sender == 'bot') ? 
+                        (chosenLanguage === "Hebrew" ? "קרתה שגיאה, נסה שוב." : "An error occured. Try again.") : 
+                        formatMessageText(message.text)}
                     </Typography>
                 }
             </Paper>
