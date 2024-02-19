@@ -19,6 +19,13 @@ import { Routes, Route } from "react-router-dom";
 
 const theme = createTheme({
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: `
         html, body {
