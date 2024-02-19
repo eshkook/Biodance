@@ -3,7 +3,7 @@ import { Box, Typography, Paper, CircularProgress, Button } from '@mui/material'
 import { chat_post } from "./posts";
 import { useMutation } from "@tanstack/react-query";
 
-export default function Message({ message, chosenLanguage, setMessages, setChosenLanguage }) {
+export default function Message({ message, chosenLanguage, setMessages, setChosenLanguage, onImageLoad }) {
 
     const [buttonWidth, setButtonWidth] = useState('auto');
 
@@ -64,6 +64,8 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                     p: 2,
                     backgroundColor: isBot ? "primary.light" : "secondary.light",
                     borderRadius: (isBot && chosenLanguage === "Hebrew") || (!isBot && chosenLanguage !== "Hebrew") ? "20px 5px 20px 20px" : "5px 20px 20px 20px",
+                    wordWrap: 'break-word', // Ensure words are wrapped
+                    maxWidth: '100%', // Ensure the message does not exceed the container's width
                 }}
             >
                 {message.text === "בחר שפה:\n\nChoose language:" ? (
@@ -81,6 +83,10 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                         variant="body1"
                         align={chosenLanguage === "Hebrew" ? "right" : "left"}
                         dir={chosenLanguage === "Hebrew" ? "rtl" : "ltr"}
+                        sx={{
+                            wordWrap: 'break-word',
+                            overflowWrap: 'break-word', // Additional property to handle overflow
+                        }}
                     >
                         {formatMessageText(message.text)}
                     </Typography>
@@ -92,10 +98,12 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                     component="img"
                     src={url}
                     alt={`image_${index}`}
+                    onLoad={onImageLoad}
                     sx={{
-                        maxWidth: '80%', // Ensure the image is responsive and does not overflow its container
+                        maxWidth: '65%', // Ensure the image is responsive and does not overflow its container
                         mt: 1, // Margin top for spacing between text and image
                         borderRadius: '4px', // Optional: Adds rounded corners to the image
+                        marginTop: '4px'
                     }}
                 />
             ))}
@@ -107,16 +115,6 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                     mt: 1,
                 }}
             >
-                {/* {message.keyboard && message.keyboard.map((button, index) => (
-                    <Button
-                        key={index}
-                        variant="contained"
-                        sx={{ mt: 1 }} // Add margin between buttons
-                        onClick={() => handleClick(button[0].callback_data)}
-                    >
-                        {button[0].text}
-                    </Button>
-                ))} */}
                 {message.keyboard && message.keyboard.map((button, index) => (
                     <Button
                         key={index}

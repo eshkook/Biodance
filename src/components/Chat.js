@@ -1,24 +1,34 @@
-import React, { useState } from 'react';
 import { useMutation } from "@tanstack/react-query";
-import { Box, TextField, Button, Typography, CircularProgress } from '@mui/material';
+import { Box, TextField, Button, DeleteOutline, Typography, CircularProgress } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import Message from './Message';
 import { chat_post } from "./posts";
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function Chat() {
-
-    const [chosenLanguage, setChosenLanguage] = useState('Hebrew');
-
-    const keyboard = [
-        [{ "text": 'עברית', "callback_data": 'Hebrew' }],
-        [{ "text": 'English', "callback_data": 'English' }]
-    ]
 
     const [messages, setMessages] = useState([
         // { id: 1, text: "Hi there!", sender: "bot" },
         // { id: 2, text: "Get to work maggot", sender: "user" },
         // { id: 3, text: "Hi thhhhhhhhhhhhhhhhhhhere!", sender: "bot", keyboard: keyboard }
     ]);
+
+    const messagesEndRef = useRef(null);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+
+    const handleImageLoad = () => {
+        scrollToBottom();
+    };
+
+    const [chosenLanguage, setChosenLanguage] = useState('Hebrew');
 
     const chatMutation = useMutation({
         mutationFn: chat_post,
@@ -85,8 +95,10 @@ export default function Chat() {
                                 message={message}
                                 chosenLanguage={chosenLanguage}
                                 setMessages={setMessages}
-                                setChosenLanguage={setChosenLanguage} />
+                                setChosenLanguage={setChosenLanguage}
+                                onImageLoad={handleImageLoad} />
                         ))}
+                        <div ref={messagesEndRef} />
                     </Box>
                     <form onSubmit={handleSubmit} noValidate autoComplete='off'>
                         {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves,
@@ -143,7 +155,7 @@ export default function Chat() {
                                 type='submit'
                                 onClick={handleSubmit}
                                 disabled={chatMutation.isLoading}
-                                {...(chosenLanguage == "Hebrew" ? { startIcon: <SendIcon sx={{ transform: chosenLanguage === "Hebrew" ? 'rotate(180deg)' : 'none' }}/> } : { endIcon: <SendIcon /> })}
+                                {...(chosenLanguage == "Hebrew" ? { startIcon: <SendIcon sx={{ transform: 'rotate(180deg)' }} /> } : { endIcon: <SendIcon /> })}
                                 sx={{
                                     dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
                                     mt: 1
@@ -159,7 +171,11 @@ export default function Chat() {
                         color="primary" // use a theme color that indicates primary action
                         disabled={chatMutation.isLoading}
                         onClick={handleClearChat}
-                        sx={{ mt: 1 }} // adds margin-top for spacing
+                        {...(chosenLanguage == "Hebrew" ? { startIcon: <CleaningServicesIcon sx={{ transform: 'rotate(90deg)' }} /> } : { endIcon: <CleaningServicesIcon sx={{ transform: 'rotate(270deg)' }} /> })}
+                        sx={{
+                            dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
+                            mt: 1
+                        }}
                     >
                         {/* {chatMutation.isLoading ? <CircularProgress size={24} /> : (chosenLanguage == "hebrew" ? "נקה צ'אט" : "Clear chat")} */}
                         {chosenLanguage == "Hebrew" ? "נקה צ'אט" : "Clear chat"}
