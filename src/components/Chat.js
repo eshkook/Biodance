@@ -143,11 +143,14 @@ export default function Chat() {
                                 type='submit'
                                 onClick={handleSubmit}
                                 disabled={chatMutation.isLoading}
-                                endIcon={<SendIcon />}
-                                sx={{ mt: 1 }} // adds margin-top for spacing
+                                {...(chosenLanguage == "Hebrew" ? { startIcon: <SendIcon sx={{ transform: chosenLanguage === "Hebrew" ? 'rotate(180deg)' : 'none' }}/> } : { endIcon: <SendIcon /> })}
+                                sx={{
+                                    dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
+                                    mt: 1
+                                }}
                             >
                                 {/* {chatMutation.isLoading ? <CircularProgress size={24} /> : "Send"} */}
-                                {"Send"}
+                                {chosenLanguage == "Hebrew" ? "שלח" : "Send"}
                             </Button>
                         </Box>
                     </form>
@@ -159,7 +162,7 @@ export default function Chat() {
                         sx={{ mt: 1 }} // adds margin-top for spacing
                     >
                         {/* {chatMutation.isLoading ? <CircularProgress size={24} /> : (chosenLanguage == "hebrew" ? "נקה צ'אט" : "Clear chat")} */}
-                        {chosenLanguage == "hebrew" ? "נקה צ'אט" : "Clear chat"}
+                        {chosenLanguage == "Hebrew" ? "נקה צ'אט" : "Clear chat"}
                     </Button>
                 </Box>
             </Box>
