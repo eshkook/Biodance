@@ -65,6 +65,7 @@ export default function Chat() {
                 user_message: formState.user_message,
                 action: 'text-message'
             });
+            setFormState({ ...formState, user_message: '' });
         }
     }
 
@@ -126,7 +127,8 @@ export default function Chat() {
                                 <TextField
                                     onChange={updateFormState}
                                     id="user_message-input"
-                                    label={chosenLanguage == "Hebrew" ? "כתוב הודעה" : "Your message"}
+                                    // label={chosenLanguage == "Hebrew" ? "כתוב הודעה" : "Your message"}
+                                    placeholder={chosenLanguage == "Hebrew" ? "כתוב הודעה" : "Your message"}
                                     variant="outlined"
                                     name="user_message"
                                     value={formState.user_message}
