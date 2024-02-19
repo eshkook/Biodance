@@ -17,8 +17,6 @@ export default function Chat() {
         // { id: 3, text: "Hi thhhhhhhhhhhhhhhhhhhere!", sender: "bot", keyboard: keyboard }
     ]);
 
-    console.log(messages)
-
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -125,26 +123,25 @@ export default function Chat() {
                                     gap: '10px'
                                 }}
                             >
-                                {/* <TextField
-                                color='black'
-                                onChange={updateFormState}
-                                id="user_message-input"
-                                label="Type your message here..."
-                                variant="outlined"
-                                name="user_message"
-                                value={formState.user_message}
-                                fullWidth // makes the TextField full width
-                                sx={{ mt: 1 }} // adds margin-top for spacing
-                                autoFocus={true}
-                            /> */}
                                 <TextField
                                     onChange={updateFormState}
                                     id="user_message-input"
-                                    label="Type your message here..."
+                                    label={chosenLanguage == "Hebrew" ? "כתוב הודעה" : "Your message"}
                                     variant="outlined"
                                     name="user_message"
                                     value={formState.user_message}
                                     fullWidth // makes the TextField full width
+                                    InputProps={{
+                                        sx: {
+                                            direction: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr'
+                                        }
+                                    }}
+                                    InputLabelProps={{
+                                        sx: {
+                                            textAlign: chosenLanguage == "Hebrew" ? "right" : "left",
+                                            direction: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr'
+                                        }
+                                    }}
                                     sx={{
                                         mt: 1, // adds margin-top for spacing
                                         '& .MuiInputBase-input': {
@@ -192,7 +189,6 @@ export default function Chat() {
                                 mt: 1
                             }}
                         >
-                            {/* {chatMutation.isLoading ? <CircularProgress size={24} /> : (chosenLanguage == "hebrew" ? "נקה צ'אט" : "Clear chat")} */}
                             {chosenLanguage == "Hebrew" ? "נקה צ'אט" : "Clear chat"}
                         </Button>
                     </Box>
