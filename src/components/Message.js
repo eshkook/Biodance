@@ -66,7 +66,7 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                     backgroundColor: isBot ? "primary.light" : "secondary.light",
                     borderRadius: (isBot && chosenLanguage === "Hebrew") || (!isBot && chosenLanguage !== "Hebrew") ? "20px 5px 20px 20px" : "5px 20px 20px 20px",
                     wordWrap: 'break-word', // Ensure words are wrapped
-                    maxWidth: '100%', // Ensure the message does not exceed the container's width
+                    maxWidth: '80%', // Ensure the message does not exceed the container's width
                 }}
             >
                 {message.text === "בחר שפה:\n\nChoose language:" ? (
@@ -126,6 +126,7 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                         sx={{
                             mt: 1, // Add margin between buttons
                             width: `calc(${buttonWidth} + 25px)`, // Apply the calculated width
+                            maxWidth: '100%'
                         }}
                         onClick={() => handleClick(button[0].callback_data)}
                     >

@@ -6,6 +6,8 @@ import { chat_post } from "./posts";
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import React, { useState, useEffect, useRef } from 'react';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import ChatIcon from '@mui/icons-material/Chat';
+import CommentIcon from '@mui/icons-material/Comment';
 
 export default function Chat() {
 
@@ -89,7 +91,8 @@ export default function Chat() {
         <>
             <Box
                 sx={{
-                    maxWidth: '600px', // or any appropriate max width
+                    maxWidth: '600px',
+                    // maxHeight: '900px',
                     margin: '0 auto', // centers the box
                     paddingBottom: '20px', // gives some space at the bottom
                     // minHeight: '100vh',
@@ -101,8 +104,19 @@ export default function Chat() {
                 }}
             >
                 {chatStarted ? (
-                    <Box sx={{ height: "100vh", display: "flex", flexDirection: "column", bgcolor: "grey.200" }}>
-                        <Box sx={{ flexGrow: 1, overflow: "auto", p: 2 }}>
+                    <Box
+                        sx={{
+                            height: "100vh",
+                            display: "flex",
+                            flexDirection: "column",
+                            bgcolor: "grey.200"
+                        }}>
+                        <Box
+                            sx={{
+                                flexGrow: 1,
+                                overflow: "auto",
+                                p: 2
+                            }}>
                             {messages.map((message) => (
                                 <Message
                                     key={message.id}
@@ -116,7 +130,7 @@ export default function Chat() {
                         </Box>
                         <form onSubmit={handleSubmit} noValidate autoComplete='off'>
                             {/* noValidate makes the browser not use its built-in validation messages as we want to do it ourselves,
-          autoComplete off makes it not complete the user's text */}
+              autoComplete off makes it not complete the user's text */}
                             <Box
                                 sx={{
                                     display: 'flex',
@@ -196,6 +210,8 @@ export default function Chat() {
                     </Box>
                 ) : (
                     <>
+                        <ChatIcon />
+                        <CommentIcon />
                         <Button
                             variant="contained"
                             color="primary" // use a theme color that indicates primary action
