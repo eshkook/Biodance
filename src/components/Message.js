@@ -130,10 +130,10 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                             width: `calc(${buttonWidth} + 25px)`, // Apply the calculated width
                             maxWidth: '100%',
                             borderRadius: '50px',
-                            backgroundColor: 'grey.700', // Dark grey background from the theme
+                            backgroundColor: 'grey.600', // Dark grey background from the theme
                             color: 'white', // White text
                             '&:hover': {
-                                backgroundColor: 'grey.600', // Slightly lighter grey on hover
+                                backgroundColor: 'grey.700', // Slightly lighter grey on hover
                             }
                         }}
                         onClick={() => handleClick(button[0].callback_data)}
