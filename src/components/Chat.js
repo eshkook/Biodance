@@ -15,11 +15,7 @@ export default function Chat() {
 
     const [chatStarted, setChatStarted] = useState(false)
 
-    const [messages, setMessages] = useState([
-        // { id: 1, text: "Hi there!", sender: "bot" },
-        // { id: 2, text: "Get to work maggot", sender: "user" },
-        // { id: 3, text: "Hi thhhhhhhhhhhhhhhhhhhere!", sender: "bot", keyboard: keyboard }
-    ]);
+    const [messages, setMessages] = useState([]);
 
     const messagesEndRef = useRef(null);
 
@@ -74,11 +70,13 @@ export default function Chat() {
     }
 
     function handleClearChat() {
-        setMessages([]);
-        chatMutation.mutate({
-            user_message: '/start',
-            action: 'text-message'
-        });
+        if (messages.length > 1) {
+            setMessages([]);
+            chatMutation.mutate({
+                user_message: '/start',
+                action: 'text-message'
+            });
+        }
     }
 
     function handleStartChat() {
