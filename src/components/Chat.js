@@ -167,12 +167,12 @@ export default function Chat() {
                                             direction: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr'
                                         }
                                     }}
-                                    InputLabelProps={{
-                                        sx: {
-                                            textAlign: chosenLanguage == "Hebrew" ? "right" : "left",
-                                            direction: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr'
-                                        }
-                                    }}
+                                    // InputLabelProps={{
+                                    //     sx: {
+                                    //         textAlign: chosenLanguage == "Hebrew" ? "right" : "left",
+                                    //         direction: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr'
+                                    //     }
+                                    // }}
                                     sx={{
                                         mt: 1, // adds margin-top for spacing
                                         '& .MuiInputBase-input': {
