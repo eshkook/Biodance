@@ -9,6 +9,7 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import ChatIcon from '@mui/icons-material/Chat';
 import CommentIcon from '@mui/icons-material/Comment';
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
+import backgroundImage from './background.jpg'
 
 export default function Chat() {
 
@@ -92,32 +93,36 @@ export default function Chat() {
         <>
             <Box
                 sx={{
-                    maxWidth: '600px',
-                    maxHeight: '600px',
+                    width: '500px',
+                    height: '650px',
                     margin: '0 auto', // centers the box
                     paddingBottom: '20px', // gives some space at the bottom
                     // minHeight: '100vh',
-                    // display: 'flex',
-                    // justifyContent: 'center',
-                    // alignItems: 'center', // Changed to 'stretch' to make the children (cards) of the same height
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     // flexDirection: { xs: 'column', md: 'row' }, // Responsive design: column layout for small screens, row layout for medium and larger screens
                     // p: 300, // Padding for the box
 
                     // width: '100%',
                     // height: '100vh',
-                    backgroundImage: 'url("paragliding.jpg")',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    bgcolor: "grey.200"
+                    // backgroundImage: `url(${backgroundImage})`,
+                    // backgroundRepeat: 'no-repeat',
+                    // backgroundSize: 'cover',
+                    // backgroundPosition: 'center',
+                    // bgcolor: "grey.200"
                 }}
             >
                 {chatStarted ? (
                     <Box
                         sx={{
-                            height: "100vh",
+                            // height: "100vh",
                             display: "flex",
                             flexDirection: "column",
+                            backgroundImage: `url(${backgroundImage})`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
                             // bgcolor: "grey.200"
                         }}>
                         <Box
@@ -223,11 +228,12 @@ export default function Chat() {
                         <CommentIcon /> */}
                         <Button
                             variant="contained"
-                            color="primary" // use a theme color that indicates primary action
+                            // color="primary" // use a theme color that indicates primary action
                             disabled={chatMutation.isLoading}
                             onClick={handleStartChat}
                             sx={{
                                 // dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
+                                borderRadius: '10px',
                                 height: '130px',
                                 width: '170px',
                                 mt: 1,
@@ -235,7 +241,12 @@ export default function Chat() {
                                 flexDirection: 'column', // Stack children vertically
                                 alignItems: 'center', // Center items horizontally
                                 justifyContent: 'space-between', // Center items vertically (useful if the button's height is larger than its content)
-                                textAlign: 'center'
+                                textAlign: 'center',
+                                backgroundColor: 'grey.900', // Dark grey background from the theme
+                                color: 'white', // White text
+                                '&:hover': {
+                                    backgroundColor: 'grey.800', // Slightly lighter grey on hover
+                                }
                             }}
                         >
                             <Typography>
