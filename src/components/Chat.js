@@ -8,6 +8,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import ChatIcon from '@mui/icons-material/Chat';
 import CommentIcon from '@mui/icons-material/Comment';
+import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 
 export default function Chat() {
 
@@ -92,7 +93,7 @@ export default function Chat() {
             <Box
                 sx={{
                     maxWidth: '600px',
-                    // maxHeight: '900px',
+                    maxHeight: '600px',
                     margin: '0 auto', // centers the box
                     paddingBottom: '20px', // gives some space at the bottom
                     // minHeight: '100vh',
@@ -101,6 +102,14 @@ export default function Chat() {
                     // alignItems: 'center', // Changed to 'stretch' to make the children (cards) of the same height
                     // flexDirection: { xs: 'column', md: 'row' }, // Responsive design: column layout for small screens, row layout for medium and larger screens
                     // p: 300, // Padding for the box
+
+                    // width: '100%',
+                    // height: '100vh',
+                    backgroundImage: 'url("paragliding.jpg")',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    bgcolor: "grey.200"
                 }}
             >
                 {chatStarted ? (
@@ -109,7 +118,7 @@ export default function Chat() {
                             height: "100vh",
                             display: "flex",
                             flexDirection: "column",
-                            bgcolor: "grey.200"
+                            // bgcolor: "grey.200"
                         }}>
                         <Box
                             sx={{
@@ -210,22 +219,30 @@ export default function Chat() {
                     </Box>
                 ) : (
                     <>
-                        <ChatIcon />
-                        <CommentIcon />
+                        {/* <ChatIcon />
+                        <CommentIcon /> */}
                         <Button
                             variant="contained"
                             color="primary" // use a theme color that indicates primary action
                             disabled={chatMutation.isLoading}
                             onClick={handleStartChat}
-                            startIcon={<PlayCircleOutlineIcon sx={{ transform: 'rotate(180deg)' }} />}
                             sx={{
-                                dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
-                                mt: 1
+                                // dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
+                                height: '130px',
+                                width: '170px',
+                                mt: 1,
+                                display: 'flex', // Enable flex container
+                                flexDirection: 'column', // Stack children vertically
+                                alignItems: 'center', // Center items horizontally
+                                justifyContent: 'space-between', // Center items vertically (useful if the button's height is larger than its content)
+                                textAlign: 'center'
                             }}
                         >
-                            <>
-                                התחל צ'אט
-                            </>
+                            <Typography>
+                                <bdi>התחל צ'אט!</bdi>
+                            </Typography>
+                            <HeadsetMicIcon sx={{ fontSize: 50 }} />
+                            <Typography>Start a chat!</Typography>
                         </Button>
                     </>
                 )}
