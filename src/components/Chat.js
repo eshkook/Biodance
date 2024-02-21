@@ -93,7 +93,7 @@ export default function Chat() {
         <>
             <Box
                 sx={{
-                    width: '500px',
+                    width: '600px',
                     height: '700px',
                     margin: '0 auto', // centers the box
                     paddingBottom: '20px', // gives some space at the bottom

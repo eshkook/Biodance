@@ -63,7 +63,9 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                 variant="outlined"
                 sx={{
                     p: 2,
-                    backgroundColor: isBot ? "primary.light" : "secondary.light",
+                    border: isBot ? 'none' : '1px solid black',
+                    color: !isBot ? 'black' : 'white',
+                    backgroundColor: isBot ? 'grey.900' : 'white',
                     borderRadius: (isBot && chosenLanguage === "Hebrew") || (!isBot && chosenLanguage !== "Hebrew") ? "20px 5px 20px 20px" : "5px 20px 20px 20px",
                     wordWrap: 'break-word', // Ensure words are wrapped
                     maxWidth: '80%', // Ensure the message does not exceed the container's width
