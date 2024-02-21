@@ -129,6 +129,7 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                             mt: 1, // Add margin between buttons
                             width: `calc(${buttonWidth} + 25px)`, // Apply the calculated width
                             maxWidth: '100%',
+                            borderRadius: '50px',
                             backgroundColor: 'grey.700', // Dark grey background from the theme
                             color: 'white', // White text
                             '&:hover': {
