@@ -94,13 +94,13 @@ export default function Chat() {
             <Box
                 sx={{
                     width: '500px',
-                    height: '650px',
+                    height: '700px',
                     margin: '0 auto', // centers the box
                     paddingBottom: '20px', // gives some space at the bottom
                     // minHeight: '100vh',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
+                    // display: 'flex',
+                    // justifyContent: 'center',
+                    // alignItems: 'center',
                     // flexDirection: { xs: 'column', md: 'row' }, // Responsive design: column layout for small screens, row layout for medium and larger screens
                     // p: 300, // Padding for the box
 
@@ -116,7 +116,8 @@ export default function Chat() {
                 {chatStarted ? (
                     <Box
                         sx={{
-                            // height: "100vh",
+                            height: "100%",
+                            width: '100%',
                             display: "flex",
                             flexDirection: "column",
                             backgroundImage: `url(${backgroundImage})`,
@@ -200,7 +201,12 @@ export default function Chat() {
                                     {...(chosenLanguage == "Hebrew" ? { startIcon: <SendIcon sx={{ transform: 'rotate(180deg)' }} /> } : { endIcon: <SendIcon /> })}
                                     sx={{
                                         dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
-                                        mt: 1
+                                        mt: 1,
+                                        backgroundColor: 'grey.900', // Dark grey background from the theme
+                                        color: 'white', // White text
+                                        '&:hover': {
+                                            backgroundColor: 'grey.800', // Slightly lighter grey on hover
+                                        }
                                     }}
                                 >
                                     {/* {chatMutation.isLoading ? <CircularProgress size={24} /> : "Send"} */}
@@ -216,14 +222,28 @@ export default function Chat() {
                             {...(chosenLanguage == "Hebrew" ? { startIcon: <CleaningServicesIcon sx={{ transform: 'rotate(90deg)' }} /> } : { endIcon: <CleaningServicesIcon sx={{ transform: 'rotate(270deg)' }} /> })}
                             sx={{
                                 dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
-                                mt: 1
+                                mt: 1,
+                                backgroundColor: 'grey.900', // Dark grey background from the theme
+                                color: 'white', // White text
+                                '&:hover': {
+                                    backgroundColor: 'grey.800', // Slightly lighter grey on hover
+                                }
                             }}
                         >
                             {chosenLanguage == "Hebrew" ? "נקה צ'אט" : "Clear chat"}
                         </Button>
                     </Box>
                 ) : (
-                    <>
+                    <Box
+                        sx={{
+                            width: '100%',
+                            height: '100%',
+                            paddingBottom: '20px', // gives some space at the bottom
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
                         {/* <ChatIcon />
                         <CommentIcon /> */}
                         <Button
@@ -255,7 +275,7 @@ export default function Chat() {
                             <HeadsetMicIcon sx={{ fontSize: 50 }} />
                             <Typography>Start a chat!</Typography>
                         </Button>
-                    </>
+                    </Box>
                 )}
             </Box>
         </>

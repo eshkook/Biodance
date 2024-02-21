@@ -89,9 +89,9 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                             overflowWrap: 'break-word', // Additional property to handle overflow
                         }}
                     >
-                        {(message.text == 'error' && message.sender == 'bot') ? 
-                        (chosenLanguage === "Hebrew" ? "קרתה שגיאה, נסה שוב." : "An error occured. Try again.") : 
-                        formatMessageText(message.text)}
+                        {(message.text == 'error' && message.sender == 'bot') ?
+                            (chosenLanguage === "Hebrew" ? "קרתה שגיאה, נסה שוב." : "An error occured. Try again.") :
+                            formatMessageText(message.text)}
                     </Typography>
                 }
             </Paper>
@@ -126,7 +126,12 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                         sx={{
                             mt: 1, // Add margin between buttons
                             width: `calc(${buttonWidth} + 25px)`, // Apply the calculated width
-                            maxWidth: '100%'
+                            maxWidth: '100%',
+                            backgroundColor: 'grey.900', // Dark grey background from the theme
+                            color: 'white', // White text
+                            '&:hover': {
+                                backgroundColor: 'grey.800', // Slightly lighter grey on hover
+                            }
                         }}
                         onClick={() => handleClick(button[0].callback_data)}
                     >
