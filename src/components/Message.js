@@ -129,10 +129,10 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                             mt: 1, // Add margin between buttons
                             width: `calc(${buttonWidth} + 25px)`, // Apply the calculated width
                             maxWidth: '100%',
-                            backgroundColor: 'grey.900', // Dark grey background from the theme
+                            backgroundColor: 'grey.700', // Dark grey background from the theme
                             color: 'white', // White text
                             '&:hover': {
-                                backgroundColor: 'grey.800', // Slightly lighter grey on hover
+                                backgroundColor: 'grey.600', // Slightly lighter grey on hover
                             }
                         }}
                         onClick={() => handleClick(button[0].callback_data)}
