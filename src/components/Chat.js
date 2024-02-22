@@ -91,6 +91,7 @@ export default function Chat() {
                 action: 'text-message'
             });
             setFormState({ ...formState, user_message: '' });
+            handleAutoFocus()
         }
     }    
 
@@ -102,6 +103,10 @@ export default function Chat() {
                 action: 'text-message'
             });
         }
+        handleAutoFocus()
+    }
+
+    function handleAutoFocus() {
         messageInputRef.current?.focus();
     }
 
@@ -164,7 +169,8 @@ export default function Chat() {
                                     setMessages={setMessages}
                                     setChosenLanguage={setChosenLanguage}
                                     onImageLoad={handleImageLoad}
-                                    colors_dict={colors_dict} />
+                                    colors_dict={colors_dict}
+                                    handleAutoFocus={handleAutoFocus} />
                             ))}
                             <div ref={messagesEndRef} />
                         </Box>

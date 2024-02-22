@@ -23,7 +23,7 @@ function lightenHexColor(hex, amount = 20) {
     return `#${r}${g}${b}`;
 }
 
-export default function Message({ message, chosenLanguage, setMessages, setChosenLanguage, onImageLoad, colors_dict }) {
+export default function Message({ message, chosenLanguage, setMessages, setChosenLanguage, onImageLoad, colors_dict, handleAutoFocus }) {
 
     const [buttonWidth, setButtonWidth] = useState('auto');
 
@@ -68,6 +68,7 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
             user_message: callback_data,
             action: 'button'
         });
+        handleAutoFocus()
     }
 
     return (
