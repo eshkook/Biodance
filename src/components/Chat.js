@@ -1,13 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import { Box, TextField, Button, DeleteOutline, Typography, CircularProgress } from '@mui/material';
+import { Box, TextField, Button, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import Message from './Message';
 import { chat_post } from "./posts";
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import React, { useState, useEffect, useRef } from 'react';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import ChatIcon from '@mui/icons-material/Chat';
-import CommentIcon from '@mui/icons-material/Comment';
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 import backgroundImage from './background.jpg'
 
@@ -48,6 +45,8 @@ export default function Chat() {
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
+
+    const messageInputRef = useRef(null);
 
     useEffect(() => {
         scrollToBottom();
@@ -93,7 +92,7 @@ export default function Chat() {
             });
             setFormState({ ...formState, user_message: '' });
         }
-    }
+    }    
 
     function handleClearChat() {
         if (messages.length > 1) {
@@ -103,6 +102,7 @@ export default function Chat() {
                 action: 'text-message'
             });
         }
+        messageInputRef.current?.focus();
     }
 
     function handleStartChat() {
@@ -180,6 +180,7 @@ export default function Chat() {
                             >
                                 <TextField
                                     onChange={updateFormState}
+                                    ref={messageInputRef}
                                     id="user_message-input"
                                     // label={chosenLanguage == "Hebrew" ? "כתוב הודעה" : "Your message"}
                                     placeholder={chosenLanguage == "Hebrew" ? "כתוב הודעה" : "Your message"}
@@ -192,12 +193,6 @@ export default function Chat() {
                                             direction: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr'
                                         }
                                     }}
-                                    // InputLabelProps={{
-                                    //     sx: {
-                                    //         textAlign: chosenLanguage == "Hebrew" ? "right" : "left",
-                                    //         direction: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr'
-                                    //     }
-                                    // }}
                                     sx={{
                                         mt: 1, // adds margin-top for spacing
                                         '& .MuiInputBase-input': {
@@ -215,7 +210,7 @@ export default function Chat() {
                                             },
                                         }
                                     }}
-                                    autoFocus={true}
+                                    autoFocus
                                 />
                                 <Button
                                     variant="contained"
