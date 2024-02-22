@@ -34,7 +34,7 @@ export default function Chat() {
         start_chat_button: '#273245',
         chat_buttons: '#273245',
         bot_message: '#273245',
-        keyboard: '#647187'
+        keyboard: '#626f85'
     }
 
     const [chatStarted, setChatStarted] = useState(false)
