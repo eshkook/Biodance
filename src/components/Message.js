@@ -1,8 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Paper, CircularProgress, Button } from '@mui/material';
+import { Box, Typography, Paper, Button } from '@mui/material';
 import { chat_post } from "./posts";
 import { useMutation } from "@tanstack/react-query";
-import { blue } from '@mui/material/colors';
+
+// makes links clickable and turns '\n' to '<br />'
+function formatMessageTextAndLinkify(messageText) {
+    // First, split the text by lines
+    const lines = messageText.split('\n');
+
+    // Then, for each line, linkify URLs and convert to React elements
+    return lines.map((line, index) => (
+        <React.Fragment key={index}>
+            {/* Here you would linkify each line. 
+                For simplicity, this example just returns the line.
+                You would need to implement a linkify logic that returns React elements. */}
+            {linkifyLine(line)}
+            {index < lines.length - 1 ? <br /> : null}
+        </React.Fragment>
+    ));
+}
+
+// Example linkify function for a single line that returns React elements
+function linkifyLine(line) {
+    const urlRegex = /(\bhttps?:\/\/\S+)/ig;
+    const parts = line.split(urlRegex);
+
+    return parts.map((part, i) => 
+        urlRegex.test(part) ? <a href={part} key={i} target="_blank" rel="noopener noreferrer">{part}</a> : part
+    );
+}
 
 function lightenHexColor(hex, amount = 20) {
     // Convert hex to RGB
@@ -53,14 +79,14 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
     const isBot = message.sender === "bot";
 
     // Function to split the message text into lines and intersperse <br /> elements
-    const formatMessageText = (text) => {
-        return text.split('\n').map((line, index, array) => (
-            <React.Fragment key={index}>
-                {line}
-                {index < array.length - 1 && <br />}
-            </React.Fragment>
-        ));
-    };
+    // const formatMessageText = (text) => {
+    //     return text.split('\n').map((line, index, array) => (
+    //         <React.Fragment key={index}>
+    //             {line}
+    //             {index < array.length - 1 && <br />}
+    //         </React.Fragment>
+    //     ));
+    // };
 
     function handleClick(callback_data) {
         if (["Hebrew", "English"].includes(callback_data)) { setChosenLanguage(callback_data) }
@@ -114,7 +140,9 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                     >
                         {(message.text == 'error' && message.sender == 'bot') ?
                             (chosenLanguage === "Hebrew" ? "קרתה שגיאה, נסה שוב." : "An error occured. Try again.") :
-                            formatMessageText(message.text)}
+                            // formatMessageText(message.text)
+                            formatMessageTextAndLinkify(message.text)
+                            }
                     </Typography>
                 }
             </Paper>

@@ -7,6 +7,7 @@ import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import React, { useState, useEffect, useRef } from 'react';
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 import backgroundImage from './background.jpg'
+import Link from '@mui/material/Link';
 
 function lightenHexColor(hex, amount = 20) {
     // Convert hex to RGB
