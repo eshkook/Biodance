@@ -2,8 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, Paper, CircularProgress, Button } from '@mui/material';
 import { chat_post } from "./posts";
 import { useMutation } from "@tanstack/react-query";
+import { blue } from '@mui/material/colors';
 
-export default function Message({ message, chosenLanguage, setMessages, setChosenLanguage, onImageLoad }) {
+function lightenHexColor(hex, amount = 20) {
+    // Convert hex to RGB
+    let r = parseInt(hex.slice(1, 3), 16);
+    let g = parseInt(hex.slice(3, 5), 16);
+    let b = parseInt(hex.slice(5, 7), 16);
+
+    // Increase the RGB values to make the color lighter
+    r = Math.min(255, r + amount);
+    g = Math.min(255, g + amount);
+    b = Math.min(255, b + amount);
+
+    // Convert RGB back to hex
+    r = r.toString(16).padStart(2, '0');
+    g = g.toString(16).padStart(2, '0');
+    b = b.toString(16).padStart(2, '0');
+
+    return `#${r}${g}${b}`;
+}
+
+export default function Message({ message, chosenLanguage, setMessages, setChosenLanguage, onImageLoad, colors_dict }) {
 
     const [buttonWidth, setButtonWidth] = useState('auto');
 
@@ -65,7 +85,7 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                     p: 2,
                     border: isBot ? 'none' : '1px solid black',
                     color: !isBot ? 'black' : 'white',
-                    backgroundColor: isBot ? 'grey.900' : 'white',
+                    backgroundColor: isBot ? colors_dict.bot_message : 'white',
                     borderRadius: (isBot && chosenLanguage === "Hebrew") || (!isBot && chosenLanguage !== "Hebrew") ? "20px 0px 20px 20px" : "0px 20px 20px 20px",
                     wordWrap: 'break-word', // Ensure words are wrapped
                     maxWidth: '80%', // Ensure the message does not exceed the container's width
@@ -130,10 +150,10 @@ export default function Message({ message, chosenLanguage, setMessages, setChose
                             width: `calc(${buttonWidth} + 25px)`, // Apply the calculated width
                             maxWidth: '100%',
                             borderRadius: '50px',
-                            backgroundColor: 'grey.600', // Dark grey background from the theme
+                            backgroundColor: colors_dict.keyboard, 
                             color: 'white', // White text
                             '&:hover': {
-                                backgroundColor: 'grey.700', // Slightly lighter grey on hover
+                                backgroundColor: lightenHexColor(colors_dict.keyboard), // Slightly lighter grey on hover
                             }
                         }}
                         onClick={() => handleClick(button[0].callback_data)}

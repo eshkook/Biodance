@@ -11,7 +11,33 @@ import CommentIcon from '@mui/icons-material/Comment';
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 import backgroundImage from './background.jpg'
 
+function lightenHexColor(hex, amount = 20) {
+    // Convert hex to RGB
+    let r = parseInt(hex.slice(1, 3), 16);
+    let g = parseInt(hex.slice(3, 5), 16);
+    let b = parseInt(hex.slice(5, 7), 16);
+
+    // Increase the RGB values to make the color lighter
+    r = Math.min(255, r + amount);
+    g = Math.min(255, g + amount);
+    b = Math.min(255, b + amount);
+
+    // Convert RGB back to hex
+    r = r.toString(16).padStart(2, '0');
+    g = g.toString(16).padStart(2, '0');
+    b = b.toString(16).padStart(2, '0');
+
+    return `#${r}${g}${b}`;
+}
+
 export default function Chat() {
+
+    const colors_dict = {
+        start_chat_button: '#273245',
+        chat_buttons: '#273245',
+        bot_message: '#273245',
+        keyboard: '#647187'
+    }
 
     const [chatStarted, setChatStarted] = useState(false)
 
@@ -137,7 +163,8 @@ export default function Chat() {
                                     chosenLanguage={chosenLanguage}
                                     setMessages={setMessages}
                                     setChosenLanguage={setChosenLanguage}
-                                    onImageLoad={handleImageLoad} />
+                                    onImageLoad={handleImageLoad}
+                                    colors_dict={colors_dict} />
                             ))}
                             <div ref={messagesEndRef} />
                         </Box>
@@ -200,10 +227,10 @@ export default function Chat() {
                                     sx={{
                                         dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
                                         mt: 1,
-                                        backgroundColor: 'grey.900', // Dark grey background from the theme
+                                        backgroundColor: colors_dict.chat_buttons, // Dark grey background from the theme
                                         color: 'white', // White text
                                         '&:hover': {
-                                            backgroundColor: 'grey.800', // Slightly lighter grey on hover
+                                            backgroundColor: lightenHexColor(colors_dict.chat_buttons), // Slightly lighter grey on hover
                                         }
                                     }}
                                 >
@@ -221,10 +248,10 @@ export default function Chat() {
                             sx={{
                                 dir: chosenLanguage == "Hebrew" ? 'rtl' : 'ltr',
                                 mt: 1,
-                                backgroundColor: 'grey.900', // Dark grey background from the theme
+                                backgroundColor: colors_dict.chat_buttons, 
                                 color: 'white', // White text
                                 '&:hover': {
-                                    backgroundColor: 'grey.800', // Slightly lighter grey on hover
+                                    backgroundColor: lightenHexColor(colors_dict.chat_buttons), // Slightly lighter grey on hover
                                 }
                             }}
                         >
@@ -260,10 +287,10 @@ export default function Chat() {
                                 alignItems: 'center', // Center items horizontally
                                 justifyContent: 'space-between', // Center items vertically (useful if the button's height is larger than its content)
                                 textAlign: 'center',
-                                backgroundColor: 'grey.900', // Dark grey background from the theme
+                                backgroundColor: colors_dict.start_chat_button, // Dark grey background from the theme
                                 color: 'white', // White text
                                 '&:hover': {
-                                    backgroundColor: 'grey.800', // Slightly lighter grey on hover
+                                    backgroundColor: lightenHexColor(colors_dict.start_chat_button), // Slightly lighter grey on hover
                                 }
                             }}
                         >
