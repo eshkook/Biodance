@@ -28,9 +28,6 @@ export default function Hero() {
                     <Link to={'/signup'} >
                         <Button color="secondary">Sign Up</Button>
                     </Link>
-                    <Link to={'/chat'} >
-                        <Button color="primary">Chat</Button>
-                    </Link>
                 </ButtonGroup>
             </Box>
         </>

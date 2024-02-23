@@ -5,7 +5,6 @@ import Signup from './components/Signup';
 import Home from './components/Home';
 import Layout from './components/Layout';
 import Confirmation from './components/Confirmation';
-import Chat from './components/Chat';
 import Reset_Password_Email_Phase from './components/Reset_Password_Email_Phase';
 import Reset_Password_Code_Phase from './components/Reset_Password_Code_Phase';
 import Delete_Account from './components/Delete_Account';
@@ -81,7 +80,25 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          <Route path="/" element={<Chat />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<LandingPage />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="confirmation" element={<Confirmation />} />
+            <Route path="login" element={<Login />} />
+            <Route path="reset_password_email_phase" element={<Reset_Password_Email_Phase />} />
+            <Route path="reset_password_code_phase" element={<Reset_Password_Code_Phase />} />
+            <Route path="authentication_loading" element={<Authentication_Loading />} />
+            {/* delete: */}
+            <Route path="home" >
+              <Route index element={<Home />} />
+              <Route path="delete_account" element={<Delete_Account />} />
+            </Route>
+            {/* uncomment: */}
+            {/* <Route path="home" element={<ProtectedRoute><Home /></ProtectedRoute>}>
+              <Route path="delete_account" element={<Delete_Account />} />
+            </Route> */}
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </ThemeProvider>
     </>
