@@ -4,6 +4,8 @@ export function gpt_post({ prompt }) {
   return axios.post("https://efrq1qlgad.execute-api.eu-west-1.amazonaws.com/backend_function", {
     action: 'gpt',
     prompt: prompt
+  }, {
+    withCredentials: true,
   })
   .then(response => {
     return response.data;
