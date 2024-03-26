@@ -93,9 +93,12 @@ export default function App() {
               <Route index element={<Home />} />
               <Route path="delete_account" element={<Delete_Account />} />
             </Route> */}
-            {/* uncomment: */}
-            <Route path="home" element={<ProtectedRoute><Home /></ProtectedRoute>}>
+            {/* <Route path="home" element={<ProtectedRoute><Home /></ProtectedRoute>}>
               <Route path="delete_account" element={<Delete_Account />} />
+            </Route> */}
+            <Route path="home" >
+              <Route index element={<ProtectedRoute><Home /></ProtectedRoute>} />
+              <Route path="delete_account" element={<ProtectedRoute><Delete_Account /></ProtectedRoute>} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Route>

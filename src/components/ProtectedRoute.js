@@ -5,6 +5,7 @@ import { authenticate_post } from "../api/posts.js";
 import { useLocation } from "react-router-dom"
 import { useDispatch } from 'react-redux';
 import { setFirstName } from '../redux/store';
+import Authentication_Loading from './Authentication_Loading';
 
 export default function ProtectedRoute({ children }) {
 
@@ -12,34 +13,39 @@ export default function ProtectedRoute({ children }) {
     const dispatch = useDispatch();
     //////////////////////////////////////////////////////////////////////////// delete
     // return children
-    // return <Navigate to="/login" state={{ message: location.state?.no_failure_message ? false : (location.state?.custom_failure_message ? location.state.custom_failure_message : 'Authentication failed, please log in.') }} />
     ////////////////////////////////////////////////////////////////////////////
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [authStatusChecked, setAuthStatusChecked] = useState(false);
 
     const authenticateMutation = useMutation({
-        mutationFn: authenticate_post
+        mutationFn: authenticate_post,
+        onSuccess: data => {
+            console.log(999999999)
+            setIsAuthenticated(true);
+            setAuthStatusChecked(true);
+            if (data.firstName) {
+                dispatch(setFirstName(data.firstName));
+            }
+        },
+        onError: error => {
+            console.log(error.message || "An error occurred")
+            setIsAuthenticated(false);
+            setAuthStatusChecked(true);
+        }
     });
 
     useEffect(() => {
-        authenticateMutation.mutate({
-            onSuccess: data => {
-                setIsAuthenticated(true);
-                setAuthStatusChecked(true);
-                if (data.firstName) {
-                    dispatch(setFirstName(data.firstName));
-                }
-            },
-            onError: () => {
-                setIsAuthenticated(false);
-                setAuthStatusChecked(true);
-            }
-        });
-    }, [dispatch]); // including dispatch in dependency array is good practice, no real effect
-
+        setIsAuthenticated(true);
+        setAuthStatusChecked(true);
+    }, []);
+    
+    useEffect(() => {
+        authenticateMutation.mutate();
+    }, []);
+    
     if (!authStatusChecked) {
-        return <Navigate to="/authentication_loading" />
+        return <Authentication_Loading />
     }
     return isAuthenticated ? children : <Navigate to="/login" state={{ message: location.state?.no_failure_message ? false : (location.state?.custom_failure_message ? location.state.custom_failure_message : 'Authentication failed, please log in.') }} />;
 };
