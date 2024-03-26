@@ -21,7 +21,7 @@ export default function ProtectedRoute({ children }) {
     const authenticateMutation = useMutation({
         mutationFn: authenticate_post,
         onSuccess: data => {
-            console.log(999999999)
+            // console.log(999999999)
             setIsAuthenticated(true);
             setAuthStatusChecked(true);
             if (data.firstName) {
@@ -29,6 +29,7 @@ export default function ProtectedRoute({ children }) {
             }
         },
         onError: error => {
+            // console.log(8888888888888)
             console.log(error.message || "An error occurred")
             setIsAuthenticated(false);
             setAuthStatusChecked(true);
